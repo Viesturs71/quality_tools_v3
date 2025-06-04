@@ -1,8 +1,7 @@
 # methods/admin/__init__.py
 from django.contrib import admin
 from django.contrib.admin.sites import NotRegistered
-
-from accounts.custom_admin import custom_admin_site
+from accounts.admin import custom_admin_site
 from methods.models import MetozuRegistrs
 
 

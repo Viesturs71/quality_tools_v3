@@ -3,14 +3,14 @@ Admin configuration for personnel app
 """
 from django.contrib import admin
 from .models import Employee, Qualification, Training, EmployeeRecord, Education
-
+from accounts.admin import custom_admin_site
 
 class EmployeeRecordInline(admin.TabularInline):
     model = EmployeeRecord
     extra = 1
 
 
-@admin.register(Employee)
+@admin.register(Employee, site=custom_admin_site)
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ['employee_id', 'first_name', 'last_name', 'position', 'department', 'is_active']
     list_filter = ['is_active', 'department', 'position']
@@ -31,21 +31,21 @@ class EmployeeAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Qualification)
+@admin.register(Qualification, site=custom_admin_site)
 class QualificationAdmin(admin.ModelAdmin):
     list_display = ['employee', 'qualification_type', 'issue_date', 'expiry_date']
     list_filter = ['qualification_type', 'issuing_organization']
     search_fields = ['employee__first_name', 'employee__last_name', 'qualification_type']
 
 
-@admin.register(Training)
+@admin.register(Training, site=custom_admin_site)
 class TrainingAdmin(admin.ModelAdmin):
     list_display = ['employee', 'training_name', 'start_date', 'end_date', 'status']
     list_filter = ['status', 'provider']
     search_fields = ['employee__first_name', 'employee__last_name', 'training_name']
 
 
-@admin.register(EmployeeRecord)
+@admin.register(EmployeeRecord, site=custom_admin_site)
 class EmployeeRecordAdmin(admin.ModelAdmin):
     list_display = ['employee', 'record_type', 'title', 'issue_date', 'is_confidential']
     list_filter = ['record_type', 'is_confidential']
@@ -66,7 +66,7 @@ class EmployeeRecordAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Education)
+@admin.register(Education, site=custom_admin_site)
 class EducationAdmin(admin.ModelAdmin):
     list_display = ['employee', 'level', 'institution', 'degree', 'is_completed']
     list_filter = ['level', 'is_completed']

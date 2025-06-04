@@ -1,27 +1,22 @@
 """Admin configuration for the company app."""
 
 from django.contrib import admin
-
-from myproject.admin import custom_admin_site
-
 from .models import Company, Department, Location
+from django.utils import timezone
+from accounts.admin import custom_admin_site
 
 
+
+@admin.register(Company, site=custom_admin_site)
 class CompanyAdmin(admin.ModelAdmin):
-    """Administration options for the ``Company`` model."""
-
     list_display = ("name", "code")
 
-
+@admin.register(Department, site=custom_admin_site)
 class DepartmentAdmin(admin.ModelAdmin):
-    """Administration options for the ``Department`` model."""
-
     list_display = ("name", "company")
 
-
+@admin.register(Location, site=custom_admin_site)
 class LocationAdmin(admin.ModelAdmin):
-    """Administration options for the ``Location`` model."""
-
     list_display = ("name", "address")
 
 

@@ -1,6 +1,6 @@
-# quality_docs/views/__init__.py
+"""Expose commonly used views at the package level."""
 
-# Import all views from the consolidated views.py file
+# Import all views from the consolidated views module
 from .views import (
     home,
     document_list,
@@ -8,8 +8,9 @@ from .views import (
     document_create,
     document_update,
     document_delete,
-    document_sign,  # Add the new view function
-    document_download,  # Add the new view
+    document_approve,
+    document_sign,
+    document_download,
     approval_flow_create,
     approval_step_create,
     document_review_create,
@@ -25,8 +26,9 @@ __all__ = [
     'document_create',
     'document_update',
     'document_delete',
-    'document_sign',  # Add the new view function
-    'document_download',  # Add the new view
+    'document_approve',
+    'document_sign',
+    'document_download',
     'approval_flow_create',
     'approval_step_create',
     'document_review_create',
@@ -34,6 +36,3 @@ __all__ = [
     'document_distribution_create',
 ]
 
-# Remove imports from non-existent modules
-# Document views, workflow views, signature views, distribution views, and dashboard views 
-# are now all consolidated in the views.py file

@@ -1,12 +1,14 @@
 # quality_docs/urls.py
 
 from django.urls import path
-from quality_docs.views import (
+# Import views directly from the module to avoid package import issues
+from quality_docs.views.views import (
     home,
     document_list,
     document_detail,
     document_create,
     document_update,
+    document_approve,
     document_delete,
     document_sign,
     document_download,
@@ -26,7 +28,7 @@ urlpatterns = [
     path('documents/create/', document_create, name='document_create'),
     path('documents/<int:pk>/update/', document_update, name='document_update'),
     path('documents/<int:pk>/delete/', document_delete, name='document_delete'),
-    path('documents/<int:pk>/approve/', document_update, name='document_approve'),
+    path('documents/<int:pk>/approve/', document_approve, name='document_approve'),
     path('documents/<int:pk>/sign/', document_sign, name='document_sign'),
     path('documents/<int:pk>/download/', document_download, name='document_download'),
     path('approval-flow/<int:document_id>/create/', approval_flow_create, name='approval_flow_create'),

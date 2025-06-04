@@ -1,10 +1,11 @@
 # methods/admin.py
 from django.contrib import admin
+from accounts.admin import custom_admin_site
 
 from .models import AkkRegistrs, MetozuRegistrs
 
 
-@admin.register(MetozuRegistrs)
+@admin.register(MetozuRegistrs, site=custom_admin_site)
 class MetozuRegistrsAdmin(admin.ModelAdmin):
     list_display = ('name', 'identification', 'investigation_field', 'verification_date', 'created_at')
     search_fields = ('name', 'identification', 'investigation_field')
@@ -16,7 +17,7 @@ class MetozuRegistrsAdmin(admin.ModelAdmin):
             obj.created_by = request.user
         super().save_model(request, obj, form, change)
 
-@admin.register(AkkRegistrs)
+@admin.register(AkkRegistrs, site=custom_admin_site)
 class AkkRegistrsAdmin(admin.ModelAdmin):
     list_display = ('pakalpojuma_sniedzejs', 'laboratorija', 'kods', 'skaits', 'cena', 'testa_summa')
     search_fields = ('pakalpojuma_sniedzejs', 'laboratorija', 'kods')

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Company, Department, Location
 from django.utils import timezone
-from myproject.admin import custom_admin_site
+from accounts.admin import custom_admin_site
 
 
 

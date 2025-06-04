@@ -1,4 +1,5 @@
 from django.contrib import admin
+from accounts.admin import custom_admin_site
 from .models import (
     Department,
     Equipment,
@@ -8,14 +9,14 @@ from .models import (
     EquipmentRegistry,
 )
 
-@admin.register(Department)
+@admin.register(Department, site=custom_admin_site)
 class DepartmentAdmin(admin.ModelAdmin):
     list_display = ('name', )  # Izņemti neeksistējošie 'code', 'is_active'
     list_filter = ()  # Iepriekš bija kļūdains: (')
     search_fields = ('name', )  # 'code', 'description' izņemti, ja nav modelī
     ordering = ('name', )
 
-@admin.register(Equipment)
+@admin.register(Equipment, site=custom_admin_site)
 class EquipmentAdmin(admin.ModelAdmin):
     list_display = [
         'name', 'inventory_number', 'serial_number',
@@ -49,26 +50,26 @@ class EquipmentAdmin(admin.ModelAdmin):
         }),
     ]
 
-@admin.register(EquipmentDocument)
+@admin.register(EquipmentDocument, site=custom_admin_site)
 class EquipmentDocumentAdmin(admin.ModelAdmin):
     list_display = ['document', 'equipment', 'uploaded_by', 'uploaded_at']  # 'title', 'description' noņemti, ja nav modelī
     list_filter = ['document_type']  # Pielāgots, ja 'document_type' ir caur `document`
     search_fields = ['document__title', 'document__internal_reference']  # Ja 'description' nav, jāizņem
     date_hierarchy = 'uploaded_at'
 
-@admin.register(MaintenanceRecord)
+@admin.register(MaintenanceRecord, site=custom_admin_site)
 class MaintenanceRecordAdmin(admin.ModelAdmin):
     list_display = ['maintenance_date', 'maintenance_type', 'equipment', 'performed_by', 'next_maintenance_date']
     list_filter = ['maintenance_type', 'maintenance_date']
     search_fields = ['equipment__name', 'equipment__inventory_number', 'performed_by', 'description']
     date_hierarchy = 'maintenance_date'
 
-@admin.register(EquipmentType)
+@admin.register(EquipmentType, site=custom_admin_site)
 class EquipmentTypeAdmin(admin.ModelAdmin):
     list_display = ['name', 'is_measuring_instrument', 'is_active']
     list_filter = ['is_measuring_instrument', 'is_active']
     search_fields = ['name', 'description']
 
-@admin.register(EquipmentRegistry)
+@admin.register(EquipmentRegistry, site=custom_admin_site)
 class EquipmentRegistryAdmin(admin.ModelAdmin):
     list_display = ('equipment', 'authorized_user', 'authorized_since')  # tikai esoši lauki!

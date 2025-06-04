@@ -1,7 +1,8 @@
 # quality_docs/urls.py
 
 from django.urls import path
-from quality_docs.views import (
+# Import views directly from the module to avoid package import issues
+from quality_docs.views.views import (
     home,
     document_list,
     document_detail,

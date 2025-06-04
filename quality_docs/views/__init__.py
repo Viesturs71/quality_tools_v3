@@ -1,6 +1,6 @@
-# quality_docs/views/__init__.py
+"""Expose commonly used views at the package level."""
 
-# Import all views from the consolidated views.py file
+# Import all views from the consolidated views module
 from .views import (
     home,
     document_list,

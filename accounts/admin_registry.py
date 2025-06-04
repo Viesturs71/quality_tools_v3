@@ -1,4 +1,4 @@
-from accounts.custom_admin import custom_admin_site
+from myproject.admin import custom_admin_site
 
 
 def get_standard_admin():

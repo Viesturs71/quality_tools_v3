@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.admin.sites import NotRegistered
 
-from accounts.custom_admin import custom_admin_site
+from myproject.admin import custom_admin_site
 from methods.models import MetozuRegistrs
 
 

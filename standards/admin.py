@@ -11,7 +11,7 @@ from .models.standards import (
     StandardRequirement,
     StandardComplianceStatus
 )
-from accounts.admin import custom_admin_site
+from myproject.admin import custom_admin_site
 
 @admin.register(Standard, site=custom_admin_site)
 class StandardAdmin(admin.ModelAdmin):

@@ -186,11 +186,11 @@
     <form action="{{ app_path }}" method="post" id="login-form" class="login-form">{% csrf_token %}
         <div class="compact-form-row">
             <label for="id_username">{% trans 'Username:' %}</label>
-            {{ form.username }}
+            {{ form.username.as_widget(attrs={'autocomplete': 'username'}) }}
         </div>
         <div class="compact-form-row">
             <label for="id_password">{% trans 'Password:' %}</label>
-            {{ form.password }}
+            {{ form.password.as_widget(attrs={'autocomplete': 'current-password'}) }}
         </div>
         {% url 'admin_password_reset' as password_reset_url %}
         {% if password_reset_url %}

@@ -304,7 +304,7 @@
       <div id="content" class="{% block coltype %}colM{% endblock %} p-4">
         {% block pretitle %}{% endblock %}
         
-        <!-- Override title blocks to completely remove Management System Tools -->
+        <!-- Override title blocks to completely remove Quality Tools Administration -->
         {% block content_title %}{% endblock %}
         {% block content_subtitle %}{% endblock %}
         
@@ -312,7 +312,7 @@
           {% if request.path != '/admin/' %}
             <!-- For any page that isn't the admin index, hide Django-generated titles -->
             <style>
-              /* Hide any h1 that might contain "Management System Tools" */
+              /* Hide any h1 that might contain "Quality Tools Administration" */
               #content h1:first-child {
                 display: none !important;
               }

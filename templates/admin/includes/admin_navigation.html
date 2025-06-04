@@ -78,7 +78,7 @@
                 <i class="fas fa-file-alt w-5 h-5 mr-2" aria-hidden="true"></i>
                 <span>{% trans "Documents" %}</span>
             </div>
-            <i class="fas fa-angle-down transition-transform"></i>
+            <i class="fas fa-angle-down transition-transform" aria-hidden="true"></i>
         </button>
         <ul id="docs-menu" class="pl-4 mt-1 space-y-1 {% if '/manage/quality_docs/' in request.path %}block{% else %}hidden{% endif %}">
             <li><a href="{% url 'custom_admin:quality_docs_qualitydocument_changelist' %}" class="nav-item flex items-center px-4 py-2 hover:text-white">{% trans "Quality Docs" %}</a></li>
@@ -89,12 +89,12 @@
 
     <!-- Standards -->
     <div>
-        <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white" data-toggle="collapse" data-target="standards-menu">
+        <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white" data-toggle="collapse" data-target="standards-menu" aria-expanded="false">
             <div class="flex items-center">
-                <i class="fas fa-clipboard-list w-5 h-5 mr-2"></i>
+                <i class="fas fa-clipboard-list w-5 h-5 mr-2" aria-hidden="true"></i>
                 <span>{% trans "Standards" %}</span>
             </div>
-            <i class="fas fa-angle-down transition-transform"></i>
+            <i class="fas fa-angle-down transition-transform" aria-hidden="true"></i>
         </button>
         <ul id="standards-menu" class="pl-4 mt-1 space-y-1 {% if '/manage/standards/' in request.path %}block{% else %}hidden{% endif %}">
             <li><a href="{% url 'custom_admin:standards_standard_changelist' %}" class="nav-item flex items-center px-4 py-2 hover:text-white">{% trans "Standards" %}</a></li>

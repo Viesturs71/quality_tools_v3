@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>User Profile</title>
+    {% extends "user/base.html" %}
+    {% load i18n %}
+    {% load crispy_forms_tags %}
+</head>
+<body>
+{% block content %}
+<div class="container">
+    <h2>{% trans "User Profile" %}</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.get_full_name }}</h5>
+            <p class="card-text">
+                <strong>{% trans "Username" %}:</strong> {{ user.username }}<br>
+                <strong>{% trans "Email" %}:</strong> {{ user.email }}<br>
+            </p>
+            <a href="{% url 'accounts:profile_edit' %}">Edit Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

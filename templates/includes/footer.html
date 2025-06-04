@@ -1,0 +1,21 @@
+{% load static %}
+{% load i18n %}
+
+<footer class="footer bg-light text-center p-3 mt-4">
+    <p class="mb-0">{% trans "Copyright" %} © 2025</p>
+
+    <div class="container">
+        <div class="text-center py-3 border-top">
+            <p>&copy; {% now "Y" %} Quality Management System</p>
+        </div>
+    </div>
+
+    <!-- Core JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    
+    <!-- FontAwesome if needed -->
+    <script src="{% static 'js/all.min.js' %}"></script>
+    
+    <!-- Additional JavaScript -->
+    {% block extra_js %}{% endblock %}
+</footer>

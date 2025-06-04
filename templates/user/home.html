@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>User Home</title>
+    {% extends "user/base.html" %}
+    {% set active_page = 'home' %}
+
+    {% block title %}User Home{% endblock %}
+</head>
+<body>
+    {% block content %}
+    <div class="welcome-panel">
+        <h2>Welcome to Quality Tools</h2>
+        <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <div class="action-grid">
+                <a href="/user/dashboard" class="action-card">View Dashboard</a>
+                <a href="/user/reports" class="action-card">Create Report</a>
+                <a href="/user/profile" class="action-card">Update Profile</a>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'quality_docs:document_list' %}">Documents</a>
+    <a href="{% url 'quality_docs:document_create' %}">Add Document</a>
+    <a href="{% url 'quality_docs:standard_list' %}">Standards</a>
+    {% endblock %}
+</body>
+</html>

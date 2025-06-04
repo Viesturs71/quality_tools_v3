@@ -1,0 +1,26 @@
+#equipment/templates.equipment/equipment_detail.html
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">{{ equipment.equipment_name }} – {% trans "Detailed Information" %}</h2>
+  <table class="table table-bordered">
+    <tr><th>{% trans "Model / Manufacturer" %}</th><td>{{ equipment.model_manufacturer }}</td></tr>
+    <tr><th>{% trans "Inventory Number" %}</th><td>{{ equipment.inventory_number }}</td></tr>
+    <tr><th>{% trans "Serial Number" %}</th><td>{{ equipment.serial_number }}</td></tr>
+    <tr><th>{% trans "Location" %}</th><td>{{ equipment.location }}</td></tr>
+    <tr><th>{% trans "Inspection Type" %}</th><td>{{ equipment.get_inspection_type_display }}</td></tr>
+    <tr><th>{% trans "Inspection Institution" %}</th><td>{{ equipment.inspection_institution|default:"-" }}</td></tr>
+    <tr><th>{% trans "Certificate No. / Date" %}</th><td>{{ equipment.certificate_number_date }}</td></tr>
+    <tr><th>{% trans "Inspection Frequency" %}</th><td>{{ equipment.inspection_frequency }}</td></tr>
+    <tr><th>{% trans "Next Inspection" %}</th><td>{{ equipment.next_inspection_date|default:"Not set" }}</td></tr>
+    <tr><th>{% trans "Notes" %}</th><td>{{ equipment.notes|default:"-" }}</td></tr>
+  </table>
+  <div class="mt-4">
+    <a href="{% url 'equipment:equipment_update' equipment.pk %}" class="btn btn-warning">✏️ {% trans "Edit" %}</a>
+    <a href="{% url 'equipment:equipment_delete' equipment.pk %}" class="btn btn-danger">🗑️ {% trans "Delete" %}</a>
+    <a href="{% url 'equipment:equipment_list' %}" class="btn btn-secondary">🔙 {% trans "Back" %}</a>
+  </div>
+</div>
+{% endblock %}

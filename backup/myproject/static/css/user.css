@@ -1,0 +1,218 @@
+/* Base Layout */
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Header Styling */
+.header {
+    background: #2D7399;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #F1DE78;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 64px;
+    z-index: 10;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex: 1;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 240px;
+    background: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px 15px;
+    overflow-y: auto;
+}
+
+/* Sidebar Logo */
+.sidebar-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #2D7399;
+    text-align: center;
+}
+
+/* Sidebar Menu */
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Top-level Sections */
+.menu-section h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.5px;
+    color: #2D7399;
+    font-weight: 700;
+}
+
+/* Section Toggle */
+.menu-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #2D7399;
+    width: 100%;
+}
+
+/* Collapsed Sections */
+.menu-section.collapsed .submenu {
+    display: none;
+}
+
+/* Submenu */
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 6px;
+}
+
+.submenu-content {
+    display: none;
+    padding-left: 12px;
+    margin-top: 5px;
+}
+
+.menu-parent.active .submenu-content {
+    display: block;
+}
+
+/* Submenu Item */
+.submenu-content a {
+    display: block;
+    padding: 6px 12px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+.submenu-content a:hover {
+    background-color: #f1f1f1;
+    color: #2D7399;
+}
+
+/* Icons */
+.toggle-symbol {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
+/* Content Area */
+.content-area {
+    flex: 1;
+    padding: 24px;
+    background: #f5f5f5;
+    overflow-y: auto;
+}
+
+/* Card Components */
+.card {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    background: transparent;
+    color: #333;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+    cursor: pointer;
+}
+
+.card-header:hover {
+    background-color: rgba(0,0,0,0.03);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Table */
+.table {
+    font-family: "Times New Roman", Times, serif;
+    margin-bottom: 0;
+}
+
+.table td, .table th {
+    padding: 8px 12px;
+    vertical-align: middle;
+}
+
+/* Search Field */
+.search-input-group {
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+.search-input {
+    width: 180px;
+    padding: 4px 10px;
+    border: 1px solid #ced4da;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Footer */
+.footer {
+    background: #2D7399;
+    color: #F1DE78;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+}
+
+.custom-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0d6efd;
+    margin: 0;
+}
+
+.language-form select {
+    width: auto;
+}
+
+.user-info span {
+    font-weight: 600;
+}

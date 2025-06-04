@@ -1,0 +1,9 @@
+ERROR 2025-03-25 20:53:52,365 create 33404 38488 Failed to send email notification: Manager isn't available; 'auth.User' has been swapped for 'accounts.CustomUser'
+Traceback (most recent call last):
+  File "C:\Users\Viesturs\anaconda_projects\quality_tools_v2\myproject\quality_docs\views\create.py", line 73, in form_valid
+    quality_managers = User.objects.filter(groups__name='Quality Managers')
+                       ^^^^^^^^^^^^
+  File "C:\Users\Viesturs\anaconda3\Lib\site-packages\django\db\models\manager.py", line 196, in __get__
+    raise AttributeError(
+AttributeError: Manager isn't available; 'auth.User' has been swapped for 'accounts.CustomUser'
+ERROR 2025-03-25 21:12:48,857 create 36244 38036 Failed to send email notification: Manager isn't available; 'auth.User' has been swapped for 'accounts.CustomUser'

@@ -1,0 +1,34 @@
+/* === Navbar fix === */
+.navbar {
+    background-color: #74c0e3 !important;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #5bb3da;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #ffffff !important;
+}
+
+.navbar .form-select {
+    margin-left: 1rem;
+}
+.navbar .form-select:focus {
+    border-color: #ffffff !important;
+}
+
+.language-dropdown .dropdown-menu {
+    background-color: #7eb4cf;
+    color: #000;
+    border: none;
+  }
+  
+  .language-dropdown .dropdown-item {
+    color: #000 !important;
+  }
+  
+  .language-dropdown .dropdown-item:hover {
+    background-color: #5fa2bd !important;
+    color: #fff !important;
+  }

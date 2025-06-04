@@ -1,0 +1,26 @@
+[MASTER]
+load-plugins = pylint_django
+
+[MESSAGES CONTROL]
+disable = 
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring
+    C0116,  # missing-function-docstring
+    R0903,  # too-few-public-methods
+    R0801,  # duplicate-code
+    W0613,  # unused-argument
+    C0103,  # invalid-name
+
+[FORMAT]
+max-line-length = 88
+good-names = i,j,k,ex,Run,_,id,pk
+
+[DJANGO]
+django-settings-module = myproject.settings
+
+[DESIGN]
+max-args = 10
+max-locals = 15
+max-returns = 6
+max-branches = 12
+max-statements = 50

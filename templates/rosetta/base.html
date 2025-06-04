@@ -1,0 +1,30 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% trans "Translation Interface" %} - Quality Tools{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'rosetta/css/rosetta.css' %}">
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div id="branding">
+                <h1>{% trans "Translation Interface" %}</h1>
+            </div>
+            <div id="user-tools">
+                <a href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
+            </div>
+        </div>
+        <div id="content" class="{% block coltype %}colM{% endblock %}">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="footer"></div>
+    </div>
+    {% block extrajs %}{% endblock %}
+</body>
+</html>

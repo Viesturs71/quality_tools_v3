@@ -1,0 +1,273 @@
+/* Document styles for quality docs application */
+
+.document-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.document-form .form-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.document-form .form-section:last-child {
+    border-bottom: none;
+}
+
+.document-form .section-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #2563eb;
+}
+
+.document-form .field-group {
+    margin-bottom: 1rem;
+}
+
+.document-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.document-form label.required:after {
+    content: '*';
+    color: #ef4444;
+    margin-left: 0.25rem;
+}
+
+.document-form .help-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+.document-form .error-message {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+}
+
+.document-number-feedback {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.document-form input[type="text"],
+.document-form input[type="number"],
+.document-form input[type="date"],
+.document-form select,
+.document-form textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.document-form input[type="text"]:focus,
+.document-form input[type="number"]:focus,
+.document-form input[type="date"]:focus,
+.document-form select:focus,
+.document-form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.document-form .checkbox-field {
+    display: flex;
+    align-items: center;
+}
+
+.document-form .checkbox-field input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.document-form .btn-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.document-form .btn-primary {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.document-form .btn-secondary {
+    background-color: #e5e7eb;
+    color: #374151;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.document-form .btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.document-form .btn-secondary:hover {
+    background-color: #d1d5db;
+}
+
+/* Document list styles */
+.document-list {
+    width: 100%;
+}
+
+.document-list th {
+    background-color: #f3f4f6;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.document-list td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.document-list tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.document-list tr:hover {
+    background-color: #f3f4f6;
+}
+
+/* Document detail styles */
+.document-detail {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.document-detail .document-header {
+    margin-bottom: 2rem;
+}
+
+.document-detail .document-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.document-detail .document-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.document-detail .document-status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.document-detail .status-draft {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.document-detail .status-in-review {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.document-detail .status-approved {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.document-detail .status-rejected {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.document-detail .document-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.document-detail .section-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #2563eb;
+}
+
+/* Workflow styles */
+.approval-flow {
+    margin-bottom: 2rem;
+}
+
+.approval-steps {
+    margin-top: 1rem;
+}
+
+.approval-step {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    background-color: #f9fafb;
+}
+
+.approval-step .step-number {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 9999px;
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+.approval-step .step-info {
+    flex: 1;
+}
+
+.approval-step .step-status {
+    margin-left: 1rem;
+    font-size: 0.875rem;
+}
+
+.approval-step .status-pending {
+    color: #92400e;
+}
+
+.approval-step .status-approved {
+    color: #065f46;
+}
+
+.approval-step .status-rejected {
+    color: #b91c1c;
+}
+
+.approval-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+}

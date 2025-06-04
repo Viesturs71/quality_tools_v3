@@ -1,0 +1,52 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% translate "Quality Tools Administration" %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'admin/css/admin.css' %}">
+    <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% include "admin/includes/admin_header.html" %}
+    <div class="layout flex">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 bg-white border-r min-h-screen">
+            {% include "admin/includes/admin_navigation.html" %}
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-section flex-1 p-6">
+            {% block breadcrumbs %}{% include "admin/includes/admin_breadcrumbs.html" %}{% endblock %}
+            {% block content_title %}{% endblock %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% include "admin/includes/admin_footer.html" %}
+
+    <!-- JS for collapsible nav -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.nav-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.fa-chevron-down');
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+    });
+    </script>
+    <style>
+        .rotate-180 {
+            transform: rotate(180deg);
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</body>
+</html>

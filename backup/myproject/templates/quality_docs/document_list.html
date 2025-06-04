@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Quality Documents" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Quality Documents" %}</h1>
+    
+    {% include "includes/messages.html" %}
+    
+    <div class="row mb-3">
+        <div class="col">
+            <a href="{% url 'quality_docs:document_create' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "Create New Document" %}
+            </a>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>{% trans "Document Sections" %}</h5>
+        </div>
+        <div class="card-body">
+            <div class="accordion" id="documentSectionsAccordion">
+                {% for section, documents in documents_by_section.items %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ section.identifier|slugify }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                            data-bs-target="#collapse{{ section.identifier|slugify }}" aria-expanded="false" 
+                            aria-controls="collapse{{ section.identifier|slugify }}">
+                            {{ section.identifier }} - {{ section.title }} ({{ documents|length }})
+                        </button>
+                    </h2>
+                    <div id="collapse{{ section.identifier|slugify }}" class="accordion-collapse collapse" 
+                        aria-labelledby="heading{{ section.identifier|slugify }}" data-bs-parent="#documentSectionsAccordion">
+                        <div class="accordion-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans "Document ID" %}</th>
+                                            <th>{% trans "Title" %}</th>
+                                            <th>{% trans "Type" %}</th>
+                                            <th>{% trans "Version" %}</th>
+                                            <th>{% trans "Created By" %}</th>
+                                            <th>{% trans "Approved On" %}</th>
+                                            <th>{% trans "Actions" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for doc in documents %}
+                                            <tr>
+                                                <td>{{ doc.document_id }}</td>
+                                                <td>
+                                                    <a href="{% url 'quality_docs:document_detail' doc_id=doc.id %}">
+                                                        {{ doc.title }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ doc.document_type }}</td>
+                                                <td>{{ doc.version }}</td>
+                                                <td>{{ doc.created_by.get_full_name|default:doc.created_by.username }}</td>
+                                                <td>{{ doc.approval_date|date:"d.m.Y" }}</td>
+                                                <td>
+                                                    <a href="{% url 'quality_docs:document_detail' doc_id=doc.id %}" class="btn btn-sm btn-info">
+                                                        <i class="fas fa-eye"></i> {% trans "View" %}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="7">{% trans "No documents in this section." %}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <!-- Documents without section -->
+                {% if documents_without_section %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingNoSection">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseNoSection" aria-expanded="false" 
+                                aria-controls="collapseNoSection">
+                                {% trans "Uncategorized Documents" %} ({{ documents_without_section|length }})
+                            </button>
+                        </h2>
+                        <div id="collapseNoSection" class="accordion-collapse collapse" 
+                            aria-labelledby="headingNoSection" data-bs-parent="#documentSectionsAccordion">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans "Document ID" %}</th>
+                                                <th>{% trans "Title" %}</th>
+                                                <th>{% trans "Type" %}</th>
+                                                <th>{% trans "Version" %}</th>
+                                                <th>{% trans "Created By" %}</th>
+                                                <th>{% trans "Approved On" %}</th>
+                                                <th>{% trans "Actions" %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for doc in documents_without_section %}
+                                                <tr>
+                                                    <td>{{ doc.document_id }}</td>
+                                                    <td>
+                                                        <a href="{% url 'quality_docs:document_detail' doc_id=doc.id %}">
+                                                            {{ doc.title }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ doc.document_type }}</td>
+                                                    <td>{{ doc.version }}</td>
+                                                    <td>{{ doc.created_by.get_full_name|default:doc.created_by.username }}</td>
+                                                    <td>{{ doc.approval_date|date:"d.m.Y" }}</td>
+                                                    <td>
+                                                        <a href="{% url 'quality_docs:document_detail' doc_id=doc.id %}" class="btn btn-sm btn-info">
+                                                            <i class="fas fa-eye"></i> {% trans "View" %}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% empty %}
+                                                <tr>
+                                                    <td colspan="7">{% trans "No uncategorized documents." %}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check URL parameters to see if a specific section should be opened
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get('section');
+    
+    if (section) {
+        const sectionElement = document.getElementById('collapse' + section.replace('.', ''));
+        if (sectionElement) {
+            sectionElement.classList.add('show');
+            
+            // Scroll to the opened section
+            setTimeout(() => {
+                sectionElement.scrollIntoView({behavior: 'smooth'});
+            }, 100);
+        }
+    }
+});
+</script>
+{% endblock %}

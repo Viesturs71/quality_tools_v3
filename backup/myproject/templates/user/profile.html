@@ -1,0 +1,20 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "User Profile" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{% trans "User Profile" %}</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.get_full_name }}</h5>
+            <p class="card-text">
+                <strong>{% trans "Username" %}:</strong> {{ user.username }}<br>
+                <strong>{% trans "Email" %}:</strong> {{ user.email }}<br>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

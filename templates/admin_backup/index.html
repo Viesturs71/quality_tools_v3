@@ -1,0 +1,14 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="custom-nav-links" style="margin-bottom: 1em;">
+        <a href="{% url 'admin:equipment_equipmentregistry_changelist' %}" class="grp-button">
+            {% trans "Equipment Registry" %}
+        </a>
+    </div>
+    <h1 class="text-center text-primary">{% trans "Management System Tools" %}</h1>
+    <h1>Welcome to Management System Tools administration panel</h1>
+    <p>This is the central hub for managing your system's tools and configurations.</p>
+    {{ block.super }}
+{% endblock %}

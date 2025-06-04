@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<div class="breadcrumbs px-4 py-2 d-flex" style="background-color: #7eb4cf; color: white;">
+  {% if not is_popup %}
+    <a href="{% url 'admin:index' %}" class="text-white">{% trans 'Home' %}</a>
+    {% if title %} &rsaquo; {{ title }}{% endif %}
+  {% endif %}
+</div>

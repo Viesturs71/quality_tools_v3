@@ -1,0 +1,30 @@
+<!-- templates/methods/akk_registrs.html -->
+<h2>Akk Reģistrs</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Pakalpojuma sniedzējs</th>
+            <th>Laboratorija</th>
+            <th>Kods</th>
+            <th>Izmeklējamais materiāls</th>
+            <th>Tehnoloģija / izmeklējums</th>
+            <th>Skaits</th>
+            <th>Cena (€)</th>
+            <th>Testa summa (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in akk_records %}
+        <tr>
+            <td>{{ record.pakalpojuma_sniedzejs }}</td>
+            <td>{{ record.laboratorija }}</td>
+            <td>{{ record.kods }}</td>
+            <td>{{ record.izmeklejamais_materials }}</td>
+            <td>{{ record.tehnologija_izmeklejums }}</td>
+            <td>{{ record.skaits }}</td>
+            <td>{{ record.cena }}</td>
+            <td>{{ record.testa_summa }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

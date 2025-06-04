@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Equipment Registry" %} | Quality Tools{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <div class="section-header">{% trans "Equipment Registry" %}</div>
+    
+    <div class="mb-4 flex justify-between">
+        <!-- Search form -->
+        <form method="get" class="flex">
+            <input type="text" name="search" class="form-control" placeholder="{% trans 'Search equipment...' %}" value="{{ search_query }}">
+            <button type="submit" class="btn-primary ml-2">{% trans "Search" %}</button>
+        </form>
+        
+        <!-- Add new equipment button -->
+        <a href="{% url 'equipment:create' %}" class="btn-primary">{% trans "Add New Equipment" %}</a>
+    </div>
+    
+    {% if equipment_items %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2 border">{% trans "Name" %}</th>
+                        <th class="px-4 py-2 border">{% trans "Inventory Number" %}</th>
+                        <th class="px-4 py-2 border">{% trans "Serial Number" %}</th>
+                        <th class="px-4 py-2 border">{% trans "Type" %}</th>
+                        <th class="px-4 py-2 border">{% trans "Status" %}</th>
+                        <th class="px-4 py-2 border">{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for equipment in equipment_items %}
+                    <tr class="{% cycle '' 'bg-gray-50' %}">
+                        <td class="px-4 py-2 border">
+                            <a href="{% url 'equipment:detail' pk=equipment.pk %}" class="text-blue-600 hover:underline">
+                                {{ equipment.equipment_name }}
+                            </a>
+                        </td>
+                        <td class="px-4 py-2 border">{{ equipment.inventory_number }}</td>
+                        <td class="px-4 py-2 border">{{ equipment.serial_number }}</td>
+                        <td class="px-4 py-2 border">{{ equipment.equipment_type.name }}</td>
+                        <td class="px-4 py-2 border">
+                            <span class="status-badge status-{{ equipment.technical_status|lower }}">
+                                {{ equipment.get_technical_status_display }}
+                            </span>
+                        </td>
+                        <td class="px-4 py-2 border text-right">
+                            <a href="{% url 'equipment:edit' pk=equipment.pk %}" class="btn-primary inline-block">{% trans "Edit" %}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="p-4 bg-gray-50 text-center">{% trans "No equipment records found." %}</p>
+    {% endif %}
+</div>
+{% endblock %}

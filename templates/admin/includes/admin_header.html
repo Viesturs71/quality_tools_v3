@@ -1,0 +1,28 @@
+{% load i18n %}
+<header class="bg-blue-800 text-white px-6 py-4 flex justify-between items-center shadow">
+    <div class="text-lg font-semibold">
+        {% translate "Quality Tools Administration" %}
+    </div>
+    <div class="flex items-center gap-4 text-sm">
+        <div>
+            {% translate "LANGUAGE:" %}
+            <select onchange="location.href='?language=' + this.value" class="text-black rounded px-1 py-0.5">
+                <option value="en">English</option>
+                <option value="lv">Latviešu</option>
+            </select>
+        </div>
+        <div>
+            {% translate "Toggle theme:" %} <span class="italic text-gray-200">auto</span>
+        </div>
+        <div>
+            {% translate "WELCOME," %} <strong>{{ request.user.username|default:_("Guest") }}</strong>
+        </div>
+        <div>
+            <a href="/" class="underline hover:text-gray-300">{% translate "VIEW SITE" %}</a>
+            /
+            <a href="{% url 'admin:password_change' %}" class="underline hover:text-gray-300">{% translate "CHANGE PASSWORD" %}</a>
+            /
+            <a href="{% url 'admin:logout' %}" class="underline hover:text-gray-300">{% translate "LOG OUT" %}</a>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,25 @@
+{% load i18n %}
+{% if breadcrumbs %}
+    <nav class="breadcrumbs bg-gray-100 py-3 px-6 border-b border-gray-300 text-gray-800 text-base mb-4 shadow-sm rounded-sm">
+        {% for crumb in breadcrumbs %}
+            {% if not forloop.last %}
+                <a href="{{ crumb.url }}" class="text-blue-700 hover:underline font-medium">{{ crumb.label }}</a>
+                <span class="mx-2 text-gray-500">&rsaquo;</span>
+            {% else %}
+                <span class="text-gray-900 font-semibold">{{ crumb.label }}</span>
+            {% endif %}
+        {% endfor %}
+    </nav>
+{% else %}
+    {% with request.path|cut:'/'|split:'/' as segments %}
+        <nav class="breadcrumbs bg-gray-100 py-3 px-6 border-b border-gray-300 text-gray-800 text-base mb-4 shadow-sm rounded-sm">
+            <a href="{% url 'admin:index' %}" class="text-blue-700 hover:underline font-medium">{% translate "Home" %}</a>
+            {% for segment in segments %}
+                {% if segment %}
+                    <span class="mx-2 text-gray-500">&rsaquo;</span>
+                    <span class="capitalize text-gray-700">{{ segment|replace:'_', ' ' }}</span>
+                {% endif %}
+            {% endfor %}
+        </nav>
+    {% endwith %}
+{% endif %}

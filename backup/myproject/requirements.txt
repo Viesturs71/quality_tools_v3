@@ -1,0 +1,104 @@
+# ✅ Django versija
+Django>=4.2,<5.0
+
+# ✅ Django REST Framework (API izstrādei)
+djangorestframework>=3.14.0
+
+# ✅ API dokumentācija
+drf-spectacular>=0.26.0
+drf-spectacular-sidecar>=2023.4.1
+drf-yasg>=1.21.5
+PyYAML>=6.0
+
+# ✅ CORS atbalsts (API pieejamība ārējiem klientiem)
+django-cors-headers>=3.13.0
+
+# ✅ PostgreSQL atbalsts
+psycopg2>=2.9.6
+
+# ✅ Attēlu un dokumentu apstrāde
+Pillow>=9.5.0
+PyPDF2>=3.0.1
+
+# ✅ PDF digitālai parakstīšanai
+pyHanko>=0.18.1
+pyHanko-certvalidator>=0.23.2
+
+# ✅ Vides mainīgo pārvaldībai
+python-dotenv>=1.0.0
+
+# ✅ Koda testēšanai un pārklājuma mērīšanai
+coverage>=7.2.0
+pytest>=7.4.3
+pytest-django>=4.5.2
+pytest-cov>=4.1.0
+factory-boy>=3.2.1
+mixer>=7.2.2
+
+# ✅ Veiktspējas un vaicājumu analīzei
+django-debug-toolbar>=4.1.0
+django-querycount>=0.7.0
+django-silk>=5.0.2
+memory_profiler>=0.60.0
+
+# ✅ Papildu rīki Django projektam
+django-extensions>=3.2.3
+django-filter>=23.2
+django-simple-history>=3.3.0
+django-import-export>=3.2.0
+uritemplate>=4.1.1
+
+# Add crispy forms packages
+django-crispy-forms>=1.14.0
+crispy-bootstrap4>=2021.1
+
+# ✅ Backup un datu eksports
+django-dbbackup>=4.0.0
+boto3>=1.28.0
+
+# ✅ Tulkošanai un lokalizācijai
+django-rosetta>=0.9.9
+polib>=1.2.0
+
+# ✅ Dokumentu drošībai un šifrēšanai
+cryptography>=42.0.0
+PyCryptodome>=3.18.0
+django-storages>=1.13.2
+
+# ✅ Celery un asinkronām darbībām
+celery>=5.3.4
+redis>=5.0.1
+
+# ✅ Datu analīzei
+pandas>=2.2.1
+numpy>=1.26.4
+scipy>=1.11.4
+openpyxl>=3.1.2
+
+# ✅ Grafiku zīmēšanai
+matplotlib>=3.8.3
+seaborn>=0.13.2
+plotly>=5.20.0
+
+# ✅ Progresbāri un vizuālā pieredze
+tqdm>=4.66.2
+
+# ✅ Dokumentu ģenerēšanai un apstrādei
+reportlab>=4.0.4
+python-docx>=1.1.0
+pdfminer.six>=20221105
+PyMuPDF>=1.23.10
+
+# ✅ Heroku atbalsts
+django-heroku>=0.3.1
+dj-database-url>=1.0.0
+whitenoise>=6.0.0
+gunicorn>=20.0.4
+
+# Development and Code Quality Tools
+ruff>=0.1.6
+pylint>=3.0.0
+pylint-django>=2.5.5
+bandit>=1.7.5
+black>=23.0.0
+isort>=5.12.0

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Approve Document" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{% trans "Document Approval" %}</h5>
+                </div>
+                <div class="card-body">
+                    <h2>{{ document.title }}</h2>
+                    <p class="lead">{% trans "Document Type" %}: {{ document.document_type }}</p>
+                    
+                    {% if document.file %}
+                        <div class="mb-4">
+                            <h5>{% trans "Document Preview" %}</h5>
+                            <div class="ratio ratio-16x9">
+                                <iframe src="{{ document.file.url }}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <h5>{% trans "Digital Signing" %}</h5>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-success">{% trans "Approve & Sign Document" %}</button>
+                        <a href="{% url 'quality_docs:documents_for_approval' %}" class="btn btn-secondary">{% trans "Back" %}</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{% trans "Approval Information" %}</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>{% trans "Created by" %}:</strong> 
+                            {{ document.created_by.get_full_name|default:document.created_by.username }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>{% trans "Created on" %}:</strong> 
+                            {{ document.created_at|date:"d.m.Y" }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>{% trans "Version" %}:</strong> 
+                            {{ document.version }}
+                        </li>
+                    </ul>
+                    
+                    {% if other_reviewers %}
+                        <h6 class="mt-4">{% trans "Other reviewers" %}:</h6>
+                        <ul class="list-group">
+                            {% for reviewer_approval in other_reviewers %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ reviewer_approval.approver.get_full_name|default:reviewer_approval.approver.username }}
+                                    
+                                    {% if reviewer_approval.status == 'pending' %}
+                                        <span class="badge bg-warning rounded-pill">{% trans "Pending" %}</span>
+                                    {% elif reviewer_approval.status == 'approved' %}
+                                        <span class="badge bg-success rounded-pill">{% trans "Approved" %}</span>
+                                    {% elif reviewer_approval.status == 'rejected' %}
+                                        <span class="badge bg-danger rounded-pill">{% trans "Rejected" %}</span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

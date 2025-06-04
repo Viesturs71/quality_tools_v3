@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>My Authorized Equipment</h2>
+  <ul>
+    {% for entry in registry_entries %}
+      <li>{{ entry.equipment }} — Since: {{ entry.authorized_since }}</li>
+    {% empty %}
+      <li>No authorized equipment found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

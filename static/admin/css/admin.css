@@ -1,0 +1,80 @@
+/* Pamatstils visam ķermenim */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9fafb;
+    color: #1f2937;
+    margin: 0;
+}
+
+/* Header stilizācija */
+header {
+    background-color: #2563eb;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Izvietojums */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sānjosla */
+.sidebar {
+    width: 16rem; /* Tailwind w-64 */
+    background-color: #f3f4f6;
+    border-right: 1px solid #d1d5db;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* Galvenā sadaļa + filtri */
+.main-section {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Saturs */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: white;
+    min-height: 100vh;
+}
+
+/* Filtri */
+.filters {
+    width: 16rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-left: 1px solid #ddd;
+}
+
+/* Navigācijas saites */
+nav a {
+    display: block;
+    color: #2563eb;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    border-radius: 0.25rem;
+}
+
+nav a:hover {
+    background-color: #e5e7eb;
+    color: #1d4ed8;
+}
+
+.admin-navigation {
+    padding: 1rem 0;
+}
+
+.nav-header {
+    transition: background-color 0.2s ease;
+}
+
+.nav-content a {
+    transition: background-color 0.2s ease;
+}

@@ -1,0 +1,63 @@
+.dropdown-menu {
+  background-color: white;
+  color: #000;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  font-size: 0.9rem;
+  position: absolute !important;
+  z-index: 1000 !important;
+  border-radius: 4px;
+}
+
+.dropdown-item {
+  color: #000 !important;
+  padding: 0.25rem 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: #5fa2bd !important;
+  color: #fff !important;
+}
+
+.dropdown-toggle {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.25rem;
+}
+
+.dropdown-toggle::after {
+  margin-left: 0.4rem;
+}
+
+/* Header and navbar customizations */
+#header {
+  background-color: #427a92;
+  color: white;
+}
+
+/* Language dropdown styling */
+.language-selector .dropdown-menu {
+  min-width: 8rem;
+  right: 0;
+  left: auto;
+}
+
+.language-selector .dropdown-item {
+  padding: 0.5rem 1rem;
+  color: #212529;
+}
+
+.language-selector .dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #16181b;
+}
+
+/* Fix dropdown positioning */
+.dropdown {
+  position: relative;
+}
+
+.language-selector {
+  position: relative;
+}

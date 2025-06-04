@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% trans "Activity Log" %}</title>
+    {% load i18n %}
+</head>
+<body>
+{% block title %}{% trans "Activity Log" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{% trans "Activity Log" %}</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Action" %}</th>
+                    <th>{% trans "Details" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for activity in activities %}
+                <tr>
+                    <td>{{ activity.timestamp|date:"d.m.Y H:i" }}</td>
+                    <td>{{ activity.action }}</td>
+                    <td>
+                        {% if activity.document %}
+                            <a href="{% url 'quality_docs:document_detail' activity.document.id %}">{{ activity.document.title }}</a>
+                        {% else %}
+                            {{ activity.details|default:"-" }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted">
+                        {% trans "No activities found" %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

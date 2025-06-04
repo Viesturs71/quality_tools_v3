@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% translate "Document Section Structure" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'quality_docs/css/document_styles.css' %}">
+<style>
+    .section-tree ul {
+        list-style-type: none;
+        padding-left: 1.5rem;
+    }
+    
+    .section-tree li {
+        position: relative;
+        padding: 0.25rem 0;
+    }
+    
+    .section-tree .tree-branch::before {
+        content: "";
+        position: absolute;
+        left: -1rem;
+        top: 0;
+        width: 0;
+        height: 100%;
+        border-left: 1px solid #d1d5db;
+    }
+    
+    .section-tree .tree-branch::after {
+        content: "";
+        position: absolute;
+        left: -1rem;
+        top: 0.75rem;
+        width: 0.75rem;
+        height: 0;
+        border-top: 1px solid #d1d5db;
+    }
+    
+    .section-tree li:last-child > .tree-branch::before {
+        height: 0.75rem;
+    }
+    
+    .section-tree .tree-node {
+        position: relative;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.25rem;
+        background-color: #f9fafb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .section-tree .tree-node:hover {
+        background-color: #f3f4f6;
+        border-color: #d1d5db;
+    }
+    
+    .section-tree .tree-node.active {
+        background-color: #dbeafe;
+        border-color: #93c5fd;
+    }
+    
+    .section-node-content {
+        flex: 1;
+    }
+    
+    .section-node-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .collapsible-icon {
+        cursor: pointer;
+        width: 1.25rem;
+        height: 1.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background-color: #e5e7eb;
+        color: #374151;
+        font-weight: bold;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+        transition: transform 0.2s ease;
+    }
+    
+    .collapsible-icon.collapsed {
+        transform: rotate(-90deg);
+    }
+    
+    .section-tree .node-children {
+        display: block;
+        transition: all 0.3s ease;
+    }
+    
+    .section-tree .node-children.collapsed {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-3xl font-bold">{% translate "Document Section Structure" %}</h1>
+            <p class="text-gray-600 mt-1">{% translate "Manage the hierarchy of document sections" %}</p>
+        </div>
+        
+        <div class="flex space-x-2">
+            {% if perms.quality_docs.add_documentsection %}
+            <a href="{% url 'quality_docs:section_create' %}" class="btn-primary flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                {% translate "Add New Section" %}
+            </a>
+            {% endif %}
+            <a href="{% url 'quality_docs:section_list' %}" class="btn-secondary">
+                {% translate "List View" %}
+            </a>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Left sidebar: Section actions -->
+        <div class="md:col-span-1">
+            <div class="bg-white shadow rounded-lg p-4">
+                <h2 class="text-xl font-bold mb-4">{% translate "Actions" %}</h2>
+                
+                <div class="space-y-4">
+                    <a href="{% url 'quality_docs:document_register' %}" class="block px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 text-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                        </svg>
+                        {% translate "Document Register" %}
+                    </a>
+                    
+                    <a href="{% url 'quality_docs:document_type_list' %}" class="block px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 text-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
+                            <path d="M3 8a2 2 0 012-2h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+                        </svg>
+                        {% translate "Document Types" %}
+                    </a>
+                    
+                    <a href="{% url 'quality_docs:quality_document_list' %}" class="block px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 text-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                        </svg>
+                        {% translate "All Documents" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main content: Tree structure -->
+        <div class="md:col-span-3">
+            <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-xl font-bold mb-6">{% translate "Section Hierarchy" %}</h2>
+                
+                {% if root_sections %}
+                <div class="section-tree">
+                    <ul>
+                        {% for section in root_sections %}
+                        <li>
+                            <div class="tree-branch">
+                                <div class="tree-node">
+                                    <div class="section-node-content">
+                                        {% if section.children.exists %}
+                                        <span class="collapsible-icon" data-toggle="collapse" data-target="section-{{ section.id }}-children">+</span>
+                                        {% else %}
+                                        <span class="w-5 inline-block"></span>
+                                        {% endif %}
+                                        
+                                        <a href="{% url 'quality_docs:section_detail' section.id %}" class="font-medium">
+                                            {{ section.name }}
+                                        </a>
+                                        <span class="text-gray-500 text-sm ml-2">({{ section.identifier }})</span>
+                                    </div>
+                                    
+                                    <div class="section-node-actions">
+                                        <a href="{% url 'quality_docs:document_register_section' section.id %}" class="text-sm text-blue-600 hover:underline">
+                                            {% translate "View Documents" %}
+                                        </a>
+                                        
+                                        {% if perms.quality_docs.change_documentsection %}
+                                        <a href="{% url 'quality_docs:section_update' section.id %}" class="text-sm text-gray-600 hover:underline">
+                                            {% translate "Edit" %}
+                                        </a>
+                                        {% endif %}
+                                        
+                                        {% if perms.quality_docs.add_documentsection %}
+                                        <a href="{% url 'quality_docs:section_create' %}?parent={{ section.id }}" class="text-sm text-gray-600 hover:underline">
+                                            {% translate "Add Child" %}
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                {% if section.children.exists %}
+                                <ul id="section-{{ section.id }}-children" class="node-children">
+                                    {% include "quality_docs/section_structure/tree_node.html" with sections=section.children.all %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% else %}
+                <div class="text-center py-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <h3 class="text-xl font-medium mb-2">{% translate "No Sections Found" %}</h3>
+                    <p class="text-gray-600 mb-6">{% translate "No document sections have been created yet." %}</p>
+                    
+                    {% if perms.quality_docs.add_documentsection %}
+                    <a href="{% url 'quality_docs:section_create' %}" class="btn-primary">
+                        {% translate "Create First Section" %}
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle collapsible sections
+        document.querySelectorAll('[data-toggle="collapse"]').forEach(function(element) {
+            element.addEventListener('click', function() {
+                const target = document.getElementById(this.getAttribute('data-target'));
+                if (target) {
+                    target.classList.toggle('collapsed');
+                    this.textContent = target.classList.contains('collapsed') ? '+' : '-';
+                    this.classList.toggle('collapsed', target.classList.contains('collapsed'));
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

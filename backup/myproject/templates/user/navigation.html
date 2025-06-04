@@ -1,0 +1,158 @@
+{% load static i18n %}
+
+<div class="app-quality_docs module">
+  <table>
+    <caption>
+      <a href="javascript:void(0);" class="section toggle-section" data-target="quality-docs-section" title="{% trans 'Quality documents management' %}">
+        {% trans "QUALITY DOCUMENTS MANAGEMENT" %}
+      </a>
+    </caption>
+
+    <tbody id="quality-docs-section" class="section-content">
+      <!-- Document management -->
+      <tr class="model-qualitydocument">
+        <th scope="row"><a href="{% url 'quality_docs:document_list' %}">{% trans "Quality Documents" %}</a></th>
+        <td><a href="{% url 'quality_docs:document_create' %}" class="addlink">{% trans "Add" %}</a></td>
+      </tr>
+      <tr class="model-documenttype">
+        <th scope="row"><a href="{% url 'quality_docs:my_documents' %}">{% trans "My Documents" %}</a></th>
+        <td><a href="{% url 'quality_docs:document_create' %}" class="addlink">{% trans "Add" %}</a></td>
+      </tr>
+      <tr class="model-standard">
+        <th scope="row"><a href="{% url 'quality_docs:standard_list' %}">{% trans "Standards" %}</a></th>
+        <td></td>
+      </tr>
+      
+      <!-- Approval & workflow items - permission restricted -->
+      {% if perms.quality_docs.can_approve_documents %}
+      <tr class="model-approvalflow">
+        <th scope="row"><a href="{% url 'quality_docs:documents_for_approval' %}">{% trans "Documents for Approval" %}</a></th>
+        <td></td>
+      </tr>
+      <tr class="model-approvalflow">
+        <th scope="row"><a href="{% url 'quality_docs:approval_dashboard' %}">{% trans "Approval Dashboard" %}</a></th>
+        <td></td>
+      </tr>
+      {% endif %}
+      
+      {% if perms.quality_docs.can_manage_approval_flow %}
+      <tr class="model-documentsection">
+        <th scope="row"><a href="{% url 'quality_docs:submitted_documents_list' %}">{% trans "Submitted Documents" %}</a></th>
+        <td></td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<div class="app-equipment module">
+  <table>
+    <caption>
+      <a href="javascript:void(0);" class="section toggle-section" data-target="equipment-section" title="{% trans 'Equipment registry' %}">
+        {% trans "EQUIPMENT" %}
+      </a>
+    </caption>
+    <tbody id="equipment-section" class="section-content collapsed">
+      <tr class="model-equipment">
+        <th scope="row"><a href="{% url 'equipment:equipment-list' %}">{% trans "Equipment Registry" %}</a></th>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="app-personnel module">
+  <table>
+    <caption>
+      <a href="javascript:void(0);" class="section toggle-section" data-target="personnel-section" title="{% trans 'Personnel registry' %}">
+        {% trans "PERSONNEL" %}
+      </a>
+    </caption>
+    <tbody id="personnel-section" class="section-content collapsed">
+      <tr class="model-personnel">
+        <th scope="row"><a href="{% url 'personnel:personnel_list' %}">{% trans "Personnel Registry" %}</a></th>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% if user.is_staff or user.is_superuser or perms.admin.view_logentry or perms.auth.view_user or perms.auth.view_group %}
+<div class="app-auth module">
+  <table>
+    <caption>
+      <a href="javascript:void(0);" class="section toggle-section" data-target="admin-section" title="{% trans 'Administration' %}">
+        {% trans "ADMINISTRATION" %}
+      </a>
+    </caption>
+    <tbody id="admin-section" class="section-content collapsed">
+      <tr class="model-admin"></tr>
+        <th scope="row"><a href="{% url 'admin:index' %}">{% trans "Admin Dashboard" %}</a></th>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- Additional apps from Django admin -->
+{% for app in app_list %}
+<div class="app-{{ app.app_label }} module">
+  <table>
+    <caption>
+      <a href="javascript:void(0);" class="section toggle-section" data-target="app-{{ app.app_label }}-section" title="{{ app.verbose_name }}">
+        {{ app.verbose_name|upper }}
+      </a>
+    </caption>
+    <tbody id="app-{{ app.app_label }}-section" class="section-content collapsed">
+    {% for model in app.models %}
+      <tr class="model-{{ model.object_name|lower }}">
+        <th scope="row"><a href="{{ model.url }}">{{ model.verbose_name_plural }}</a></th>
+        <td>{% if model.add_url %}<a href="{{ model.add_url }}" class="addlink">{% trans "Add" %}</a>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endfor %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set Quality Documents section to be open by default
+    document.getElementById('quality-docs-section').classList.remove('collapsed');
+    
+    // Toggle sections when clicking on headers
+    var toggleButtons = document.querySelectorAll('.toggle-section');
+    toggleButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var targetId = this.getAttribute('data-target');
+            var targetSection = document.getElementById(targetId);
+            targetSection.classList.toggle('collapsed');
+        });
+    });
+});
+</script>
+
+<style>
+  .section-content.collapsed {
+    display: none;
+  }
+  
+  .toggle-section {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .toggle-section::after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+  }
+  
+  .section-content.collapsed + caption .toggle-section::after {
+    content: "►";
+  }
+</style>

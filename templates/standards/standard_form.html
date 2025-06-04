@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-3xl font-bold">Standard Form</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label for="standard_number" class="block font-medium">Standard Number*</label>
+        <input type="text" id="standard_number" name="standard_number" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+    </div>
+    <div class="mb-4">
+        <label for="title_en" class="block font-medium">Title (English)*</label>
+        <input type="text" id="title_en" name="title_en" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+    </div>
+    <div class="mb-4">
+        <label for="title_local" class="block font-medium">Title (Selected Language)</label>
+        <input type="text" id="title_local" name="title_local" class="border border-gray-300 rounded px-4 py-2 w-full">
+    </div>
+    <div class="mb-4">
+        <label for="publication_year" class="block font-medium">Publication Year*</label>
+        <input type="number" id="publication_year" name="publication_year" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+    </div>
+    <div class="mb-4">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save</button>
+        <a href="{% url 'standards:registry' %}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded">Cancel</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,8 @@
+<!-- ...existing code... -->
+{% if user.personnel_profile %}  <!-- Updated from employee_profile -->
+    <div class="profile-details">
+        <h3>{{ user.personnel_profile.first_name }} {{ user.personnel_profile.last_name }}</h3>
+        <!-- ...existing code... -->
+    </div>
+{% endif %}
+<!-- ...existing code... -->

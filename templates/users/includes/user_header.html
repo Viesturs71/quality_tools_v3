@@ -1,0 +1,43 @@
+<header class="bg-blue-600 text-white shadow-md h-16 flex items-center justify-between px-4 z-50">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="md:hidden mr-4 text-white">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a href="{% url 'dashboard:index' %}" class="text-xl font-bold">Quality Tools</a>
+    </div>
+    
+    <div class="hidden md:flex items-center space-x-4">
+        <a href="{% url 'dashboard:index' %}" class="px-3 py-2 rounded hover:bg-blue-700">Dashboard</a>
+        <a href="{% url 'quality_docs:document_register' %}" class="px-3 py-2 rounded hover:bg-blue-700">Documents</a>
+        <a href="{% url 'equipment:equipment_list' %}" class="px-3 py-2 rounded hover:bg-blue-700">Equipment</a>
+    </div>
+    
+    <div class="flex items-center space-x-2">
+        <!-- Language Selector -->
+        <form action="{% url 'set_language' %}" method="post" id="language-form" class="mr-4">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <select name="language" id="language-selector" class="bg-blue-700 text-white py-1 px-2 rounded text-sm" onchange="this.form.submit()">
+                {% for lang_code, lang_name in LANGUAGES %}
+                    <option value="{{ lang_code }}" {% if LANGUAGE_CODE == lang_code %}selected{% endif %}>
+                        {{ lang_name|upper }}
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+        
+        <!-- User Menu -->
+        <div class="relative">
+            <button id="user-menu-button" class="flex items-center text-white focus:outline-none">
+                <span class="mr-2">{{ request.user.username }}</span>
+                <i class="fas fa-angle-down"></i>
+            </button>
+            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                <a href="{% url 'users:profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+                <a href="{% url 'users:settings' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                <a href="{% url 'password_change' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Change Password</a>
+                <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Log Out</a>
+            </div>
+        </div>
+    </div>
+</header>

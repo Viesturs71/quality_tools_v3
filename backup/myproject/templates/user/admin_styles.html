@@ -1,0 +1,96 @@
+{% load static %}
+
+<!-- Admin-like CSS for our user portal -->
+<style>
+  /* Admin nav base style */
+  #nav-sidebar {
+    width: 230px;
+    padding: 0;
+    position: fixed;
+    height: 100%;
+    background: var(--body-bg);
+    overflow: auto;
+    border-right: 1px solid var(--border-color);
+  }
+
+  #nav-sidebar .module {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  #nav-sidebar .module caption {
+    background: var(--primary);
+  }
+
+  #nav-sidebar .section {
+    color: var(--header-link-color);
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+  }
+
+  #nav-sidebar .model-qualitydocument th a {
+    padding: 8px 16px;
+    display: block;
+    font-weight: normal;
+  }
+
+  #nav-sidebar th {
+    color: var(--primary);
+  }
+
+  #nav-sidebar th a {
+    color: var(--link-fg);
+    display: block;
+    padding: 8px 16px;
+    transition: background 0.15s;
+  }
+
+  #nav-sidebar th a:hover {
+    background: var(--primary-lighter);
+  }
+
+  /* Add link styling */
+  .addlink {
+    padding: 8px 12px;
+    display: inline-block;
+    color: var(--link-fg);
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  /* Module styling */
+  .module {
+    margin-bottom: 20px;
+    background: var(--body-bg);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .module caption {
+    padding: 10px 16px;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: left;
+    color: white;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .module caption a.section {
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Table styling for modules */
+  .module table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .module table td, .module table th {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
+  }
+</style>

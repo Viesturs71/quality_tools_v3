@@ -1,0 +1,67 @@
+/* Admin Navigation Styles */
+.admin-sidebar {
+    width: 280px;
+    height: 100vh;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.admin-sidebar a:focus,
+.admin-sidebar button:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: -2px;
+}
+
+/* Smooth transitions for dropdowns */
+.nav-dropdown-menu {
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+}
+
+/* Rotate animation for dropdown arrows */
+.transform {
+    transition: transform 0.3s ease;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Override default font to ensure Times New Roman is used */
+.font-serif {
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Ensure consistent blue-600 color for active elements */
+.hover\:bg-blue-600:hover {
+    background-color: #2563eb;
+}
+
+.bg-blue-600 {
+    background-color: #2563eb;
+}
+
+/* Accessibility focus styles */
+button:focus-visible, 
+a:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Language switcher styles */
+#language {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+}

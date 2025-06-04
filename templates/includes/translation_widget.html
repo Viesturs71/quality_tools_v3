@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<div class="translation-widget">
+  {% get_current_language as LANGUAGE_CODE %}
+  {% if LANGUAGE_CODE == 'lv' %}
+      <p>{% trans "Current language: Latvian" %}</p>
+  {% else %}
+      <p>{% trans "Current language: English" %}</p>
+  {% endif %}
+</div>

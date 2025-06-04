@@ -1,0 +1,46 @@
+{% load i18n %}
+
+{% for section in sections %}
+<li>
+    <div class="tree-branch">
+        <div class="tree-node">
+            <div class="section-node-content">
+                {% if section.children.exists %}
+                <span class="collapsible-icon" data-toggle="collapse" data-target="section-{{ section.id }}-children">+</span>
+                {% else %}
+                <span class="w-5 inline-block"></span>
+                {% endif %}
+                
+                <a href="{% url 'quality_docs:section_detail' section.id %}" class="font-medium">
+                    {{ section.name }}
+                </a>
+                <span class="text-gray-500 text-sm ml-2">({{ section.identifier }})</span>
+            </div>
+            
+            <div class="section-node-actions">
+                <a href="{% url 'quality_docs:document_register_section' section.id %}" class="text-sm text-blue-600 hover:underline">
+                    {% translate "View Documents" %}
+                </a>
+                
+                {% if perms.quality_docs.change_documentsection %}
+                <a href="{% url 'quality_docs:section_update' section.id %}" class="text-sm text-gray-600 hover:underline">
+                    {% translate "Edit" %}
+                </a>
+                {% endif %}
+                
+                {% if perms.quality_docs.add_documentsection %}
+                <a href="{% url 'quality_docs:section_create' %}?parent={{ section.id }}" class="text-sm text-gray-600 hover:underline">
+                    {% translate "Add Child" %}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        
+        {% if section.children.exists %}
+        <ul id="section-{{ section.id }}-children" class="node-children">
+            {% include "quality_docs/section_structure/tree_node.html" with sections=section.children.all %}
+        </ul>
+        {% endif %}
+    </div>
+</li>
+{% endfor %}

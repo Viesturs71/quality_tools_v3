@@ -1,0 +1,399 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" class="font-serif" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  :root {
+    --primary-color: #3E7391;
+    --primary-hover: #2c5269;
+    --border-color: #e5e7eb;
+  }
+  
+  body {
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  /* Custom layout for admin with navigation below header */
+  .admin-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-content-wrapper {
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  .admin-navigation-wrapper {
+    width: 280px;
+    background-color: white;
+    border-right: 1px solid var(--border-color);
+    flex-shrink: 0;
+  }
+  
+  .admin-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  /* Fix Django admin styles */
+  #header {
+    width: 100%;
+  }
+  
+  #container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #content {
+    padding: 20px;
+  }
+
+  /* Make sure navigation doesn't overlap header */
+  #nav-global {
+    clear: both;
+    margin-top: 2rem;
+  }
+  
+  /* Header improvements for language selection */
+  #user-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem; /* Reduced from default */
+  }
+  
+  /* Language selector with matching background but smaller text */
+  .language-selector {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .language-selector label {
+    margin-right: 0.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.7rem; /* Reduced from 0.875rem */
+    color: white;
+  }
+  
+  .language-selector select {
+    background-color: #3E7391;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.7rem; /* Reduced from 0.875rem */
+  }
+  
+  .language-selector select option {
+    background-color: #3E7391;
+    color: white;
+  }
+  
+  /* Theme toggle */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .theme-toggle button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.7rem; /* Reduced from 0.875rem */
+    cursor: pointer;
+  }
+
+  /* Breadcrumbs styles - ultra-narrow version with text positioned higher */
+  .breadcrumbs {
+    background-color: #f9fafb;
+    padding: 0;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.5rem;
+    margin: 0;
+    width: 100%;
+    padding-left: 1rem;
+    height: 0.35rem;
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+  }
+
+  .breadcrumbs a {
+    color: #3E7391;
+    text-decoration: none;
+    font-size: 0.5rem;
+  }
+
+  .breadcrumbs .path-content {
+    position: absolute;
+    top: -4px; /* Moved text even higher */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    line-height: 0.35rem; /* Match the height */
+  }
+  
+  /* Theme styles */
+  html.light {
+    --bg-color: #ffffff;
+    --text-color: #374151;
+    --breadcrumb-bg: #f9fafb;
+  }
+  
+  html.dark {
+    --bg-color: #1f2937;
+    --text-color: #f3f4f6;
+    --breadcrumb-bg: #111827;
+  }
+  
+  /* Apply theme variables */
+  body {
+    background-color: var(--bg-color, #ffffff);
+    color: var(--text-color, #374151);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Dark mode adjustments */
+  html.dark .admin-navigation-wrapper,
+  html.dark #container,
+  html.dark #content {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border-color: #374151;
+  }
+  
+  html.dark .breadcrumbs {
+    background-color: #111827;
+    border-color: #374151;
+    color: #f3f4f6;
+  }
+  
+  html.dark .breadcrumbs a {
+    color: #60a5fa;
+  }
+</style>
+{% if not is_popup and is_nav_sidebar_enabled %}
+  <link rel="stylesheet" href="{% static "admin/css/nav_sidebar.css" %}">
+  <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
+{% endif %}
+{% block extrastyle %}{% endblock %}
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{% static "admin/css/rtl.css" %}">{% endif %}
+{% block extrahead %}{% endblock %}
+{% block responsive %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "admin/css/responsive.css" %}">
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
+{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+</head>
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
+
+<!-- Container -->
+<div class="admin-layout">
+  <!-- Header -->
+  <div id="header" class="bg-[#3E7391] text-white py-3 px-4">
+    <div id="branding" class="float-left">
+    {% block branding %}{% endblock %}
+    </div>
+    {% block usertools %}
+    {% if has_permission %}
+    <div id="user-tools" class="text-right float-right text-xs">
+      <!-- Language selector -->
+      <form action="{% url 'set_language' %}" method="post" class="language-selector">
+        {% csrf_token %}
+        <label for="language-selector">{% trans "Language" %}:</label>
+        <select name="language" id="language-selector" class="bg-[#3E7391] text-white border border-white/30" onchange="this.form.submit()">
+          {% get_available_languages as LANGUAGES %}
+          {% for lang_code, lang_name in LANGUAGES %}
+            <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+              {% if lang_code == 'en' %}
+                English
+              {% elif lang_code == 'lv' %}
+                Latviešu
+              {% else %}
+                {{ lang_name|title }}
+              {% endif %}
+            </option>
+          {% endfor %}
+        </select>
+        <input type="hidden" name="next" value="{{ request.path }}">
+      </form>
+      
+      <!-- Theme toggle -->
+      <div class="theme-toggle">
+        <button id="theme-toggle" type="button">
+          <i class="fas fa-adjust mr-1"></i> {% trans "Toggle theme" %}: <span id="current-theme">auto</span>
+        </button>
+      </div>
+      
+      {% block welcome-msg %}
+        <span class="text-xs">{% translate 'Welcome,' %}</span>
+        <strong class="text-xs">{% firstof user.get_short_name user.get_username %}</strong>.
+      {% endblock %}
+      {% block userlinks %}
+        {% if site_url %}
+            <a href="{{ site_url }}" class="text-white hover:underline text-xs">{% translate 'View site' %}</a> /
+        {% endif %}
+        {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}" class="text-white hover:underline text-xs">{% translate 'Change password' %}</a> /
+        {% endif %}
+        <form id="logout-form" method="post" action="{% url 'admin:logout' %}" class="inline">
+          {% csrf_token %}
+          <button type="submit" class="text-left bg-transparent border-0 p-0 text-white hover:underline text-xs">
+            {% translate 'Log out' %}
+          </button>
+        </form>
+      {% endblock %}
+    </div>
+    {% endif %}
+    {% endblock %}
+    <div class="clear"></div>
+  </div>
+  
+  <!-- Breadcrumbs - ultra narrow with text positioned in the middle -->
+  <div class="breadcrumbs bg-gray-50 py-0 border-b border-gray-200 text-gray-700 font-serif text-[0.5rem] pl-4 w-full m-0">
+    {% block breadcrumbs %}
+      <div class="flex items-center h-[0.35rem]">
+        <div class="path-content">
+          <a href="{% url 'admin:index' %}" class="text-[#3E7391] hover:underline text-[0.5rem] align-middle">{% trans 'Home' %}</a>
+          {% if title %} <span class="text-[0.5rem] align-middle">&rsaquo; {{ title }}</span>{% endif %}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+  
+  <!-- Main content area with navigation and content -->
+  <div class="admin-content-wrapper flex flex-row">
+    <!-- Navigation panel -->
+    <div class="admin-navigation-wrapper w-64 bg-white border-r border-gray-200 min-h-screen">
+      {% block nav-global %}{% endblock %}
+    </div>
+    
+    <!-- Content area - positioned to the right of navigation -->
+    <div id="container" class="flex-1 bg-white">
+      {% block messages %}
+        {% if messages %}
+          <ul class="messagelist">{% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+          {% endfor %}</ul>
+        {% endif %}
+      {% endblock messages %}
+      
+      <!-- Keep only this single welcome message on the admin home page -->
+      {% if request.path == '/admin/' %}
+      <div class="text-center py-6">
+        <h1 class="text-2xl font-bold text-[#3E7391] font-serif">Welcome to Quality Tools Administration</h1>
+      </div>
+      {% endif %}
+      
+      <!-- Content -->
+      <div id="content" class="{% block coltype %}colM{% endblock %} p-4">
+        {% block pretitle %}{% endblock %}
+        
+        <!-- Override title blocks to completely remove Management System Tools -->
+        {% block content_title %}{% endblock %}
+        {% block content_subtitle %}{% endblock %}
+        
+        {% block content %}
+          {% if request.path != '/admin/' %}
+            <!-- For any page that isn't the admin index, hide Django-generated titles -->
+            <style>
+              /* Hide any h1 that might contain "Management System Tools" */
+              #content h1:first-child {
+                display: none !important;
+              }
+            </style>
+          {% endif %}
+          
+          {% block object-tools %}{% endblock %}
+          {{ content }}
+        {% endblock %}
+        {% block sidebar_content %}{% endblock %}
+      </div>
+      
+      {% block footer %}<div id="footer"></div>{% endblock %}
+    </div>
+  </div>
+</div>
+
+<!-- Add script for theme toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentThemeSpan = document.getElementById('current-theme');
+    
+    if (themeToggle && currentThemeSpan) {
+      // Get current theme from localStorage or default to auto
+      let currentTheme = localStorage.getItem('theme') || 'auto';
+      currentThemeSpan.textContent = currentTheme;
+      
+      // Apply theme on page load
+      applyTheme(currentTheme);
+      
+      // Toggle theme when button is clicked
+      themeToggle.addEventListener('click', function() {
+        // Cycle through themes: auto -> light -> dark -> auto
+        if (currentTheme === 'auto') {
+          currentTheme = 'light';
+        } else if (currentTheme === 'light') {
+          currentTheme = 'dark';
+        } else {
+          currentTheme = 'auto';
+        }
+        
+        // Save theme preference
+        localStorage.setItem('theme', currentTheme);
+        currentThemeSpan.textContent = currentTheme;
+        
+        // Apply the new theme
+        applyTheme(currentTheme);
+      });
+    }
+    
+    function applyTheme(theme) {
+      const html = document.documentElement;
+      
+      if (theme === 'auto') {
+        html.classList.remove('light', 'dark');
+        // Use system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          html.classList.add('dark');
+          document.body.style.backgroundColor = '#1f2937';
+          document.body.style.color = '#f3f4f6';
+        } else {
+          html.classList.add('light');
+          document.body.style.backgroundColor = '#ffffff';
+          document.body.style.color = '#374151';
+        }
+      } else {
+        // Apply specific theme
+        html.classList.remove('light', 'dark');
+        html.classList.add(theme);
+        
+        if (theme === 'dark') {
+          document.body.style.backgroundColor = '#1f2937';
+          document.body.style.color = '#f3f4f6';
+        } else {
+          document.body.style.backgroundColor = '#ffffff';
+          document.body.style.color = '#374151';
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

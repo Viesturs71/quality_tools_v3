@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Dashboard" %} | Quality Tools{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <h1 class="text-3xl font-bold leading-tight">{% trans "Dashboard" %}</h1>
+    <p class="text-gray-600 mt-2">{% trans "Welcome to Quality Tools dashboard" %}</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Equipment Status Widget -->
+    <div class="dashboard-widget">
+        <div class="widget-header">
+            {% trans "Equipment Status" %}
+        </div>
+        <div class="widget-body">
+            <div class="flex flex-col space-y-2">
+                <div class="flex justify-between items-center p-2 bg-green-100 rounded">
+                    <span>{% trans "Working" %}</span>
+                    <span class="font-bold">{{ working_equipment_count|default:"0" }}</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-yellow-100 rounded">
+                    <span>{% trans "Needs Repair" %}</span>
+                    <span class="font-bold">{{ repair_equipment_count|default:"0" }}</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-blue-100 rounded">
+                    <span>{% trans "Needs Calibration" %}</span>
+                    <span class="font-bold">{{ calibration_equipment_count|default:"0" }}</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-red-100 rounded">
+                    <span>{% trans "Out of Service" %}</span>
+                    <span class="font-bold">{{ outofservice_equipment_count|default:"0" }}</span>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-center">
+                <a href="{% url 'equipment:index' %}" class="btn btn-primary inline-block">
+                    {% trans "View Equipment" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Documents Widget -->
+    <div class="dashboard-widget">
+        <div class="widget-header">
+            {% trans "Recent Documents" %}
+        </div>
+        <div class="widget-body">
+            {% if recent_documents %}
+            <ul class="divide-y divide-gray-200">
+                {% for doc in recent_documents %}
+                <li class="py-3">
+                    <a href="#" class="block hover:bg-gray-50 transition-colors duration-200">
+                        <p class="font-medium">{{ doc.title }}</p>
+                        <p class="text-sm text-gray-500">{{ doc.updated_at|date:"d/m/Y" }}</p>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-500 p-4">{% trans "No recent documents" %}</p>
+            {% endif %}
+            
+            <div class="mt-4 text-center">
+                <a href="#" class="btn btn-primary inline-block">
+                    {% trans "All Documents" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Audits Widget -->
+    <div class="dashboard-widget">
+        <div class="widget-header">
+            {% trans "Upcoming Audits" %}
+        </div>
+        <div class="widget-body">
+            {% if upcoming_audits %}
+            <ul class="divide-y divide-gray-200">
+                {% for audit in upcoming_audits %}
+                <li class="py-3">
+                    <a href="#" class="block hover:bg-gray-50 transition-colors duration-200">
+                        <p class="font-medium">{{ audit.title }}</p>
+                        <p class="text-sm text-gray-500">{{ audit.scheduled_date|date:"d/m/Y" }}</p>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-500 p-4">{% trans "No upcoming audits" %}</p>
+            {% endif %}
+            
+            <div class="mt-4 text-center">
+                <a href="#" class="btn btn-primary inline-block">
+                    {% trans "All Audits" %}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- My Tasks Widget -->
+    <div class="dashboard-widget">
+        <div class="widget-header">
+            {% trans "My Tasks" %}
+        </div>
+        <div class="widget-body">
+            {% if user_tasks %}
+            <ul class="divide-y divide-gray-200">
+                {% for task in user_tasks %}
+                <li class="py-3">
+                    <a href="#" class="block hover:bg-gray-50 transition-colors duration-200">
+                        <p class="font-medium">{{ task.title }}</p>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-sm text-gray-500">{{ task.due_date|date:"d/m/Y" }}</span>
+                            <span class="status-badge {% if task.priority == 'high' %}bg-red-100 text-red-800{% elif task.priority == 'medium' %}bg-yellow-100 text-yellow-800{% else %}bg-blue-100 text-blue-800{% endif %}">
+                                {{ task.get_priority_display }}
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-500 p-4">{% trans "No tasks assigned" %}</p>
+            {% endif %}
+            
+            <div class="mt-4 text-center">
+                <a href="#" class="btn btn-primary inline-block">
+                    {% trans "All Tasks" %}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Activities Widget -->
+    <div class="dashboard-widget">
+        <div class="widget-header">
+            {% trans "Recent Activities" %}
+        </div>
+        <div class="widget-body">
+            {% if recent_activities %}
+            <ul class="divide-y divide-gray-200">
+                {% for activity in recent_activities %}
+                <li class="py-3">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mr-3">
+                            <div class="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                                {{ activity.user.get_initials }}
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-medium">{{ activity.description }}</p>
+                            <p class="text-sm text-gray-500">{{ activity.timestamp|timesince }} ago</p>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-500 p-4">{% trans "No recent activities" %}</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Pending Approvals Widget -->
+    <div class="dashboard-widget">
+        <div class="widget-header">
+            {% trans "Pending Approvals" %}
+        </div>
+        <div class="widget-body">
+            {% if pending_approvals %}
+            <ul class="divide-y divide-gray-200">
+                {% for approval in pending_approvals %}
+                <li class="py-3">
+                    <a href="#" class="block hover:bg-gray-50 transition-colors duration-200">
+                        <p class="font-medium">{{ approval.document_title }}</p>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-sm text-gray-500">{% trans "Requested by" %}: {{ approval.requested_by }}</span>
+                            <span class="text-sm text-gray-500">{{ approval.requested_at|date:"d/m/Y" }}</span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-500 p-4">{% trans "No pending approvals" %}</p>
+            {% endif %}
+            
+            <div class="mt-4 text-center">
+                <a href="#" class="btn btn-primary inline-block">
+                    {% trans "View All" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

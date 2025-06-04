@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Standards List" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Standards" %}</h1>
+    
+    {% include "includes/messages.html" %}
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{% trans "Code" %}</th>
+                        <th>{% trans "Title" %}</th>
+                        <th>{% trans "Version" %}</th>
+                        <th>{% trans "Created" %}</th>
+                        <th>{% trans "Updated" %}</th>
+                        <th>{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for standard in standards %}
+                    <tr>
+                        <td>{{ standard.standard_number }}</td>
+                        <td>{{ standard.title }}</td>
+                        <td>{{ standard.version }}</td>
+                        <td>{{ standard.created_at|date:"d.m.Y" }}</td>
+                        <td>{{ standard.updated_at|date:"d.m.Y" }}</td>
+                        <td>
+                            <a href="{% url 'quality_docs:standard-detail' standard.id %}" class="btn btn-sm btn-info">
+                                <i class="fas fa-eye"></i> {% trans "View" %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">{% trans "No standards found." %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    {% include "includes/pagination.html" %}
+</div>
+{% endblock %}

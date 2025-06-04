@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Administration{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-serif text-gray-700 bg-white">
+    {% include 'admin/includes/header.html' %}
+    <div class="flex pt-16">
+        {% include 'admin/includes/navigation.html' %}
+        <main class="ml-64 w-full">
+            <div class="container mx-auto p-6">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+    {% include 'admin/includes/footer.html' %}
+</body>
+</html>

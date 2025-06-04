@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Documents Needing Reconciliation" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">{% trans "Documents Needing Reconciliation" %}</h1>
+
+    {% if approvals %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{% trans "Document" %}</th>
+                        <th>{% trans "Type" %}</th>
+                        <th>{% trans "Created" %}</th>
+                        <th>{% trans "Approver" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for approval in approvals %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'quality_docs:document_detail' doc_id=approval.document.id %}">
+                                    {{ approval.document.title }}
+                                </a>
+                            </td>
+                            <td>{{ approval.document.document_type }}</td>
+                            <td>{{ approval.document.created_at|date:"d.m.Y" }}</td>
+                            <td>{{ approval.approver.get_full_name|default:approval.approver.username }}</td>
+                            <td>
+                                <span class="badge bg-warning">{% trans "Pending" %}</span>
+                            </td>
+                            <td>
+                                <a href="{% url 'quality_docs:document_detail' doc_id=approval.document.id %}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i> {% trans "Review" %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% include "includes/pagination.html" with page_obj=page_obj %}
+    {% else %}
+        <div class="alert alert-info">
+            {% trans "No documents currently need reconciliation." %}
+        </div>
+    {% endif %}
+
+    <div class="mt-3">
+        <a href="{% url 'quality_docs:document_list' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> {% trans "Back to Document List" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

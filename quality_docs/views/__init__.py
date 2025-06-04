@@ -8,6 +8,7 @@ from .views import (
     document_create,
     document_update,
     document_delete,
+    document_approve,
     document_sign,  # Add the new view function
     document_download,  # Add the new view
     approval_flow_create,
@@ -25,6 +26,7 @@ __all__ = [
     'document_create',
     'document_update',
     'document_delete',
+    'document_approve',
     'document_sign',  # Add the new view function
     'document_download',  # Add the new view
     'approval_flow_create',

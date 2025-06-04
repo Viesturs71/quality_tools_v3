@@ -91,6 +91,17 @@ class QualityDocument(models.Model):
     electronic_signature = models.BooleanField(default=False, verbose_name="Electronically Signed")
     signature_date = models.DateTimeField(null=True, blank=True, verbose_name="Signature Date")
     
+    # Publication tracking
+    published_at = models.DateTimeField(null=True, blank=True, verbose_name="Published At")
+    published_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='quality_published_documents',
+        verbose_name="Published By",
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

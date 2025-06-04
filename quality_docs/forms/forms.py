@@ -98,7 +98,7 @@ class DocumentApprovalForm(BaseModelForm):
         if instance.is_approved:
             instance.approval_date = timezone.now()
             instance.approved_by = self.user
-            
+            instance.status = 'APPROVED'
             # Create approval record
             if hasattr(self, 'approval_comment') and self.cleaned_data.get('approval_comment'):
                 ApprovalStep.objects.create(
@@ -211,3 +211,18 @@ class DocumentDistributionForm(BaseModelForm):
     class Meta:
         model = DocumentDistribution
         fields = ['document']
+
+class DocumentPublishForm(forms.Form):
+    """Form to confirm document publication."""
+    confirm = forms.BooleanField(
+        required=True,
+        label=_("I confirm this document should be published"),
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+    def publish(self, document, user):
+        document.status = 'PUBLISHED'
+        document.published_at = timezone.now()
+        document.published_by = user
+        document.save()
+        return document

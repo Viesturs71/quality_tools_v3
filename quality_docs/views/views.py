@@ -7,8 +7,15 @@ from quality_docs.models.document import (
     QualityDocument, ApprovalFlow, ApprovalStep, DocumentReview, SignatureRequest, DocumentDistribution
 )
 from quality_docs.forms import (
-    QualityDocumentForm, ApprovalFlowForm, ApprovalStepForm, DocumentReviewForm, SignatureRequestForm, DocumentDistributionForm,
-    DocumentApprovalForm, DocumentSignatureForm
+     QualityDocumentForm,
+    ApprovalFlowForm,
+    ApprovalStepForm,
+    DocumentReviewForm,
+    SignatureRequestForm,
+    DocumentDistributionForm,
+    DocumentApprovalForm,
+    DocumentSignatureForm,
+    DocumentPublishForm,
 )
 
 # ------------------ Base Views ------------------
@@ -143,6 +150,7 @@ def document_approve(request, pk):
         document.is_approved = True
         document.approval_date = timezone.now()
         document.approved_by = request.user
+        document.status = 'APPROVED'
         document.save()
         
         messages.success(request, f"Document '{document.title}' has been approved.")
@@ -200,6 +208,30 @@ def document_sign(request, pk):
         'form': form,
     }
     return render(request, 'quality_docs/document_sign.html', context)
+
+@login_required
+def document_publish(request, pk):
+    """Publish an approved document."""
+    document = get_object_or_404(QualityDocument, pk=pk)
+
+    if request.method == 'POST':
+        form = DocumentPublishForm(request.POST)
+        if form.is_valid():
+            form.publish(document, request.user)
+            messages.success(request, f"Document '{document.title}' has been published.")
+            return redirect('quality_docs:document_detail', pk=document.pk)
+    else:
+        form = DocumentPublishForm()
+
+    return render(
+        request,
+        'quality_docs/document_publish.html',
+        {
+            'document': document,
+            'form': form,
+        },
+    )
+
 
 @login_required
 def document_download(request, pk):

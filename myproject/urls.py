@@ -4,7 +4,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView, RedirectView
-from accounts.admin import custom_admin_site  # ✅ JAUNA RINDA
+from myproject.admin import custom_admin_site
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [

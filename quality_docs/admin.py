@@ -3,6 +3,7 @@ Admin configuration for quality_docs app.
 """
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from accounts.admin import custom_admin_site
 
 # Import models
 from quality_docs.models import (
@@ -12,7 +13,7 @@ from quality_docs.models import (
 )
 
 # Register models with detailed admin classes
-@admin.register(QualityDocument)
+@admin.register(QualityDocument, site=custom_admin_site)
 class QualityDocumentAdmin(admin.ModelAdmin):
     list_display = ['document_number', 'title', 'document_type', 'get_status', 'is_approved']
     list_filter = ['status', 'document_type', 'is_approved']  # Removed 'company' field
@@ -35,27 +36,27 @@ class DocumentTypeAdmin(admin.ModelAdmin):
     search_fields = ('name', 'abbreviation', 'description')
 
 # Register other models with their admin classes
-@admin.register(DocumentCategory)
+@admin.register(DocumentCategory, site=custom_admin_site)
 class DocumentCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
-@admin.register(DocumentSection)
+@admin.register(DocumentSection, site=custom_admin_site)
 class DocumentSectionAdmin(admin.ModelAdmin):
     list_display = ('name', 'identifier', 'parent')
     list_filter = ('parent',)
     search_fields = ('name', 'identifier')
 
 # Register remaining models
-admin.site.register(DocumentAttachment)
-admin.site.register(DocumentReview)
-admin.site.register(ApprovalFlow)
-admin.site.register(ApprovalStep)
-admin.site.register(SignatureRequest)
-admin.site.register(DocumentDistribution)
-admin.site.register(DocumentAcknowledgment)
+custom_admin_site.register(DocumentAttachment)
+custom_admin_site.register(DocumentReview)
+custom_admin_site.register(ApprovalFlow)
+custom_admin_site.register(ApprovalStep)
+custom_admin_site.register(SignatureRequest)
+custom_admin_site.register(DocumentDistribution)
+custom_admin_site.register(DocumentAcknowledgment)
 
 # Admin site customization
-admin.site.site_header = _("Quality Tools Administration")
-admin.site.site_title = _("Quality Tools Admin")
-admin.site.index_title = _("Welcome to Quality Tools Administration")
+custom_admin_site.site_header = _("Quality Tools Administration")
+custom_admin_site.site_title = _("Quality Tools Admin")
+custom_admin_site.index_title = _("Welcome to Quality Tools Administration")

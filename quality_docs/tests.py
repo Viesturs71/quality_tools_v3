@@ -1,4 +1,6 @@
 #quality_docs/tests.py
+import pytest
+pytest.importorskip("django")
 import datetime
 
 from django.contrib.auth import get_user_model

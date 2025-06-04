@@ -114,6 +114,23 @@ class DocumentApprovalForm(BaseModelForm):
             instance.save()
         return instance
 
+class DocumentPublishForm(BaseModelForm):
+    """Form used to mark a document as published."""
+
+    class Meta:
+        model = QualityDocument
+        fields = ["status"]
+        widgets = {
+            "status": forms.HiddenInput(),
+        }
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.status = "PUBLISHED"
+        if commit:
+            instance.save()
+        return instance
+    
 class DocumentSignatureForm(forms.Form):
     """
     Form for electronically signing a document.

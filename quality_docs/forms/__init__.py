@@ -13,6 +13,7 @@ from .forms import (
     SignatureRequestForm,
     DocumentDistributionForm,
     DocumentApprovalForm,  # Ensure this is being imported
+    DocumentPublishForm,
     DocumentSignatureForm,
     DocumentAttachmentForm,
     WorkflowTemplateForm,
@@ -33,6 +34,7 @@ __all__ = [
     'SignatureRequestForm',
     'DocumentDistributionForm',
     'DocumentApprovalForm',  # Ensure this is in the __all__ list
+    'DocumentPublishForm',
     'DocumentSignatureForm',
     'DocumentAttachmentForm',
     'WorkflowTemplateForm',

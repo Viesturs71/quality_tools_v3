@@ -1,5 +1,6 @@
 # tests/test_ui.py
-
+import pytest
+pytest.importorskip("selenium")
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service

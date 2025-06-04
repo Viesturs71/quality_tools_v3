@@ -1,4 +1,7 @@
 # equipment/tests.py
+import pytest
+pytest.importorskip("django")
+
 import datetime
 
 from django.contrib.auth.models import User

@@ -3,6 +3,9 @@ accounts/tests.py
 Reģistrācijas un profila skatu testēšana.
 """
 
+import pytest
+pytest.importorskip("django")
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse

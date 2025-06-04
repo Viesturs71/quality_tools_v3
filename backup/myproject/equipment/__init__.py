@@ -1,3 +1,0 @@
-"""
-Equipment module initialization.
-"""

@@ -1,0 +1,39 @@
+/* Styling for dual title fields in the standard section admin */
+.field-title, .field-title_user {
+    position: relative;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.field-title {
+    background-color: #f0f5f9;
+    border-left: 4px solid #3E7391;
+}
+
+.field-title_user {
+    background-color: #f5f9f0;
+    border-left: 4px solid #739e3e;
+}
+
+.field-title .help, .field-title_user .help {
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* Improved fieldset styling */
+.module h2 {
+    background-color: #3E7391;
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.form-row {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Translation status indicator */
+.column-has_translation {
+    text-align: center;
+}

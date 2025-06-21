@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="favicon" width="32" height="32"></canvas>
+    <script>
+        const canvas = document.getElementById('favicon');
+        const ctx = canvas.getContext('2d');
+        
+        // Background
+        ctx.fillStyle = '#3498db';
+        ctx.fillRect(0, 0, 32, 32);
+        
+        // Text or logo (simplified "D" for Django)
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 24px Arial';
+        ctx.fillText('D', 8, 24);
+        
+        // Instructions to save:
+        // 1. Right-click on the canvas
+        // 2. Select "Save image as..."
+        // 3. Save as "favicon.png"
+        // 4. Convert to .ico using an online converter
+    </script>
+</body>
+</html>

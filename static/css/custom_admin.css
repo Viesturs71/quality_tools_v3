@@ -1,34 +1,296 @@
-/* === Navbar fix === */
-.navbar {
-    background-color: #74c0e3 !important;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #5bb3da;
+/* ============================================================================
+   custom_admin.css — tēmas un izkārtojuma stili
+   ============================================================================ */
+
+/* 1) KRĀSU PALETE */
+:root {
+  --primary: #3E7391;       /* galvenes un breadcrumbs fons */
+  --text-on-primary: #ffffff;  /* teksts uz galvenes/breadcrumbs */
+  --accent: #FFD700;        /* lietotāja rīku teksta krāsa */
+  --accent-hover: #FFECB3;  /* hover krāsa */
+  --body-bg:    #ffffff;    /* lapas fons */
 }
 
-.navbar-brand {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: #ffffff !important;
+/* =================================================
+   Dark theme — pārrakstām mainīgos, kad html.dark
+   ================================================= */
+html.dark {
+  --primary: #264B5D;          /* tumšāks zils */
+  --text-on-primary: #F7F7F7;  /* gaišāks teksts */
+  --body-bg: #121212;          /* tumšs fona tonis lapai */
+  --accent: #63B3ED;           /* optional: gaišāks akcents */
+  --accent-hover: #4299E1;
 }
 
-.navbar .form-select {
-    margin-left: 1rem;
+/* 2) PAMATSTILI */
+body, input, textarea, select, button {
+  font-family: "Times New Roman", Times, serif !important;
+  margin: 0;
+  padding: 0;
 }
-.navbar .form-select:focus {
-    border-color: #ffffff !important;
+a, a:visited { text-decoration: none; }
+
+/* 3) GALVENE */
+#header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent !important;
+  z-index: 1000;
 }
 
-.language-dropdown .dropdown-menu {
-    background-color: #7eb4cf;
-    color: #000;
-    border: none;
-  }
-  
-  .language-dropdown .dropdown-item {
-    color: #000 !important;
-  }
-  
-  .language-dropdown .dropdown-item:hover {
-    background-color: #5fa2bd !important;
-    color: #fff !important;
-  }
+#header-top-row {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  background: var(--primary) !important;
+  color: var(--text-on-primary) !important;
+  padding: 0.4rem 1.5rem;
+  width: 100%;
+}
+
+/* Virsraksta bloks pa kreisi */
+#header-title {
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-on-primary) !important;
+}
+/* 3a) Galvenais konteiners tagad pilnā platumā */
+#header {
+  background: var(--primary) !important;  /* galvenes un breadcrumbs krāsa */
+}
+
+/* 3b) Atceļam iekšējo fonu, lai nebūtu divslāņu efekts */
+#header-top-row {
+  background: transparent !important;
+}
+
+
+/* 4) LIETOTĀJA RĪKI GALVENES LABAJĀ PUSĒ */
+#user-tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+#user-tools > * + * {
+  margin-left: 1rem;
+}
+#user-tools span,
+#user-tools a,
+#user-tools button,
+#user-tools select {
+  color: var(--accent) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+  font: inherit;
+}
+#user-tools a:hover {
+  color: var(--accent-hover) !important;
+}
+
+/* 5) BREADCRUMBS JOSLA */
+#breadcrumbs {
+  width: 100% !important;                             /* pilna platuma zem galvenes */
+  display: flex;
+  align-items: center;
+  background: var(--primary) !important;
+  color: var(--text-on-primary) !important;
+  padding: 0.4rem 1.5rem;
+  font-size: 0.8rem;
+  margin: 0;                                           /* no margin auto */
+  max-width: none;                                     /* no centering */
+}
+#breadcrumbs a {
+  color: var(--text-on-primary) !important;
+}
+#breadcrumbs a:hover {
+  text-decoration: underline;
+}
+#breadcrumbs span {
+  margin: 0 0.5rem;
+}
+#breadcrumbs a {
+  color: var(--text-on-primary) !important;
+}
+#breadcrumbs a:hover {
+  text-decoration: underline;
+}
+#breadcrumbs span {
+  margin: 0 0.5rem;
+}
+/* 5b) Breadcrumbs arī transparent (header fons slēgs zem tā) */
+#breadcrumbs {
+  background: transparent !important;
+}
+
+/* 6) SATURS ZEM GALVENES + BREADCRUMBS */
+body {
+  background-color: var(--body-bg) !important;
+  /* header-vert-padd (0.75rem*2 + lineHeight) + breadcrumbs-vert-padd (0.5rem*2 + lineHeight) ≈ 4.75rem */
+  padding-top: 5rem !important;
+}
+
+/* 7) SĀNJOZLA */
+#admin-sidebar {
+  background: var(--body-bg) !important;
+}
+#admin-sidebar a {
+  color: #4a5568 !important;
+}
+#admin-sidebar a:hover {
+  color: #2d3748 !important;
+}
+
+/* 8) POGAS */
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+a.button {
+  padding: 0.5rem 1rem;
+  background: var(--primary) !important;
+  color: var(--text-on-primary) !important;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+.submit-row input:hover,
+a.button:hover {
+  background: var(--accent-hover) !important;
+}
+
+/* 9) OVERRIDES */
+#header,
+#header-top-row,
+#breadcrumbs {
+  box-shadow: none !important;
+}
+
+/* —————————————————————————————————————————  
+   Theme‐toggle icons: rādīt tikai vienu no tām
+   ————————————————————————————————————————— */
+
+/* Pamatā rāda saulīti, slēpj mēnesi */
+.theme-toggle .icon-sun {
+  display: inline !important;
+}
+.theme-toggle .icon-moon {
+  display: none !important;
+}
+
+/* Kad ir dark režīms, apgriežam */
+html.dark .theme-toggle .icon-sun {
+  display: none !important;
+}
+html.dark .theme-toggle .icon-moon {
+  display: inline !important;
+}
+
+/* Var arī mazliet palielināt izmēru */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  font-size: 1.25rem;
+}
+
+/* Custom styles for the Django admin */
+
+#header {
+    background: #2c3e50;
+    color: #fff;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #fff;
+}
+
+#user-tools a {
+    color: #ecf0f1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#user-tools a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+    text-decoration: none;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #3498db;
+}
+
+div.breadcrumbs {
+    background: #34495e;
+    color: #fff;
+    padding: 10px 15px;
+}
+
+.admin-custom-header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.system-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.user-info a {
+    color: #3498db;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.user-info a:hover {
+    text-decoration: underline;
+}
+
+.app-list .module {
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.app-list .module caption {
+    font-size: 1.1em;
+    padding: 12px;
+}
+
+.app-list table {
+    width: 100%;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #3498db;
+}
+
+.button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: #2980b9;
+}
+
+.submit-row a.deletelink {
+    background: #e74c3c;
+}
+
+.submit-row a.deletelink:active, .submit-row a.deletelink:focus, .submit-row a.deletelink:hover {
+    background: #c0392b;
+}

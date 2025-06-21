@@ -1,28 +1,53 @@
-{% load i18n %}
-<header class="bg-blue-800 text-white px-6 py-4 flex justify-between items-center shadow">
-    <div class="text-lg font-semibold">
-        {% translate "Quality Tools Administration" %}
+{% load i18n static %}
+
+{# Fixed header – full-width, primary blue, white text #}
+<div id="header"
+     class="font-serif fixed top-0 left-0 w-full z-50 bg-[#3E7391] text-white flex flex-col">
+
+  {# 1) Top row: branding + user tools + language + theme toggle #}
+  <div id="header-top-row"
+       class="flex justify-between items-center w-full max-w-screen-xl mx-auto px-6 py-3">
+    <div id="branding">
+      <h1 id="site-name" class="text-xl font-bold m-0">
+        <a href="{{ admin_site_root }}" class="text-white no-underline">
+          Quality Tools Administration
+        </a>
+      </h1>
     </div>
-    <div class="flex items-center gap-4 text-sm">
-        <div>
-            {% translate "LANGUAGE:" %}
-            <select onchange="location.href='?language=' + this.value" class="text-black rounded px-1 py-0.5">
-                <option value="en">English</option>
-                <option value="lv">Latviešu</option>
-            </select>
-        </div>
-        <div>
-            {% translate "Toggle theme:" %} <span class="italic text-gray-200">auto</span>
-        </div>
-        <div>
-            {% translate "WELCOME," %} <strong>{{ request.user.username|default:_("Guest") }}</strong>
-        </div>
-        <div>
-            <a href="/" class="underline hover:text-gray-300">{% translate "VIEW SITE" %}</a>
-            /
-            <a href="{% url 'admin:password_change' %}" class="underline hover:text-gray-300">{% translate "CHANGE PASSWORD" %}</a>
-            /
-            <a href="{% url 'admin:logout' %}" class="underline hover:text-gray-300">{% translate "LOG OUT" %}</a>
-        </div>
+
+    <div id="user-tools" class="flex items-center space-x-4 text-sm uppercase">
+      {% if user.is_authenticated %}
+        <span>{% trans "Sveicināti," %} {{ user.get_short_name|default:user.username }}</span>
+        <a href="{% url 'admin:index' %}"           class="hover:underline">{% trans "Apskatīt lapu" %}</a>
+        <a href="{% url 'admin:password_change' %}" class="hover:underline">{% trans "Paroles maiņa" %}</a>
+        <a href="{% url 'admin:logout' %}"          class="hover:underline">{% trans "Atslēgties" %}</a>
+        {% if 'rosetta' in INSTALLED_APPS %}
+          <a href="{% url 'rosetta:home' %}"        class="hover:underline">{% trans "Tulkošana" %}</a>
+        {% endif %}
+
+        {# Language switcher #}
+        <form action="{% url 'set_language' %}" method="post" class="inline-block ml-4">
+          {% csrf_token %}
+          <select name="language"
+                  onchange="this.form.submit()"
+                  class="bg-[#3E7391] text-white border border-white rounded px-2 py-1">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+              <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                {{ language.name_local|capfirst }}
+              </option>
+            {% endfor %}
+          </select>
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        </form>
+
+        {# Theme toggle; your JS swaps the icons #}
+        <button id="toggle-theme" class="ml-2 px-2" aria-label="{% trans 'Toggle theme' %}">
+          <span class="theme-icon-when-light">☀️</span>
+          <span class="theme-icon-when-dark">🌙</span>
+        </button>
+      {% endif %}
     </div>
-</header>
+  </div>
+</div>

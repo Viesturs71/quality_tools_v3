@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Quality Management System{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Welcome to the Dashboard</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Documents</div>
+                <div class="card-body">
+                    <h5 class="card-title">Manage Documents</h5>
+                    <p class="card-text">Access and manage quality documentation.</p>
+                    <a href="{% url 'documents:document_list' %}" class="btn btn-light">View Documents</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Equipment</div>
+                <div class="card-body">
+                    <h5 class="card-title">Manage Equipment</h5>
+                    <p class="card-text">Track and maintain equipment records.</p>
+                    <a href="{% url 'equipment:equipment_list' %}" class="btn btn-light">View Equipment</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Personnel</div>
+                <div class="card-body">
+                    <h5 class="card-title">Manage Personnel</h5>
+                    <p class="card-text">View and manage personnel information.</p>
+                    <a href="{% url 'personnel:personnel_list' %}" class="btn btn-light">View Personnel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

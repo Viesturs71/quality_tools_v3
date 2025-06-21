@@ -1,23 +1,23 @@
 # ✅ Django versija
-Django>=4.2,<5.0
+Django>=4.2.0,<5.0.0
 
 # ✅ Django REST Framework (API izstrādei)
-djangorestframework>=3.14.0
+djangorestframework==3.14.0
 
 # ✅ API dokumentācija
 drf-spectacular>=0.26.0
 drf-spectacular-sidecar>=2023.4.1
-drf-yasg>=1.21.5
+drf-yasg>=1.21.7
 PyYAML>=6.0
 
 # ✅ CORS atbalsts (API pieejamība ārējiem klientiem)
 django-cors-headers>=3.13.0
 
 # ✅ PostgreSQL atbalsts
-psycopg2>=2.9.6
+psycopg2-binary==2.9.7
 
 # ✅ Attēlu un dokumentu apstrāde
-Pillow>=9.5.0
+Pillow==10.0.0
 PyPDF2>=3.0.1
 
 # ✅ PDF digitālai parakstīšanai
@@ -25,14 +25,14 @@ pyHanko>=0.18.1
 pyHanko-certvalidator>=0.23.2
 
 # ✅ Vides mainīgo pārvaldībai
-python-dotenv>=1.0.0
+python-dotenv==1.0.0
 
 # ✅ Koda testēšanai un pārklājuma mērīšanai
 coverage>=7.2.0
-pytest>=7.4.3
+pytest>=7.4.0
 pytest-django>=4.5.2
 pytest-cov>=4.1.0
-factory-boy>=3.2.1
+factory-boy>=3.3.0
 mixer>=7.2.2
 
 # ✅ Veiktspējas un vaicājumu analīzei
@@ -49,8 +49,8 @@ django-import-export>=3.2.0
 uritemplate>=4.1.1
 
 # Add crispy forms packages
-django-crispy-forms>=1.14.0
-crispy-bootstrap4>=2021.1
+django-crispy-forms==2.0
+crispy-bootstrap5==0.7
 
 # ✅ Backup un datu eksports
 django-dbbackup>=4.0.0
@@ -92,8 +92,8 @@ PyMuPDF>=1.23.10
 # ✅ Heroku atbalsts
 django-heroku>=0.3.1
 dj-database-url>=1.0.0
-whitenoise>=6.0.0
-gunicorn>=20.0.4
+whitenoise==6.5.0
+gunicorn==21.2.0
 
 # Development and Code Quality Tools
 ruff>=0.1.6

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans "My Documents" %}</h1>
+<ul>
+  {% for doc in documents %}
+    <li>
+      <a href="{% url 'documents:document_detail' doc.pk %}">{{ doc.title }}</a>
+    </li>
+  {% empty %}
+    <li>{% trans "You have not uploaded any documents yet." %}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,15 +1,15 @@
 {% extends "admin/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
-{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block title %}{{ title }} | {% trans "Management System Tools Administration" %}{% endblock %}
 
-{% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% block extrastyle %}
+  {{ block.super }}
+  {# Ja lieto FontAwesome lokāli: #}
+  <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 {% endblock %}
 
-<!-- Add the navigation panel to the content block instead -->
-{% block nav-global %}
-<div class="admin-navigation-wrapper mt-4">
-   {% include "admin/includes/admin_navigation.html" %}
-</div>
+{# Nepazūd content#}
+{% block content %}
+  {{ block.super }}
 {% endblock %}

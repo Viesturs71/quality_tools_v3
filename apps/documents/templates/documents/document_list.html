@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Dokumenti - Kvalitātes pārvaldības sistēma{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Dokumenti</h1>
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h2 class="h5 mb-0">Dokumentu saraksts</h2>
+        {% if user.is_staff %}
+        <a href="/admin/documents/document/add/" class="btn btn-sm btn-primary">Jauns dokuments</a>
+        {% endif %}
+    </div>
+    <div class="card-body">
+        {% if documents %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Numurs</th>
+                            <th>Nosaukums</th>
+                            <th>Veids</th>
+                            <th>Statuss</th>
+                            <th>Versija</th>
+                            <th>Atjaunināts</th>
+                            <th>Darbības</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for document in documents %}
+                            <tr>
+                                <td>{{ document.document_number }}</td>
+                                <td>{{ document.title }}</td>
+                                <td>{{ document.get_document_type_display }}</td>
+                                <td>
+                                    <span class="badge bg-{{ document.status }}">
+                                        {{ document.get_status_display }}
+                                    </span>
+                                </td>
+                                <td>{{ document.version }}</td>
+                                <td>{{ document.updated_at|date:"d.m.Y" }}</td>
+                                <td>
+                                    <a href="{% url 'documents:document_detail' document.id %}" class="btn btn-sm btn-info">Skatīt</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                Nav atrasts neviens dokuments.
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %} <!-- Add this line -->
+
+{% block title %}{% translate "Settings" %}{% endblock %}
+
+{% block content %}
+<h1>{% translate "Settings" %}</h1>
+<p>{% translate "Here you can manage your account settings." %}</p>
+<!-- Add settings form or other content here -->
+{% endblock %}

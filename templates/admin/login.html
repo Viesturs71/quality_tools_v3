@@ -1,206 +1,44 @@
 {% extends "admin/base_site.html" %}
-{% load i18n static %}
+{% load i18n %}
 
-{% block title %}Admin Login{% endblock %}
-
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static "admin/css/login.css" %}">
-<style>
-    /* Custom styling for login page with unified color scheme */
-    :root {
-        --primary-color: #3E7391;
-        --primary-hover: #2c5269;
-        --text-light: #ffffff;
-        --background-light: #f9fafb;
-        --border-color: #e5e7eb;
-    }
-    
-    body {
-        font-family: "Times New Roman", Times, serif;
-        background-color: var(--background-light);
-    }
-    
-    .login-container {
-        background-color: #fff;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        padding: 1.5rem; /* Reduced padding */
-        max-width: 28rem;
-        margin: 3rem auto; /* Reduced margin */
-    }
-    
-    h1.login-title {
-        font-size: 1.5rem; /* Smaller font size */
-        font-weight: bold;
-        margin-bottom: 1rem; /* Reduced margin */
-        color: var(--primary-color);
-        text-align: center;
-    }
-    
-    .login-form label {
-        display: block;
-        margin-bottom: 0.25rem; /* Reduced margin */
-        font-weight: 500;
-        color: #374151;
-    }
-    
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
-        width: 100%;
-        padding: 0.4rem 0.75rem; /* Reduced padding */
-        margin-bottom: 0.75rem; /* Reduced margin */
-        border: 1px solid var(--border-color);
-        border-radius: 0.25rem;
-        font-family: inherit;
-    }
-    
-    .login-form input[type="submit"] {
-        background-color: var(--primary-color);
-        color: var(--text-light);
-        padding: 0.4rem 0.75rem; /* Reduced padding */
-        border: none;
-        border-radius: 0.25rem;
-        font-weight: 500;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 0.75rem; /* Reduced margin */
-        transition: background-color 0.2s ease;
-    }
-    
-    .login-form input[type="submit"]:hover {
-        background-color: var(--primary-hover);
-    }
-    
-    .error-container {
-        background-color: #fee2e2;
-        border: 1px solid #ef4444;
-        color: #b91c1c;
-        padding: 0.75rem;
-        border-radius: 0.25rem;
-        margin-bottom: 1rem;
-    }
-    
-    .app-header {
-        background-color: var(--primary-color);
-        color: var(--text-light);
-        text-align: center;
-        padding: 1rem;
-        margin-bottom: 2rem;
-        border-radius: 0.25rem;
-    }
-    
-    .app-header h1 {
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-    
-    .password-reset-link a {
-        color: var(--primary-color);
-        text-decoration: none;
-    }
-    
-    .password-reset-link a:hover {
-        text-decoration: underline;
-    }
-    
-    .language-selector {
-        text-align: right;
-        margin-bottom: 0.75rem; /* Reduced margin */
-    }
-    
-    .language-selector select {
-        background-color: white;
-        border: 1px solid var(--border-color);
-        border-radius: 0.25rem;
-        padding: 0.25rem 0.5rem;
-        font-family: inherit;
-        color: var(--text-dark);
-        font-size: 0.875rem; /* Smaller font size */
-    }
-    
-    .language-selector label {
-        margin-right: 0.5rem;
-        color: var(--text-dark);
-        font-size: 0.875rem; /* Smaller font size */
-    }
-    
-    .compact-form-row {
-        margin-bottom: 0.5rem; /* More compact spacing */
-    }
-    
-    .password-reset-link {
-        text-align: right;
-        margin-bottom: 0.5rem; /* Reduced margin */
-        font-size: 0.875rem; /* Smaller font size */
-    }
-</style>
-{% endblock %}
-
-{% block bodyclass %}login{% endblock %}
-
-{% block usertools %}{% endblock %}
-
-{% block nav-global %}{% endblock %}
-
-{% block nav-sidebar %}{% endblock %}
-
-{% block content_title %}{% endblock %}
-
-{% block breadcrumbs %}{% endblock %}
+{% block title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
-<div class="login-container">
-    <!-- Language selector before login -->
-    <div class="language-selector">
-        <form action="{% url 'set_language' %}" method="post" id="language-form">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ request.path }}">
-            <label for="language-select">{% trans 'Language:' %}</label>
-            <select name="language" id="language-select" onchange="document.getElementById('language-form').submit()">
-                {% get_available_languages as LANGUAGES %}
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %}
-                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
-                    {{ language.name_local|title }}
-                </option>
-                {% endfor %}
-            </select>
-        </form>
-    </div>
-    
-    {% if form.errors and not form.non_field_errors %}
-    <div class="error-container">
-        {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
-    </div>
+  <div class="max-w-md mx-auto my-8 p-6 bg-white shadow rounded font-serif">
+    <h1 class="text-2xl font-bold mb-4">{% trans "Log in" %}</h1>
+
+    {% if form.errors %}
+      <p class="errornote mb-4">{% trans "Please correct the error below." %}</p>
     {% endif %}
 
-    {% if form.non_field_errors %}
-    <div class="error-container">
-        {% for error in form.non_field_errors %}
-        <p>{{ error }}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="mb-4">
+        <label for="id_username" class="block mb-1 font-medium">{% trans "Username" %}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+      </div>
 
-    <h1 class="login-title">{% trans 'Log in' %}</h1>
+      <div class="mb-4">
+        <label for="id_password" class="block mb-1 font-medium">{% trans "Password" %}</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+      </div>
 
-    <form action="{{ app_path }}" method="post" id="login-form" class="login-form">{% csrf_token %}
-        <div class="compact-form-row">
-            <label for="id_username">{% trans 'Username:' %}</label>
-            {{ form.username.as_widget(attrs={'autocomplete': 'username'}) }}
-        </div>
-        <div class="compact-form-row">
-            <label for="id_password">{% trans 'Password:' %}</label>
-            {{ form.password.as_widget(attrs={'autocomplete': 'current-password'}) }}
-        </div>
-        {% url 'admin_password_reset' as password_reset_url %}
-        {% if password_reset_url %}
-        <div class="password-reset-link">
-            <a href="{{ password_reset_url }}">{% trans 'Forgotten your password?' %}</a>
-        </div>
-        {% endif %}
-        <div class="submit-row">
-            <input type="submit" value="{% trans 'Log in' %}">
-        </div>
+      {# link at your new accounts/password_reset/ URL #}
+      <div class="mb-4 text-right">
+        <a href="{% url 'password_reset' %}"
+           class="text-sm text-blue-600 hover:underline">
+          {% trans "Forgot password?" %}
+        </a>
+      </div>
+
+      <div>
+        <button type="submit"
+                class="w-full py-2 px-4 bg-[var(--primary)] text-white rounded hover:bg-[var(--primary-hover)]">
+          {% trans "Log in" %}
+        </button>
+      </div>
     </form>
-</div>
+  </div>
 {% endblock %}

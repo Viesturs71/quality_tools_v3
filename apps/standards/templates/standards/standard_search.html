@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Search Standards" %}{% endblock %}
+
+{% block content %}
+<h1>{% translate "Search Standards" %}</h1>
+<p>{% translate "Search results for:" %} "{{ query }}"</p>
+<!-- Add search results or other content here -->
+{% endblock %}

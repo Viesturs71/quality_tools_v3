@@ -1,52 +1,109 @@
 {% load i18n static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="{% if LANGUAGE_BIDI %}dir=\"rtl\"{% endif %}">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% translate "Quality Tools Administration" %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Management System Tools{% endblock %}</title>
+
+    {# Noklusējuma Django admin stili #}
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'admin/css/admin.css' %}">
-    <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    {# Tailwind CDN - ja nepieciešams lokālais variants, aizstāj ar lokālu failu #}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {# Lokālais Font Awesome stils #}
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+
+    {# Pielāgotie stili #}
+    <link rel="stylesheet" href="{% static 'css/admin-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_admin.css' %}">
+
+    {% block extrahead %}{% endblock %}
 </head>
-<body>
+
+<body class="font-serif text-gray-700 bg-white dark:bg-gray-900 dark:text-white transition-colors">
+
+    {# Galvene #}
     {% include "admin/includes/admin_header.html" %}
-    <div class="layout flex">
-        <!-- Sidebar -->
-        <aside class="sidebar w-64 bg-white border-r min-h-screen">
+    {% include "admin/includes/admin_breadcrumbs.html" %}
+   
+    <div class="flex" id="main-content-wrapper">
+        {# Navigācija #}
+        <aside class="w-64 bg-white dark:bg-gray-800 border-r" id="admin-sidebar">
             {% include "admin/includes/admin_navigation.html" %}
         </aside>
 
-        <!-- Main Content -->
-        <div class="main-section flex-1 p-6">
-            {% block breadcrumbs %}{% include "admin/includes/admin_breadcrumbs.html" %}{% endblock %}
-            {% block content_title %}{% endblock %}
-            {% block content %}{% endblock %}
-        </div>
+        {# Saturs #}
+        <main class="flex-1 p-6 bg-gray-50 dark:bg-gray-900" id="admin-main-content">
+            {% block messages %}
+              {% if messages %}
+                <ul class="messagelist">
+                  {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endblock messages %}
+
+            {# Virsraksts (ja nepieciešams) #}
+            {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
+
+            <div id="content" class="{% block coltype %}colM{% endblock %}">
+                {% block pretitle %}{% endblock %}
+                {% block content %}
+                    {% block object-tools %}{% endblock %}
+                    {{ content }}
+                {% endblock %}
+                {% block sidebar %}{% endblock %}
+                <br class="clear">
+            </div>
+        </main>
     </div>
+
+    {# Kājene #}
     {% include "admin/includes/admin_footer.html" %}
 
-    <!-- JS for collapsible nav -->
+    {# JavaScript — tēmas pārslēgšanai u.c. #}
+    <script src="{% static 'admin/js/admin_custom.js' %}" defer></script>
+
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.nav-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                const icon = header.querySelector('.fa-chevron-down');
-                if (content.classList.contains('hidden')) {
-                    content.classList.remove('hidden');
-                    icon.classList.add('rotate-180');
+        document.addEventListener('DOMContentLoaded', function () {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('toggle-theme');
+            const currentThemeSpan = document.getElementById('current-theme');
+
+            function applyTheme(mode) {
+                if (mode === 'dark') {
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else if (mode === 'light') {
+                    html.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
                 } else {
-                    content.classList.add('hidden');
-                    icon.classList.remove('rotate-180');
+                    localStorage.removeItem('theme');
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    html.classList.toggle('dark', prefersDark);
                 }
-            });
+                const active = localStorage.getItem('theme') || 'auto';
+                if (currentThemeSpan) currentThemeSpan.textContent = active;
+            }
+
+            applyTheme(localStorage.getItem('theme'));
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const current = localStorage.getItem('theme') || 'auto';
+                    const next = current === 'light' ? 'dark' : current === 'dark' ? 'auto' : 'light';
+                    applyTheme(next);
+                });
+            }
         });
-    });
     </script>
-    <style>
-        .rotate-180 {
-            transform: rotate(180deg);
-            transition: transform 0.2s ease-in-out;
-        }
-    </style>
+
+    {% block extrajs %}{% endblock %}
 </body>
 </html>

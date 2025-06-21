@@ -1,11 +1,11 @@
-{% extends "users/base_user.html" %}
-{% load i18n %}
-{% load static %}
+{% extends "base.html" %}
 
-{% block title %}{% translate "User Settings" %}{% endblock %}
+{% block title %}Settings{% endblock %}
 
-{% block page_title %}{% translate "User Settings" %}{% endblock %}
-
+{% block content %}
+<h1>User Settings</h1>
+<p>Here you can update your account settings.</p>
+{% endblock %}
 {% block breadcrumbs %}
 <a href="{% url 'dashboard:index' %}" class="hover:text-blue-600">{% translate "Home" %}</a>
 <span class="mx-2">/</span>

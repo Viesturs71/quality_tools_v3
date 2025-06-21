@@ -7,7 +7,7 @@
 
 .admin-sidebar a:focus,
 .admin-sidebar button:focus {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #3E7391;
     outline-offset: -2px;
 }
 
@@ -31,19 +31,27 @@
     font-family: 'Times New Roman', Times, serif !important;
 }
 
-/* Ensure consistent blue-600 color for active elements */
-.hover\:bg-blue-600:hover {
-    background-color: #2563eb;
+/* Use project color scheme */
+.hover\:bg-primary:hover {
+    background-color: #3E7391;
 }
 
-.bg-blue-600 {
-    background-color: #2563eb;
+.bg-primary {
+    background-color: #3E7391;
+}
+
+.hover\:bg-primary-hover:hover {
+    background-color: #2c5269;
+}
+
+.text-primary {
+    color: #3E7391;
 }
 
 /* Accessibility focus styles */
 button:focus-visible, 
 a:focus-visible {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #3E7391;
     outline-offset: 2px;
 }
 
@@ -55,6 +63,43 @@ a:focus-visible {
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
     padding-right: 2.5rem;
+}
+
+/* Admin content area */
+#content {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Admin form styles */
+.form-row label {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.875rem;
+}
+
+/* Admin module styles */
+.module h2, .module caption {
+    background: #3E7391;
+}
+
+.module a:link, .module a:visited {
+    color: #3E7391;
+}
+
+/* Admin buttons */
+.button, input[type=submit], input[type=button], .submit-row input {
+    background: #3E7391;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: #2c5269;
+}
+
+.button.default, input[type=submit].default {
+    background: #3E7391;
+}
+
+.button.default:hover, input[type=submit].default:hover {
+    background: #2c5269;
 }
 
 /* Mobile responsive adjustments */

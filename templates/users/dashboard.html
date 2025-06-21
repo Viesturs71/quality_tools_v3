@@ -1,0 +1,66 @@
+from django.contrib import admin
+from .models import (
+    Equipment,
+    EquipmentCategory,
+    EquipmentDocument,
+    EquipmentType,
+    MaintenanceRecord,
+    Department,
+)
+
+
+@admin.register(Equipment)
+class EquipmentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'inventory_number', 'status']
+    search_fields = ['name', 'inventory_number']
+
+
+@admin.register(EquipmentCategory)
+class EquipmentCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'description']
+    search_fields = ['name']
+
+
+@admin.register(EquipmentDocument)
+class EquipmentDocumentAdmin(admin.ModelAdmin):
+    list_display = ['title', 'equipment', 'uploaded_by', 'uploaded_at']
+    search_fields = ['title', 'description']
+    list_filter = ['uploaded_at']
+
+
+@admin.register(EquipmentType)
+class EquipmentTypeAdmin(admin.ModelAdmin):
+    list_display = ['name', 'is_measuring_instrument', 'is_active']
+    search_fields = ['name']
+    list_filter = ['is_measuring_instrument', 'is_active']
+
+
+@admin.register(MaintenanceRecord)
+class MaintenanceRecordAdmin(admin.ModelAdmin):
+    list_display = ['maintenance_date', 'maintenance_type', 'equipment', 'performed_by']
+    search_fields = ['equipment__name', 'performed_by']
+    list_filter = ['maintenance_type', 'maintenance_date']
+
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
+        ('Kalibrācija', {
+            'fields': ('needs_calibration', 'calibration_frequency', 'next_calibration_date')
+        }),
+        ('Atbildība', {
+            'fields': ('responsible_person',)
+        }),
+    )
+    search_fields = ('description', 'results', 'certificate_number')
+    
+    def save_model(self, request, obj, form, change):
+        if not change:  # If creating a new record
+            obj.performed_by = request.user
+        super().save_model(request, obj, form, change)
+        if not change:  # If creating a new record
+            obj.performed_by = request.user
+        super().save_model(request, obj, form, change)
+
+<a href="{% url 'documents:document_list' %}">Documents</a> <!-- Updated from quality_docs -->

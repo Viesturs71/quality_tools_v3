@@ -1,42 +1,37 @@
+{% load i18n %}
 <nav class="py-4">
     <ul class="space-y-1">
-        <!-- Dashboard -->
-        <li>
-            <a href="{% url 'dashboard:index' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if request.path == '/dashboard/' %}active-nav-item{% endif %}">
-                <i class="fas fa-tachometer-alt w-5 h-5 mr-2"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
+        <!-- citi menija vienumi... -->
 
         <!-- Document Management -->
         <li class="mt-4">
             <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Documentation
+                {% trans "Documentation" %}
             </div>
-            <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white" data-toggle="collapse" data-target="docs-menu">
+            <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white"
+                    data-toggle="collapse" data-target="docs-menu">
                 <div class="flex items-center">
                     <i class="fas fa-file-alt w-5 h-5 mr-2"></i>
-                    <span>Documents</span>
+                    <span>{% trans "Documents" %}</span>
                 </div>
                 <i class="fas fa-angle-down transition-transform"></i>
             </button>
-            <ul id="docs-menu" class="pl-4 mt-1 space-y-1 {% if not '/quality_docs/' in request.path %}hidden{% endif %}">
+            <ul id="docs-menu"
+                class="pl-4 mt-1 space-y-1 {% if not '/documents/' in request.path %}hidden{% endif %}">
                 <li>
-                    <a href="{% url 'quality_docs:document_register' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/quality_docs/register/' in request.path %}active-nav-item{% endif %}">
+                    <a href="{% url 'documents:document_register' %}"
+                       class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white
+                              {% if '/documents/register/' in request.path %}active-nav-item{% endif %}">
                         <i class="fas fa-book w-5 h-5 mr-2"></i>
-                        <span>Document Register</span>
+                        <span>{% trans "Document Register" %}</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'quality_docs:user_documents' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/quality_docs/user-documents/' in request.path %}active-nav-item{% endif %}">
+                    <a href="{% url 'documents:user_documents' %}"
+                       class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white
+                              {% if '/documents/user-documents/' in request.path %}active-nav-item{% endif %}">
                         <i class="fas fa-file-pdf w-5 h-5 mr-2"></i>
-                        <span>My Documents</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'quality_docs:user_pending_approvals' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/quality_docs/user-pending-approvals/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-clipboard-check w-5 h-5 mr-2"></i>
-                        <span>Pending Approvals</span>
+                        <span>{% trans "My Documents" %}</span>
                     </a>
                 </li>
             </ul>

@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent
 APPS = [
     'accounts',
     'equipment',
-    'quality_docs',
+    'documents',
     'personnel',
     'dashboard',
     'company',

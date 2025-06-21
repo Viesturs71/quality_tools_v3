@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="dashboard" class="dashboard font-serif">
+  <h1 class="text-2xl font-bold text-[var(--primary)] mb-4">
+    {% trans "Quality Tools Administration" %}
+  </h1>
+  {% if app_list %}
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {% for app in app_list %}
+        {% if app.models %}
+        <div class="rounded-lg shadow bg-white dark:bg-gray-800 p-4">
+          <h2 class="text-lg font-semibold text-[var(--primary)] mb-2">{{ app.name }}</h2>
+          <ul class="list-disc list-inside">
+            {% for model in app.models %}
+              {% if model.admin_url %}
+                <li>
+                  <a href="{{ model.admin_url }}"
+                     class="hover:underline text-blue-700 dark:text-blue-300">
+                    {{ model.name }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="italic">{% trans "You don’t have permission to view or edit anything." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Iziet - Kvalitātes pārvaldības sistēma{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Jūs esat izgājis no sistēmas</h2>
+    </div>
+    <div class="card-body">
+        <p>Jūs esat veiksmīgi izgājis no sistēmas.</p>
+        <a href="{% url 'users:login' %}" class="btn btn-primary">Ieiet atkal</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% translate "Profils" %}{% endblock %}
+{% block title %}{% trans "Profile" %}{% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="card-header">
-        <h2>{% translate "Lietotāja profils" %}</h2>
+        <h2>{% trans "User Profile" %}</h2>
     </div>
     <div class="card-body">
         <div class="row">
@@ -24,19 +24,19 @@
                 <p class="text-muted">{{ user.email }}</p>
                 
                 <dl class="row">
-                    <dt class="col-sm-4">{% translate "Lietotājvārds" %}:</dt>
+                    <dt class="col-sm-4">{% trans "Username" %}:</dt>
                     <dd class="col-sm-8">{{ user.username }}</dd>
                     
-                    <dt class="col-sm-4">{% translate "Nodaļa" %}:</dt>
-                    <dd class="col-sm-8">{{ user.profile.department|default:"{% translate 'Nav norādīta' %}" }}</dd>
+                    <dt class="col-sm-4">{% trans "Department" %}:</dt>
+                    <dd class="col-sm-8">{{ user.profile.department|default:_('Not specified') }}</dd>
                     
-                    <dt class="col-sm-4">{% translate "Amats" %}:</dt>
-                    <dd class="col-sm-8">{{ user.profile.position|default:"{% translate 'Nav norādīts' %}" }}</dd>
+                    <dt class="col-sm-4">{% trans "Position" %}:</dt>
+                    <dd class="col-sm-8">{{ user.profile.position|default:_('Not specified') }}</dd>
                     
-                    <dt class="col-sm-4">{% translate "Tālrunis" %}:</dt>
-                    <dd class="col-sm-8">{{ user.profile.phone|default:"{% translate 'Nav norādīts' %}" }}</dd>
+                    <dt class="col-sm-4">{% trans "Phone" %}:</dt>
+                    <dd class="col-sm-8">{{ user.profile.phone|default:_('Not specified') }}</dd>
                     
-                    <dt class="col-sm-4">{% translate "Pēdējā pieslēgšanās" %}:</dt>
+                    <dt class="col-sm-4">{% trans "Last Login" %}:</dt>
                     <dd class="col-sm-8">{{ user.last_login|date:"d.m.Y H:i" }}</dd>
                 </dl>
             </div>

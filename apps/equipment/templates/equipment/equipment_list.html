@@ -4,7 +4,56 @@
 {% block title %}{% translate "Equipment List" %}{% endblock %}
 
 {% block content %}
-<h1>{% translate "Equipment List" %}</h1>
-<p>{% translate "Here is the list of equipment." %}</p>
-<!-- Add equipment list or other content here -->
+<div class="container mt-4">
+    <h1>{% translate "Equipment List" %}</h1>
+    
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="h5 mb-0">{% translate "Equipment" %}</h2>
+            <a href="{% url 'admin:equipment_equipment_add' %}" class="btn btn-sm btn-primary">
+                {% translate "Add New Equipment" %}
+            </a>
+        </div>
+        <div class="card-body">
+            {% if equipment_list %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>{% translate "Name" %}</th>
+                                <th>{% translate "Inventory Number" %}</th>
+                                <th>{% translate "Type" %}</th>
+                                <th>{% translate "Status" %}</th>
+                                <th>{% translate "Department" %}</th>
+                                <th>{% translate "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for equipment in equipment_list %}
+                                <tr>
+                                    <td>{{ equipment.name }}</td>
+                                    <td>{{ equipment.inventory_number }}</td>
+                                    <td>{{ equipment.equipment_type }}</td>
+                                    <td>{{ equipment.get_status_display }}</td>
+                                    <td>{{ equipment.department }}</td>
+                                    <td>
+                                        <a href="{% url 'equipment:equipment_detail' equipment.id %}" class="btn btn-sm btn-info">
+                                            {% translate "View" %}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    {% translate "No equipment found." %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <p>{% translate "Here you can view all equipment registered in the system." %}</p>
+</div>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Employee
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -36,6 +36,10 @@ class EmployeeDeleteView(DeleteView):
     success_url = reverse_lazy('personnel:employee_list')
 
 
+class PersonnelListView(TemplateView):
+    template_name = "personnel/list.html"
+
+
 def personnel_list(request):
     """View to list personnel information."""
     return render(request, 'personnel/personnel_list.html')
@@ -57,3 +61,15 @@ def my_trainings(request):
 def my_qualifications(request):
     """View for displaying the user's qualifications."""
     return render(request, 'personnel/my_qualifications.html', {'page_title': 'My Qualifications'})
+
+
+class MyProfileView(TemplateView):
+    template_name = "personnel/my_profile.html"
+
+
+class MyTrainingsView(TemplateView):
+    template_name = "personnel/my_trainings.html"
+
+
+class MyQualificationsView(TemplateView):
+    template_name = "personnel/my_qualifications.html"

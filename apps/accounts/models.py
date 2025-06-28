@@ -45,6 +45,17 @@ class CustomUser(AbstractUser):
     """
     Custom user model extending Django's AbstractUser.
     """
+    LANGUAGE_CHOICES = (
+        ('en', _('English')),
+        ('lv', _('Latvian')),
+    )
+    
+    THEME_CHOICES = (
+        ('light', _('Light')),
+        ('dark', _('Dark')),
+        ('system', _('System Default')),
+    )
+    
     company = models.ForeignKey(
         Company,
         on_delete=models.SET_NULL,
@@ -62,6 +73,55 @@ class CustomUser(AbstractUser):
         related_name='employees',
         verbose_name='Department'
     )
+    language_preference = models.CharField(
+        _('Language Preference'),
+        max_length=10,
+        choices=LANGUAGE_CHOICES,
+        default='en'
+    )
+    theme_preference = models.CharField(
+        _('Theme Preference'),
+        max_length=10,
+        choices=THEME_CHOICES,
+        default='system'
+    )
 
     def __str__(self):
         return self.username
+    
+    class Meta:
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
+
+class UserProfile(models.Model):
+    """User profile with extended information."""
+    user = models.OneToOneField(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='profile',
+        verbose_name=_('User')
+    )
+    bio = models.TextField(_('Biography'), blank=True)
+    profile_picture = models.ImageField(
+        _('Profile Picture'),
+        upload_to='profile_pictures/',
+        blank=True,
+        null=True
+    )
+    phone_number = models.CharField(_('Phone Number'), max_length=20, blank=True)
+    address = models.CharField(_('Address'), max_length=255, blank=True)
+    job_title = models.CharField(_('Job Title'), max_length=100, blank=True)
+    department = models.ForeignKey(
+        'company.Department',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_('Department')
+    )
+    
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
+    
+    class Meta:
+        verbose_name = _('User Profile')
+        verbose_name_plural = _('User Profiles')

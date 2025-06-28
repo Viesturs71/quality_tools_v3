@@ -102,6 +102,164 @@ a:focus-visible {
     background: #2c5269;
 }
 
+/* Admin section custom styling */
+
+/* Header styling */
+#header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Collapsed sidebar styling */
+#admin-sidebar.collapsed .app-item span,
+#admin-sidebar.collapsed .models-submenu {
+    display: none;
+}
+
+#admin-sidebar {
+    transition: width 0.3s ease-in-out;
+}
+
+/* Dark mode toggle styling */
+#toggle-theme {
+    position: relative;
+}
+
+.theme-icon-when-light,
+.theme-icon-when-dark {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dark .theme-icon-when-light {
+    display: none;
+}
+
+.dark .theme-icon-when-dark {
+    display: inline-block;
+}
+
+:not(.dark) .theme-icon-when-light {
+    display: inline-block;
+}
+
+:not(.dark) .theme-icon-when-dark {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #admin-sidebar {
+        position: fixed;
+        left: -250px;
+        top: 60px;
+        height: calc(100vh - 60px);
+        z-index: 100;
+        transition: left 0.3s ease-in-out;
+    }
+    
+    #admin-sidebar.mobile-visible {
+        left: 0;
+    }
+    
+    #admin-main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+/* Application navigation styling */
+.app-toggle {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.app-toggle:hover {
+    background-color: #F3F4F6;
+}
+
+.dark .app-toggle:hover {
+    background-color: #4A5568;
+}
+
+.app-toggle.active {
+    border-left: 3px solid #FFCC00;
+    padding-left: calc(1rem - 3px);
+}
+
+/* Form styling to match design specs */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-control {
+    height: 40px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: #4488BB;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.form-control.error {
+    border-color: #FF4444;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #4488BB;
+    color: white;
+    height: 40px;
+    padding: 0 1rem;
+    border-radius: 4px;
+    min-width: 120px;
+}
+
+.btn-secondary {
+    background-color: #CCCCCC;
+    color: white;
+    height: 40px;
+    padding: 0 1rem;
+    border-radius: 4px;
+    min-width: 120px;
+}
+
+/* Accessibility improvements */
+a:focus, button:focus {
+    outline: 2px solid #4299E1;
+    outline-offset: 2px;
+}
+
+/* Admin list views */
+.admin-list {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.admin-list th {
+    background-color: #F9FAFB;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.admin-list td {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.admin-list tr:hover {
+    background-color: #F3F4F6;
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .admin-sidebar {

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-<h1>Form Submitted Successfully</h1>
-<p>Your data has been saved.</p>
+<h1>{% trans "Form Submitted Successfully" %}</h1>
+<p>{% trans "Your data has been saved." %}</p>
+<div class="mt-4">
+    <a href="{% url 'methods:method_list' %}" class="btn btn-primary">{% trans "Return to Methods List" %}</a>
+</div>
 {% endblock %}

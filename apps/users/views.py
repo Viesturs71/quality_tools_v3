@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from django.http import HttpResponse
 from django.contrib.auth import logout
-from .models.profile import Profile
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .models import Profile
 
+def home_view(request):
+    """
+    Homepage view. Used by your project URLs for '' (i.e. /).
+    """
+    return render(request, 'home.html')
 
 def register(request):
     """User registration view."""
@@ -22,11 +25,37 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
+class CustomLoginView(LoginView):
+    """Custom login view with enhanced template."""
+    template_name = 'users/login.html'
+
+def logout_view(request):
+    """Log the user out and redirect to the home page."""
+    logout(request)
+    return redirect('home')
+
+@login_required
+def settings_view(request):
+    """User settings view for system configurations."""
+    return render(request, 'users/settings.html', {'page_title': 'Settings'})
+
+@login_required
+def user_documents(request):
+    """View for displaying user-specific documents."""
+    return render(request, 'users/user_documents.html', {'page_title': 'My Documents'})
+
+@login_required
+def activity_log(request):
+    """View for displaying the user's activity log."""
+    return render(request, 'users/activity_log.html', {'page_title': 'Activity Log'})
 
 @login_required
 def profile(request):
-    """User profile view."""
-    # Ensure the user has a profile
+    """
+    Main profile view for editing personal information.
+    This backs both "/users/profile/" and the alias endpoints below.
+    """
+    # Ensure the user has a profile object
     if not hasattr(request.user, 'profile'):
         Profile.objects.create(user=request.user)
 
@@ -41,58 +70,17 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-    
-    context = {
+
+    return render(request, 'users/profile.html', {
         'u_form': u_form,
-        'p_form': p_form
-    }
-    
-    return render(request, 'users/profile.html', context)
+        'p_form': p_form,
+    })
 
-
-class CustomLoginView(LoginView):
-    """Custom login view."""
-    template_name = 'users/login.html'
-
-
-def home_view(request):
-    """Home page view."""
-    return HttpResponse("Welcome to the Home Page")
-
-
-def logout_view(request):
-    """
-    Log the user out and redirect to the home page.
-    """
-    logout(request)
-    return redirect('home')  # Ensure 'home' is a valid URL name
-
-
-@login_required
-def settings_view(request):
-    """User settings view."""
-    return render(request, 'users/settings.html', {'page_title': 'Settings'})
-
-
-@login_required
-def user_documents(request):
-    """View for displaying user-specific documents."""
-    return render(request, 'users/user_documents.html', {'page_title': 'My Documents'})
-
-
+# Aliases so that the URL names match what's in your urls.py:
 @login_required
 def my_profile(request):
-    """View for displaying the user's profile."""
-    return render(request, 'users/my_profile.html', {'page_title': 'My Profile'})
-
+    return profile(request)
 
 @login_required
 def edit_profile(request):
-    """View for editing the user's profile."""
-    return render(request, 'users/edit_profile.html', {'page_title': 'Edit Profile'})
-
-
-@login_required
-def activity_log(request):
-    """View for displaying the user's activity log."""
-    return render(request, 'users/activity_log.html', {'page_title': 'Activity Log'})
+    return profile(request)

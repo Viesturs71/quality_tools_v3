@@ -105,11 +105,6 @@ isort>=5.12.0
 
 # ✅ Pārlūkprogrammas automatizācijai
 selenium
-# — HTML validity
-html5validator>=0.4.1
-
-# — Accessibility checks
-pa11y>=6.2.0
 
 # — pytest report generation
 pytest-html>=3.3.1

@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-key-please-set-in-env
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'afternoon-refuge-67528-089b72c1a8eb.herokuapp.com').split(',')
+ALLOWED_HOSTS = ['afternoon-refuge-67528-089b72c1a8eb.herokuapp.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Database - use Heroku for production
 DATABASES = {

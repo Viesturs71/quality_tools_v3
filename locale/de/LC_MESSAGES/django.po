@@ -1,0 +1,3023 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-24 13:50+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\apps\accounts\admin.py:19 .\apps\accounts\custom_admin.py:68
+#: .\templates\admin\base_admin.html:7
+#: .\templates\admin\includes\admin_footer.html:7
+#: .\templates\admin\includes\admin_header.html:13
+#: .\templates\admin_backup\index.html:10 .\templates\base_user.html:7
+#: .\templates\shared\user_footer.html:7
+msgid "Management System Tools"
+msgstr ""
+
+#: .\apps\accounts\admin.py:20 .\templates\base.html:62
+msgid "Administration"
+msgstr ""
+
+#: .\apps\accounts\admin.py:21 .\apps\accounts\custom_admin.py:70
+msgid "System Management"
+msgstr ""
+
+#: .\apps\accounts\admin.py:31 .\apps\accounts\custom_admin.py:92
+#: .\templates\admin\includes\admin_footer.html:12
+#: .\templates\users\includes\user_navigation.html:9
+msgid "Documentation"
+msgstr ""
+
+#: .\apps\accounts\admin.py:32 .\apps\accounts\custom_admin.py:93
+msgid "Method Management"
+msgstr ""
+
+#: .\apps\accounts\admin.py:33 .\apps\accounts\custom_admin.py:94
+#: .\apps\equipment\models\equipment_registry.py:27
+#: .\templates\admin_backup\index.html:7 .\translation_strings.py:26
+msgid "Equipment Registry"
+msgstr ""
+
+#: .\apps\accounts\admin.py:34 .\apps\personnel\apps.py:8 .\core\admin.py:46
+msgid "Personnel Management"
+msgstr ""
+
+#: .\apps\accounts\admin.py:35 .\apps\accounts\custom_admin.py:96
+#: .\apps\audits\apps.py:8 .\apps\audits\models\audit.py:27
+#: .\translation_template.py:23
+msgid "Audits"
+msgstr "Audits"
+
+#: .\apps\accounts\admin.py:36 .\apps\accounts\custom_admin.py:97
+msgid "Risk Management"
+msgstr ""
+
+#: .\apps\accounts\admin.py:37 .\apps\accounts\custom_admin.py:98
+msgid "KPI Management"
+msgstr ""
+
+#: .\apps\accounts\admin.py:50 .\apps\authentication\apps.py:8
+msgid "Authentication"
+msgstr ""
+
+#: .\apps\accounts\admin.py:51
+msgid "Personal info"
+msgstr ""
+
+#: .\apps\accounts\admin.py:52
+msgid "Permissions"
+msgstr ""
+
+#: .\apps\accounts\admin.py:54
+msgid "Important dates"
+msgstr ""
+
+#: .\apps\accounts\apps.py:8 .\core\admin.py:56
+msgid "User Accounts"
+msgstr ""
+
+#: .\apps\accounts\custom_admin.py:69
+msgid "Administration Panel"
+msgstr ""
+
+#: .\apps\accounts\custom_admin.py:91 .\apps\users\apps.py:8
+msgid "User Management"
+msgstr ""
+
+#: .\apps\accounts\custom_admin.py:95
+msgid "Staff Management"
+msgstr ""
+
+#: .\apps\accounts\forms.py:14 .\apps\accounts\forms.py:17
+#: .\apps\personnel\forms.py:29 .\apps\personnel\models\employee.py:21
+#: .\apps\personnel\models\personnel.py:24
+#: .\apps\personnel\templates\personnel\employee_detail.html:55
+#: .\apps\personnel\templates\personnel\employee_form.html:77
+#: .\templates\users\edit_profile.html:28 .\templates\users\profile.html:25
+#: .\translation_template.py:27
+msgid "Email"
+msgstr "E-Mail"
+
+#: .\apps\accounts\models.py:20 .\apps\accounts\models\custom_user.py:19
+#: .\apps\accounts\models\user.py:15 .\apps\company\admin.py:29
+#: .\apps\company\models\company.py:17 .\apps\company\models\department.py:12
+#: .\templates\base.html:26 .\templates\dashboard\index.html:53
+#: .\templates\users\profile.html:39 .\templates\users\profile.html:84
+msgid "Company"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:10
+msgid "email address"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:17
+msgid "user"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:18
+msgid "users"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:29
+#: .\apps\accounts\models\user_profile.py:11
+msgid "biography"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:30
+msgid "profile image"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:31
+#: .\apps\accounts\models\user_profile.py:13
+msgid "job title"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:32
+#: .\apps\accounts\models\user_profile.py:14
+msgid "department"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:33
+#: .\apps\accounts\models\user_profile.py:15
+msgid "language preference"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:34
+#: .\apps\accounts\models\user_profile.py:16
+msgid "theme preference"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:35 .\apps\accounts\models\accounts.py:53
+#: .\apps\accounts\models\accounts.py:72
+#: .\apps\accounts\models\user_permission.py:13
+#: .\apps\accounts\models\user_profile.py:17
+#: .\apps\accounts\models\user_role.py:12 .\apps\company\models\company.py:13
+#: .\apps\company\models\location.py:16
+msgid "created at"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:36 .\apps\accounts\models\accounts.py:54
+#: .\apps\accounts\models\user_profile.py:18
+#: .\apps\accounts\models\user_role.py:13 .\apps\company\models\company.py:14
+#: .\apps\company\models\location.py:17
+msgid "updated at"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:39
+#: .\apps\accounts\models\user_profile.py:21
+msgid "user profile"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:40
+#: .\apps\accounts\models\user_profile.py:22
+msgid "user profiles"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:50 .\apps\accounts\models\user_role.py:9
+msgid "role name"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:51 .\apps\accounts\models\accounts.py:71
+#: .\apps\accounts\models\user_permission.py:12
+#: .\apps\accounts\models\user_role.py:10
+msgid "description"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:52 .\apps\accounts\models\user_role.py:11
+#: .\apps\company\models\company.py:12 .\apps\company\models\location.py:15
+msgid "is active"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:57 .\apps\accounts\models\user_role.py:16
+msgid "user role"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:58 .\apps\accounts\models\user_role.py:17
+msgid "user roles"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:69
+#: .\apps\accounts\models\user_permission.py:10
+msgid "permission name"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:70
+#: .\apps\accounts\models\user_permission.py:11
+msgid "codename"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:75
+#: .\apps\accounts\models\user_permission.py:16
+msgid "user permission"
+msgstr ""
+
+#: .\apps\accounts\models\accounts.py:76
+#: .\apps\accounts\models\user_permission.py:17
+msgid "user permissions"
+msgstr ""
+
+#: .\apps\accounts\models\custom_user.py:22 .\apps\accounts\models\user.py:30
+msgid "Phone Number"
+msgstr ""
+
+#: .\apps\accounts\models\custom_user.py:30 .\apps\accounts\models\user.py:24
+#: .\apps\company\models\department.py:19
+#: .\apps\equipment\models\department.py:9
+#: .\apps\equipment\models\equipment.py:26
+#: .\apps\equipment\templates\equipment\equipment_list.html:27
+#: .\apps\personnel\forms.py:28 .\apps\personnel\models\employee.py:19
+#: .\apps\personnel\models\personnel.py:23
+#: .\apps\personnel\templates\personnel\employee_detail.html:47
+#: .\apps\personnel\templates\personnel\employee_form.html:99
+#: .\apps\personnel\templates\personnel\employee_list.html:29
+#: .\apps\users\models\profile.py:25
+#: .\apps\users\templates\users\profile.html:30
+#: .\templates\users\profile.html:43 .\templates\users\profile.html:89
+msgid "Department"
+msgstr ""
+
+#: .\apps\accounts\models\custom_user.py:36
+msgid "The groups this user belongs to."
+msgstr ""
+
+#: .\apps\accounts\models\custom_user.py:37
+#: .\templates\admin\includes\admin_navigation.html:47
+msgid "Groups"
+msgstr ""
+
+#: .\apps\accounts\models\custom_user.py:43
+msgid "Specific permissions for this user."
+msgstr ""
+
+#: .\apps\accounts\models\custom_user.py:44 .\templates\users\profile.html:110
+msgid "User Permissions"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:7
+#: .\apps\personnel\templates\personnel\employee_detail.html:39
+#: .\templates\users\profile.html:21
+msgid "Full Name"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:8 .\templates\users\profile.html:35
+msgid "Job Title"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:31
+msgid "Mobile Number"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:35
+msgid "Preferred Language"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:38
+msgid "English"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:39
+msgid "Latvian"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:40
+msgid "Russian"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:46 .\apps\accounts\models\user_profile.py:10
+#: .\apps\authentication\models\otp.py:16
+#: .\apps\authentication\models\token.py:14
+#: .\apps\dashboard\models\preference.py:15 .\apps\users\models\profile.py:16
+msgid "User"
+msgstr ""
+
+#: .\apps\accounts\models\user.py:47
+#: .\templates\admin\includes\admin_navigation.html:41
+#: .\translation_template.py:22
+msgid "Users"
+msgstr "Benutzer"
+
+#: .\apps\accounts\models\user_profile.py:12 .\apps\users\models\profile.py:20
+msgid "Profile Image"
+msgstr ""
+
+#: .\apps\accounts\urls.py:32 .\apps\users\templates\users\login.html:5
+#: .\apps\users\templates\users\login.html:12
+#: .\apps\users\templates\users\login.html:18 .\translation_strings.py:9
+#: .\translation_template.py:10
+msgid "Login"
+msgstr "Einloggen"
+
+#: .\apps\accounts\urls.py:40
+msgid "Logged out"
+msgstr ""
+
+#: .\apps\accounts\urls.py:50 .\templates\admin\base_site.html:12
+msgid "Change password"
+msgstr ""
+
+#: .\apps\accounts\urls.py:58
+msgid "Password changed"
+msgstr ""
+
+#: .\apps\accounts\urls.py:70
+msgid "Reset password"
+msgstr ""
+
+#: .\apps\accounts\urls.py:78
+msgid "Password reset sent"
+msgstr ""
+
+#: .\apps\accounts\urls.py:86
+msgid "Set new password"
+msgstr ""
+
+#: .\apps\accounts\urls.py:94
+msgid "Password reset complete"
+msgstr ""
+
+#: .\apps\accounts\views.py:24
+msgid "Registration failed. Please check the entered data."
+msgstr ""
+
+#: .\apps\audits\models\audit.py:7 .\apps\personnel\models\personnel.py:68
+#: .\apps\personnel\models\training.py:8
+msgid "Planned"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:8 .\apps\personnel\models\personnel.py:69
+#: .\apps\personnel\models\training.py:9
+msgid "In Progress"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:9 .\apps\personnel\models\education.py:26
+#: .\apps\personnel\models\personnel.py:70
+#: .\apps\personnel\models\personnel.py:154
+#: .\apps\personnel\models\training.py:10
+msgid "Completed"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:10 .\apps\personnel\models\personnel.py:71
+#: .\apps\personnel\models\training.py:11
+msgid "Cancelled"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:13 .\apps\documents\models\attachment.py:10
+#: .\apps\documents\models\document.py:28 .\apps\documents\models\section.py:11
+#: .\apps\documents\templates\documents\document_list.html:23
+#: .\apps\equipment\models\equipment_document.py:9
+#: .\apps\personnel\models\employee_record.py:21
+#: .\apps\personnel\models\personnel.py:115
+#: .\apps\personnel\templates\personnel\employee_detail.html:261
+#: .\apps\standards\models\document.py:13
+msgid "Title"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:14 .\apps\audits\models\finding.py:20
+#: .\apps\company\models\department.py:7 .\apps\dashboard\models\widget.py:21
+#: .\apps\documents\models\attachment.py:12
+#: .\apps\documents\models\document.py:57 .\apps\documents\models\revision.py:8
+#: .\apps\equipment\models\calibration.py:14
+#: .\apps\equipment\models\equipment.py:37
+#: .\apps\equipment\models\equipment_category.py:7
+#: .\apps\equipment\models\equipment_document.py:11
+#: .\apps\equipment\models\equipment_type.py:7
+#: .\apps\equipment\models\maintenance.py:21
+#: .\apps\equipment\models\maintenance_record.py:20
+#: .\apps\personnel\models\education.py:27
+#: .\apps\personnel\models\employee_record.py:22
+#: .\apps\personnel\models\personnel.py:46
+#: .\apps\personnel\models\personnel.py:77
+#: .\apps\personnel\models\personnel.py:116
+#: .\apps\personnel\models\personnel.py:155
+#: .\apps\personnel\models\qualification.py:12
+#: .\apps\personnel\models\training.py:19
+#: .\apps\standards\models\attachment.py:14
+#: .\apps\standards\models\document.py:15
+#: .\apps\standards\models\requirement.py:12
+#: .\apps\standards\models\section.py:10 .\apps\standards\models\standard.py:9
+#: .\apps\standards\models\standard_attachment.py:14
+#: .\apps\standards\models\standard_category.py:7
+#: .\apps\standards\models\standard_document.py:14
+#: .\apps\standards\models\standard_requirement.py:8
+#: .\apps\standards\models\standard_revision.py:14
+#: .\apps\standards\models\standard_section.py:9
+#: .\apps\standards\templates\standards\standard_detail.html:65
+#: .\apps\standards\templates\standards\standard_detail.html:149
+#: .\apps\standards\templates\standards\standard_detail.html:191
+#: .\apps\users\models\custom_permission.py:10
+msgid "Description"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:15
+msgid "Audit Date"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:17 .\apps\audits\models\checklist.py:23
+#: .\apps\documents\models\document.py:31
+#: .\apps\documents\templates\documents\document_list.html:25
+#: .\apps\equipment\models\equipment.py:35
+#: .\apps\equipment\models\equipment_registry.py:14
+#: .\apps\equipment\templates\equipment\equipment_list.html:26
+#: .\apps\methods\templates\methods\method_detail.html:139
+#: .\apps\methods\templates\methods\method_detail.html:234
+#: .\apps\personnel\models\personnel.py:81
+#: .\apps\personnel\models\training.py:23
+#: .\apps\personnel\templates\personnel\employee_detail.html:67
+#: .\apps\personnel\templates\personnel\employee_detail.html:165
+#: .\apps\personnel\templates\personnel\employee_list.html:30
+#: .\apps\standards\models\standard.py:11
+#: .\apps\standards\templates\standards\standard_detail.html:54
+#: .\apps\standards\templates\standards\standard_list.html:35
+#: .\apps\standards\templates\standards\standard_search.html:33
+#: .\apps\standards\templates\standards\standards_list.html:30
+msgid "Status"
+msgstr ""
+
+#: .\apps\audits\models\audit.py:26 .\apps\audits\models\checklist.py:18
+#: .\apps\audits\models\finding.py:18
+msgid "Audit"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:8
+msgid "Compliant"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:9
+msgid "Non-Compliant"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:10
+msgid "Not Applicable"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:11
+msgid "Not Checked"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:20
+msgid "Question"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:21
+msgid "Category"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:28
+msgid "Comments"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:33
+msgid "Audit Checklist Item"
+msgstr ""
+
+#: .\apps\audits\models\checklist.py:34
+msgid "Audit Checklist Items"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:8
+#: .\apps\standards\models\standard_requirement.py:31
+msgid "Critical"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:9
+msgid "Major"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:10
+msgid "Minor"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:11
+msgid "Observation"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:22
+msgid "Severity"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:27
+msgid "Reference"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:32
+msgid "Audit Finding"
+msgstr ""
+
+#: .\apps\audits\models\finding.py:33
+msgid "Audit Findings"
+msgstr ""
+
+#: .\apps\authentication\forms.py:13
+msgid "Remember me"
+msgstr ""
+
+#: .\apps\authentication\forms.py:14
+msgid "Keep me logged in for 30 days"
+msgstr ""
+
+#: .\apps\authentication\forms.py:25
+msgid "Enter your email address"
+msgstr ""
+
+#: .\apps\authentication\forms.py:29
+msgid "Email address"
+msgstr ""
+
+#: .\apps\authentication\models\otp.py:18 .\apps\methods\models\eqc.py:12
+#: .\apps\methods\templates\methods\method_detail.html:189
+#: .\apps\standards\models\standard.py:7
+#: .\apps\standards\templates\standards\standard_detail.html:27
+#: .\apps\standards\templates\standards\standard_list.html:32
+#: .\apps\standards\templates\standards\standard_search.html:30
+#: .\apps\standards\templates\standards\standards_list.html:27
+msgid "Code"
+msgstr ""
+
+#: .\apps\authentication\models\otp.py:19
+msgid "Created at"
+msgstr ""
+
+#: .\apps\authentication\models\otp.py:20
+msgid "Expires at"
+msgstr ""
+
+#: .\apps\authentication\models\otp.py:21
+msgid "Used"
+msgstr ""
+
+#: .\apps\authentication\models\otp.py:24
+msgid "One-Time Password"
+msgstr ""
+
+#: .\apps\authentication\models\otp.py:25
+msgid "One-Time Passwords"
+msgstr ""
+
+#: .\apps\authentication\models\token.py:16
+msgid "Key"
+msgstr ""
+
+#: .\apps\authentication\models\token.py:17
+#: .\apps\standards\templates\standards\standard_detail.html:74
+#: .\apps\standards\templates\standards\standard_detail.html:150
+msgid "Created"
+msgstr ""
+
+#: .\apps\authentication\models\token.py:18
+msgid "Expires"
+msgstr ""
+
+#: .\apps\authentication\models\token.py:19
+#: .\apps\dashboard\models\widget.py:23 .\apps\equipment\models\equipment.py:17
+#: .\apps\equipment\models\equipment_registry.py:17
+#: .\apps\equipment\models\equipment_type.py:10 .\apps\personnel\forms.py:32
+#: .\apps\personnel\models\employee.py:24
+#: .\apps\personnel\models\personnel.py:27
+#: .\apps\personnel\templates\personnel\employee_detail.html:70
+#: .\apps\personnel\templates\personnel\employee_form.html:123
+#: .\apps\personnel\templates\personnel\employee_list.html:43
+msgid "Active"
+msgstr ""
+
+#: .\apps\authentication\models\token.py:22
+msgid "Authentication Token"
+msgstr ""
+
+#: .\apps\authentication\models\token.py:23
+msgid "Authentication Tokens"
+msgstr ""
+
+#: .\apps\authentication\views.py:25
+msgid "Login successful."
+msgstr ""
+
+#: .\apps\authentication\views.py:41
+msgid "You have been logged out."
+msgstr ""
+
+#: .\apps\company\admin.py:34 .\apps\company\models\department.py:16
+msgid "Is Active"
+msgstr ""
+
+#: .\apps\company\apps.py:8
+msgid "Company Management"
+msgstr ""
+
+#: .\apps\company\models\company.py:6 .\apps\company\models\location.py:7
+msgid "name"
+msgstr ""
+
+#: .\apps\company\models\company.py:7
+msgid "identifier"
+msgstr ""
+
+#: .\apps\company\models\company.py:8
+msgid "registration number"
+msgstr ""
+
+#: .\apps\company\models\company.py:9 .\apps\company\models\location.py:8
+msgid "address"
+msgstr ""
+
+#: .\apps\company\models\company.py:10
+msgid "phone"
+msgstr ""
+
+#: .\apps\company\models\company.py:11
+msgid "email"
+msgstr ""
+
+#: .\apps\company\models\company.py:18 .\core\admin.py:31
+msgid "Companies"
+msgstr ""
+
+#: .\apps\company\models\department.py:6
+#: .\apps\equipment\models\department.py:6
+msgid "Department Name"
+msgstr ""
+
+#: .\apps\company\models\department.py:20
+#: .\apps\equipment\models\department.py:10
+msgid "Departments"
+msgstr ""
+
+#: .\apps\company\models\location.py:13
+msgid "company"
+msgstr ""
+
+#: .\apps\company\models\location.py:19 .\apps\methods\models\methods.py:50
+#: .\apps\methods\templates\methods\method_detail.html:62
+msgid "Location"
+msgstr ""
+
+#: .\apps\company\models\location.py:20
+msgid "Locations"
+msgstr ""
+
+#: .\apps\dashboard\apps.py:8 .\apps\dashboard\views.py:31 .\core\admin.py:8
+#: .\core\admin.py:14 .\templates\admin\includes\admin_navigation.html:35
+#: .\templates\base_user.html:28 .\templates\base_user.html:37
+#: .\templates\dashboard\index.html:4 .\templates\dashboard\index.html:8
+#: .\templates\shared\user_header.html:9 .\translation_strings.py:6
+#: .\translation_template.py:7
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: .\apps\dashboard\models\preference.py:17
+msgid "Layout"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:18
+msgid "Theme"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:23
+#: .\apps\dashboard\models\widget.py:29
+msgid "Widgets"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:25
+#: .\apps\dashboard\models\widget.py:24
+#: .\apps\documents\models\attachment.py:13
+#: .\apps\documents\models\comment.py:11 .\apps\documents\models\document.py:39
+#: .\apps\documents\models\revision.py:10 .\apps\documents\models\section.py:13
+#: .\apps\methods\models\internal_qc.py:25 .\apps\methods\models\methods.py:98
+#: .\apps\methods\models\verification.py:49
+#: .\apps\methods\templates\methods\method_detail.html:93
+#: .\apps\personnel\models\education.py:29
+#: .\apps\personnel\models\employee.py:26
+#: .\apps\personnel\models\employee_record.py:28
+#: .\apps\personnel\models\personnel.py:29
+#: .\apps\personnel\models\personnel.py:53
+#: .\apps\personnel\models\personnel.py:89
+#: .\apps\personnel\models\personnel.py:123
+#: .\apps\personnel\models\personnel.py:158
+#: .\apps\personnel\models\qualification.py:18
+#: .\apps\personnel\models\training.py:33
+#: .\apps\standards\models\requirement.py:14
+msgid "Created At"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:26
+#: .\apps\dashboard\models\widget.py:25
+#: .\apps\documents\models\attachment.py:14
+#: .\apps\documents\models\comment.py:12 .\apps\documents\models\document.py:40
+#: .\apps\documents\models\revision.py:11 .\apps\documents\models\section.py:14
+#: .\apps\methods\models\internal_qc.py:26 .\apps\methods\models\methods.py:102
+#: .\apps\methods\models\verification.py:50
+#: .\apps\personnel\models\education.py:30
+#: .\apps\personnel\models\employee.py:27
+#: .\apps\personnel\models\employee_record.py:29
+#: .\apps\personnel\models\personnel.py:30
+#: .\apps\personnel\models\personnel.py:54
+#: .\apps\personnel\models\personnel.py:90
+#: .\apps\personnel\models\personnel.py:124
+#: .\apps\personnel\models\personnel.py:159
+#: .\apps\personnel\models\qualification.py:19
+#: .\apps\personnel\models\training.py:34
+#: .\apps\standards\models\requirement.py:15
+msgid "Updated At"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:29
+#: .\apps\dashboard\models\preference.py:44
+msgid "User Preference"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:30
+msgid "User Preferences"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:50
+#: .\apps\dashboard\models\widget.py:28
+msgid "Widget"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:52
+msgid "X Position"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:53
+msgid "Y Position"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:54
+msgid "Width"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:55
+msgid "Height"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:56
+msgid "Visible"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:59
+msgid "Widget Position"
+msgstr ""
+
+#: .\apps\dashboard\models\preference.py:60
+msgid "Widget Positions"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:12
+msgid "Chart"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:13
+msgid "List"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:14
+msgid "Calendar"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:15
+msgid "Statistics"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:16
+msgid "Custom"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:19 .\apps\equipment\models\equipment.py:23
+#: .\apps\equipment\templates\equipment\equipment_list.html:23
+#: .\apps\personnel\templates\personnel\employee_list.html:27
+#: .\apps\standards\models\section.py:8 .\apps\standards\models\standard.py:6
+#: .\apps\standards\models\standard_attachment.py:7
+#: .\apps\standards\models\standard_category.py:6
+#: .\apps\standards\models\standard_document.py:7
+#: .\apps\standards\models\standard_requirement.py:7
+#: .\apps\standards\models\standard_section.py:7
+#: .\apps\standards\templates\standards\standard_detail.html:36
+#: .\apps\standards\templates\standards\standard_detail.html:107
+#: .\apps\standards\templates\standards\standard_detail.html:148
+#: .\apps\standards\templates\standards\standard_detail.html:190
+#: .\apps\standards\templates\standards\standard_list.html:33
+#: .\apps\standards\templates\standards\standard_search.html:31
+#: .\apps\standards\templates\standards\standards_list.html:28
+#: .\apps\users\models\custom_permission.py:9
+msgid "Name"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:20
+msgid "Widget Type"
+msgstr ""
+
+#: .\apps\dashboard\models\widget.py:22
+msgid "Configuration"
+msgstr ""
+
+#: .\apps\dashboard\views.py:44
+msgid "Dashboard Overview"
+msgstr ""
+
+#: .\apps\debug_tools\templates\debug\language_change_success.html:4
+#: .\templates\language_change_success.html:5
+msgid "Language Changed"
+msgstr ""
+
+#: .\apps\debug_tools\templates\debug\language_change_success.html:10
+#: .\templates\language_change_success.html:52
+msgid "Language Changed Successfully"
+msgstr ""
+
+#: .\apps\debug_tools\templates\debug\language_change_success.html:13
+msgid "Your language preference has been updated to:"
+msgstr ""
+
+#: .\apps\debug_tools\templates\debug\language_change_success.html:17
+msgid "Continue to your destination"
+msgstr ""
+
+#: .\apps\debug_tools\templates\debug\language_change_success.html:20
+msgid "Return to home page"
+msgstr ""
+
+#: .\apps\documents\apps.py:8
+msgid "Documents Management"
+msgstr ""
+
+#: .\apps\documents\models\attachment.py:11
+#: .\apps\standards\models\attachment.py:13
+#: .\apps\standards\models\document.py:14
+#: .\apps\standards\models\standard_attachment.py:15
+msgid "File"
+msgstr ""
+
+#: .\apps\documents\models\attachment.py:17
+msgid "Document Attachment"
+msgstr ""
+
+#: .\apps\documents\models\attachment.py:18
+msgid "Document Attachments"
+msgstr ""
+
+#: .\apps\documents\models\comment.py:8 .\apps\documents\models\document.py:68
+#: .\apps\documents\models\document.py:93 .\apps\documents\models\section.py:9
+#: .\apps\equipment\models\equipment_document.py:10
+#: .\apps\methods\templates\methods\method_detail.html:72
+#: .\apps\personnel\models\employee_record.py:25
+#: .\apps\personnel\models\personnel.py:52
+#: .\apps\personnel\models\personnel.py:120
+#: .\apps\personnel\models\qualification.py:17 .\translation_strings.py:34
+msgid "Document"
+msgstr ""
+
+#: .\apps\documents\models\comment.py:9
+msgid "Author"
+msgstr ""
+
+#: .\apps\documents\models\comment.py:10
+msgid "Comment"
+msgstr ""
+
+#: .\apps\documents\models\comment.py:15
+msgid "Document Comment"
+msgstr ""
+
+#: .\apps\documents\models\comment.py:16
+msgid "Document Comments"
+msgstr ""
+
+#: .\apps\documents\models\document.py:13
+msgid "Policy"
+msgstr ""
+
+#: .\apps\documents\models\document.py:14 .\translation_strings.py:36
+msgid "Procedure"
+msgstr ""
+
+#: .\apps\documents\models\document.py:15
+msgid "Instruction"
+msgstr ""
+
+#: .\apps\documents\models\document.py:16
+msgid "Form"
+msgstr ""
+
+#: .\apps\documents\models\document.py:17
+#: .\apps\equipment\models\maintenance_record.py:13
+#: .\apps\personnel\models\education.py:13
+#: .\apps\personnel\models\personnel.py:143
+msgid "Other"
+msgstr ""
+
+#: .\apps\documents\models\document.py:21
+#: .\apps\standards\models\standard.py:14
+msgid "Draft"
+msgstr ""
+
+#: .\apps\documents\models\document.py:22
+msgid "Under Review"
+msgstr ""
+
+#: .\apps\documents\models\document.py:23
+#: .\apps\methods\models\verification.py:41
+#: .\apps\methods\templates\methods\method_detail.html:247
+msgid "Approved"
+msgstr ""
+
+#: .\apps\documents\models\document.py:24
+#: .\apps\standards\models\standard.py:15
+msgid "Published"
+msgstr ""
+
+#: .\apps\documents\models\document.py:25
+#: .\apps\standards\models\standard.py:16
+msgid "Archived"
+msgstr ""
+
+#: .\apps\documents\models\document.py:29
+msgid "Document Number"
+msgstr ""
+
+#: .\apps\documents\models\document.py:30
+msgid "Document Type"
+msgstr ""
+
+#: .\apps\documents\models\document.py:32 .\apps\documents\models\section.py:12
+#: .\apps\standards\models\section.py:11
+#: .\apps\standards\models\standard_document.py:15
+#: .\apps\standards\models\standard_requirement.py:9
+#: .\apps\standards\models\standard_section.py:10
+msgid "Content"
+msgstr ""
+
+#: .\apps\documents\models\document.py:37 .\apps\methods\models\methods.py:93
+#: .\apps\methods\templates\methods\method_detail.html:84
+#: .\apps\standards\models\standard_revision.py:22
+msgid "Created By"
+msgstr ""
+
+#: .\apps\documents\models\document.py:47
+#: .\apps\methods\models\verification.py:42
+msgid "Approved By"
+msgstr ""
+
+#: .\apps\documents\models\document.py:49
+msgid "Approved At"
+msgstr ""
+
+#: .\apps\documents\models\document.py:50
+#: .\apps\documents\templates\documents\document_list.html:26
+#: .\apps\standards\models\standard.py:8
+#: .\apps\standards\models\standard_revision.py:13
+#: .\apps\standards\templates\standards\standard_detail.html:11
+#: .\apps\standards\templates\standards\standard_detail.html:45
+#: .\apps\standards\templates\standards\standard_list.html:34
+#: .\apps\standards\templates\standards\standard_search.html:32
+#: .\apps\standards\templates\standards\standards_list.html:29
+#: .\templates\admin\includes\admin_footer.html:17 .\templates\base.html:58
+#: .\templates\shared\user_footer.html:18
+msgid "Version"
+msgstr ""
+
+#: .\apps\documents\models\document.py:55
+msgid "Attachment"
+msgstr ""
+
+#: .\apps\documents\models\document.py:64
+#: .\apps\documents\models\document.py:89
+msgid "Uploaded By"
+msgstr ""
+
+#: .\apps\documents\models\document.py:69
+#: .\apps\documents\models\document.py:94
+#: .\apps\documents\templates\documents\document_list.html:4
+#: .\apps\documents\templates\documents\document_list.html:7
+#: .\apps\methods\templates\methods\method_detail.html:235
+#: .\apps\standards\templates\standards\standard_detail.html:137
+#: .\templates\admin_backup\home_admin.html:9 .\templates\base.html:22
+#: .\templates\dashboard\index.html:17
+#: .\templates\shared\user_navigation.html:52
+#: .\templates\users\includes\user_navigation.html:15
+#: .\translation_template.py:18
+msgid "Documents"
+msgstr "Dokumente"
+
+#: .\apps\documents\models\revision.py:6
+msgid "Revision Number"
+msgstr ""
+
+#: .\apps\documents\models\revision.py:7
+msgid "Revision Date"
+msgstr ""
+
+#: .\apps\documents\models\revision.py:9
+msgid "Current Revision"
+msgstr ""
+
+#: .\apps\documents\models\revision.py:14
+msgid "Document Revision"
+msgstr ""
+
+#: .\apps\documents\models\revision.py:15
+msgid "Document Revisions"
+msgstr ""
+
+#: .\apps\documents\models\section.py:10 .\apps\standards\models\section.py:9
+#: .\apps\standards\models\standard_section.py:8
+msgid "Section Number"
+msgstr ""
+
+#: .\apps\documents\models\section.py:15 .\apps\standards\models\section.py:26
+#: .\apps\standards\models\standard_requirement.py:35
+#: .\apps\standards\models\standard_section.py:25
+msgid "Order"
+msgstr ""
+
+#: .\apps\documents\models\section.py:18
+msgid "Document Section"
+msgstr ""
+
+#: .\apps\documents\models\section.py:19
+msgid "Document Sections"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:4
+#: .\apps\users\templates\users\login.html:5
+#: .\apps\users\templates\users\logout.html:4
+msgid "Quality Management System"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:11
+msgid "Document List"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:13
+msgid "New Document"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:22
+#: .\apps\standards\templates\standards\standard_detail.html:106
+msgid "Number"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:24
+#: .\apps\equipment\templates\equipment\equipment_list.html:25
+#: .\apps\methods\templates\methods\method_detail.html:232
+msgid "Type"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:27
+#: .\apps\standards\templates\standards\standard_detail.html:83
+msgid "Updated"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:28
+#: .\apps\equipment\templates\equipment\equipment_list.html:28
+#: .\apps\methods\templates\methods\method_detail.html:140
+#: .\apps\methods\templates\methods\method_detail.html:191
+#: .\apps\methods\templates\methods\method_detail.html:236
+#: .\apps\personnel\templates\personnel\employee_detail.html:127
+#: .\apps\personnel\templates\personnel\employee_detail.html:168
+#: .\apps\personnel\templates\personnel\employee_detail.html:216
+#: .\apps\personnel\templates\personnel\employee_detail.html:265
+#: .\apps\personnel\templates\personnel\employee_list.html:31
+#: .\apps\standards\templates\standards\standard_detail.html:109
+#: .\apps\standards\templates\standards\standard_detail.html:151
+#: .\apps\standards\templates\standards\standard_detail.html:193
+#: .\apps\standards\templates\standards\standard_list.html:37
+#: .\apps\standards\templates\standards\standard_search.html:34
+#: .\apps\standards\templates\standards\standards_list.html:32
+msgid "Actions"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_list.html:45
+#: .\apps\equipment\templates\equipment\equipment_list.html:41
+#: .\apps\methods\templates\methods\method_detail.html:158
+#: .\apps\methods\templates\methods\method_detail.html:202
+#: .\apps\methods\templates\methods\method_detail.html:265
+#: .\apps\personnel\templates\personnel\employee_detail.html:138
+#: .\apps\personnel\templates\personnel\employee_detail.html:186
+#: .\apps\personnel\templates\personnel\employee_detail.html:235
+#: .\apps\personnel\templates\personnel\employee_detail.html:283
+#: .\apps\personnel\templates\personnel\employee_list.html:51
+#: .\apps\standards\templates\standards\standard_detail.html:119
+#: .\apps\standards\templates\standards\standard_detail.html:161
+#: .\apps\standards\templates\standards\standard_list.html:53
+#: .\apps\standards\templates\standards\standard_search.html:49
+#: .\apps\standards\templates\standards\standards_list.html:48
+#: .\translation_template.py:17
+msgid "View"
+msgstr "Ansehen"
+
+#: .\apps\documents\templates\documents\document_list.html:54
+msgid "No documents found."
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_register.html:4
+msgid "Register New Document"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_register.html:8
+#: .\apps\methods\templates\methods\method_detail.html:290
+#: .\apps\methods\templates\methods\method_initial.html:11
+msgid "Submit"
+msgstr ""
+
+#: .\apps\documents\templates\documents\document_register.html:9
+#: .\apps\methods\templates\methods\method_initial.html:12
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:32
+#: .\apps\personnel\templates\personnel\employee_form.html:145
+#: .\translation_strings.py:13 .\translation_template.py:14
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: .\apps\documents\templates\documents\user_documents.html:4
+#: .\apps\users\templates\users\includes\user_navigation.html:19
+#: .\templates\users\includes\user_navigation.html:34
+#: .\templates\users\user_documents.html:4
+#: .\templates\users\user_documents.html:7
+msgid "My Documents"
+msgstr ""
+
+#: .\apps\documents\templates\documents\user_documents.html:11
+msgid "You have not uploaded any documents yet."
+msgstr ""
+
+#: .\apps\documents\utils\document_numbering.py:21
+msgid "Company with valid identifier is required"
+msgstr ""
+
+#: .\apps\documents\utils\document_numbering.py:24
+msgid "Document type with valid abbreviation is required"
+msgstr ""
+
+#: .\apps\documents\utils\document_numbering.py:48
+msgid ""
+"Invalid document number format. Format should be: COMPANY-DOCTYPE-SECTION-"
+"YEAR-NUMBER"
+msgstr ""
+
+#: .\apps\documents\utils\document_numbering.py:64
+#, python-format
+msgid ""
+"Document number '%(number)s' already exists in the system. Please use a "
+"different number."
+msgstr ""
+
+#: .\apps\equipment\admin.py:52 .\apps\equipment\models\calibration.py:25
+#: .\apps\equipment\models\maintenance_record.py:10 .\translation_strings.py:23
+msgid "Calibration"
+msgstr ""
+
+#: .\apps\equipment\admin.py:55
+msgid "Responsibility"
+msgstr ""
+
+#: .\apps\equipment\apps.py:8 .\core\admin.py:36
+msgid "Equipment Management"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:10
+#: .\apps\equipment\models\equipment.py:47
+#: .\apps\equipment\models\equipment.py:48
+#: .\apps\equipment\models\equipment_document.py:8
+#: .\apps\equipment\models\equipment_registry.py:9
+#: .\apps\equipment\models\maintenance.py:17
+#: .\apps\equipment\models\maintenance_record.py:16
+#: .\apps\equipment\templates\equipment\equipment_list.html:12
+#: .\templates\base.html:23 .\templates\dashboard\index.html:26
+#: .\templates\shared\user_navigation.html:58 .\translation_strings.py:21
+#: .\translation_template.py:19
+msgid "Equipment"
+msgstr "Ausrüstung"
+
+#: .\apps\equipment\models\calibration.py:11
+#: .\apps\equipment\models\maintenance.py:19
+#: .\apps\equipment\models\maintenance_record.py:19
+#: .\apps\methods\models\internal_qc.py:23
+#: .\apps\methods\models\verification.py:29
+#: .\apps\methods\templates\methods\method_detail.html:233
+msgid "Performed By"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:12
+msgid "Calibration Date"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:13
+#: .\apps\personnel\models\personnel.py:50
+#: .\apps\personnel\models\personnel.py:84
+#: .\apps\personnel\models\qualification.py:16
+#: .\apps\personnel\models\training.py:27
+msgid "Certificate Number"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:15
+msgid "Results"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:16
+msgid "Passed Calibration"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:17
+#: .\apps\equipment\models\equipment.py:44
+msgid "Next Calibration Date"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:20
+msgid "Calibration Record"
+msgstr ""
+
+#: .\apps\equipment\models\calibration.py:21
+msgid "Calibration Records"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:18
+#: .\apps\equipment\models\equipment_registry.py:18
+#: .\apps\personnel\templates\personnel\employee_detail.html:72
+#: .\apps\personnel\templates\personnel\employee_list.html:45
+msgid "Inactive"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:19
+msgid "Under Repair"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:20
+msgid "Decommissioned"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:24
+#: .\apps\equipment\models\equipment_type.py:13
+msgid "Equipment Type"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:25
+#: .\apps\equipment\templates\equipment\equipment_list.html:24
+#: .\translation_strings.py:27
+msgid "Inventory Number"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:33
+msgid "Responsible Person"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:38 .\translation_strings.py:30
+msgid "Manufacturer"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:39
+msgid "Model Number"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:40 .\translation_strings.py:28
+msgid "Serial Number"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:41 .\translation_strings.py:31
+msgid "Purchase Date"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:42
+msgid "Needs Calibration"
+msgstr ""
+
+#: .\apps\equipment\models\equipment.py:43
+msgid "Calibration Frequency (days)"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_category.py:6
+msgid "Category Name"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_category.py:10
+msgid "Equipment Category"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_category.py:11
+msgid "Equipment Categories"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_document.py:12
+#: .\apps\standards\models\attachment.py:15
+#: .\apps\standards\models\document.py:16
+msgid "Uploaded At"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_document.py:22
+msgid "Equipment Document"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_document.py:23
+msgid "Equipment Documents"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_registry.py:10
+msgid "Authorized User"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_registry.py:11
+msgid "Authorized Since"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_registry.py:12
+msgid "Authorized Until"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_registry.py:19
+#: .\apps\equipment\models\maintenance.py:32
+msgid "Maintenance"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_registry.py:23
+#: .\apps\methods\models\internal_qc.py:24 .\apps\personnel\forms.py:33
+#: .\apps\personnel\models\employee.py:25
+#: .\apps\personnel\models\employee_record.py:27
+#: .\apps\personnel\models\personnel.py:28
+#: .\apps\personnel\models\personnel.py:88
+#: .\apps\personnel\models\personnel.py:122
+#: .\apps\personnel\models\training.py:32
+#: .\apps\personnel\templates\personnel\employee_detail.html:82
+#: .\apps\personnel\templates\personnel\employee_form.html:134
+msgid "Notes"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_registry.py:26
+msgid "Equipment Registry Entry"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_type.py:6
+msgid "Type Name"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_type.py:8
+msgid "Is Measuring Instrument"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_type.py:9
+msgid "Requires Metrological Control"
+msgstr ""
+
+#: .\apps\equipment\models\equipment_type.py:14
+msgid "Equipment Types"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:11
+msgid "Preventive Maintenance"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:12
+msgid "Corrective Maintenance"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:13
+msgid "Predictive Maintenance"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:14
+msgid "Emergency Repair"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:18
+#: .\apps\equipment\models\maintenance_record.py:18
+msgid "Maintenance Type"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:20
+msgid "Performed Date"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:22
+msgid "Actions Taken"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:23
+msgid "Parts Replaced"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:24
+#: .\apps\equipment\models\maintenance_record.py:21
+msgid "Next Maintenance Date"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:27
+#: .\apps\equipment\models\maintenance_record.py:24
+msgid "Maintenance Record"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance.py:28
+#: .\apps\equipment\models\maintenance_record.py:25
+#: .\apps\equipment\templates\equipment\maintenance_list.html:4
+#: .\apps\equipment\templates\equipment\maintenance_list.html:7
+msgid "Maintenance Records"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance_record.py:8
+msgid "Routine Maintenance"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance_record.py:9
+msgid "Repair"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance_record.py:11
+msgid "Inspection"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance_record.py:12
+msgid "Upgrade/Modification"
+msgstr ""
+
+#: .\apps\equipment\models\maintenance_record.py:17
+msgid "Maintenance Date"
+msgstr ""
+
+#: .\apps\equipment\templates\equipment\equipment_list.html:4
+#: .\apps\equipment\templates\equipment\equipment_list.html:8
+msgid "Equipment List"
+msgstr ""
+
+#: .\apps\equipment\templates\equipment\equipment_list.html:14
+msgid "Add New Equipment"
+msgstr ""
+
+#: .\apps\equipment\templates\equipment\equipment_list.html:51
+msgid "No equipment found."
+msgstr ""
+
+#: .\apps\equipment\templates\equipment\equipment_list.html:57
+msgid "Here you can view all equipment registered in the system."
+msgstr ""
+
+#: .\apps\equipment\templates\equipment\maintenance_list.html:8
+msgid "Here you can view all maintenance records."
+msgstr ""
+
+#: .\apps\equipment\templates\equipment\my_equipment.html:4
+#: .\apps\equipment\templates\equipment\my_equipment.html:7
+msgid "My Equipment"
+msgstr ""
+
+#: .\apps\equipment\templates\equipment\my_equipment.html:8
+msgid "Here you can view your equipment."
+msgstr ""
+
+#: .\apps\methods\apps.py:8
+msgid "Methods Management"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:10
+#: .\apps\methods\templates\methods\method_detail.html:187
+msgid "Service Provider"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:11
+#: .\apps\methods\templates\methods\method_detail.html:188
+msgid "Laboratory"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:13 .\apps\methods\models\methods.py:39
+#: .\apps\methods\templates\methods\method_detail.html:44
+msgid "Test Material"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:14
+#: .\apps\methods\templates\methods\method_detail.html:190
+msgid "Technology/Examination"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:15
+msgid "Quantity"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:16
+msgid "Price (€)"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:17
+msgid "Test Amount (€)"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:24 .\apps\methods\models\internal_qc.py:14
+#: .\apps\methods\models\methods.py:107
+#: .\apps\methods\models\verification.py:20
+msgid "Method"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:30
+msgid "External Quality Control"
+msgstr ""
+
+#: .\apps\methods\models\eqc.py:31
+msgid "External Quality Controls"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:16
+msgid "Control Date"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:17
+#: .\apps\methods\templates\methods\method_detail.html:136
+msgid "Control Material"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:18
+msgid "Control Lot/Batch"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:19
+#: .\apps\methods\templates\methods\method_detail.html:137
+msgid "Result"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:20
+#: .\apps\methods\templates\methods\method_detail.html:138
+msgid "Expected Value"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:21
+msgid "Acceptable Range"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:22
+msgid "Conforms to Expectations"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:29
+msgid "Internal Quality Control"
+msgstr ""
+
+#: .\apps\methods\models\internal_qc.py:30
+msgid "Internal Quality Controls"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:13
+msgid "Method Name"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:18
+msgid "Method Identification"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:22
+#: .\apps\methods\templates\methods\method_detail.html:17
+msgid "Investigation Field"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:28
+#: .\apps\methods\templates\methods\method_detail.html:26
+msgid "Analyzer/Equipment"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:33
+msgid "Investigation Technology"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:44 .\apps\methods\models\verification.py:28
+#: .\apps\methods\templates\methods\method_detail.html:53
+msgid "Verification Date"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:56
+msgid "Internal QC Required"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:60
+msgid "External QC Required"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:64
+msgid "Verification Required"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:68
+msgid "Last Internal QC Date"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:73
+msgid "Last External QC Date"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:78
+msgid "Next Verification Date"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:85
+msgid "Method Document"
+msgstr ""
+
+#: .\apps\methods\models\methods.py:108
+#: .\templates\shared\user_navigation.html:64 .\translation_template.py:21
+msgid "Methods"
+msgstr "Methoden"
+
+#: .\apps\methods\models\verification.py:11 .\translation_strings.py:24
+msgid "Verification"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:12
+msgid "Validation"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:13
+msgid "Revalidation"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:23
+msgid "Verification Type"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:32
+msgid "Precision Data"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:33
+msgid "Accuracy Data"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:34
+msgid "Linearity Data"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:35
+msgid "Detection Limit"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:36
+msgid "Quantitation Limit"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:39
+msgid "Acceptance Criteria"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:40
+msgid "Results Summary"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:43
+msgid "Approval Date"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:46
+msgid "Protocol Document"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:47
+msgid "Report Document"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:53
+msgid "Method Verification"
+msgstr ""
+
+#: .\apps\methods\models\verification.py:54
+msgid "Method Verifications"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:6
+msgid "Method Details"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:35
+msgid "Technology"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:76
+msgid "Download Document"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:106
+msgid "Internal QC"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:111
+msgid "External QC"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:116
+msgid "Verification/Validation"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:126
+msgid "Internal Quality Control Records"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:127
+msgid "Add Internal QC Record"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:135
+#: .\apps\methods\templates\methods\method_detail.html:231
+#: .\apps\personnel\templates\personnel\employee_detail.html:166
+#: .\translation_template.py:38
+msgid "Date"
+msgstr "Datum"
+
+#: .\apps\methods\templates\methods\method_detail.html:152
+msgid "Conforming"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:154
+msgid "Non-conforming"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:167
+msgid "No internal quality control records found for this method."
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:178
+msgid "External Quality Control Records"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:179
+msgid "Add External QC Record"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:211
+msgid "No external quality control records found for this method."
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:222
+msgid "Verification/Validation Records"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:223
+msgid "Add Verification Record"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:249
+msgid "Pending"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:255
+msgid "Protocol"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:260
+msgid "Report"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:274
+msgid "No verification records found for this method."
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_detail.html:283
+#: .\apps\personnel\templates\personnel\employee_detail.html:16
+#: .\apps\personnel\templates\personnel\employee_list.html:54
+#: .\translation_strings.py:15 .\translation_template.py:16
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: .\apps\methods\templates\methods\method_detail.html:284
+#: .\apps\personnel\templates\personnel\employee_detail.html:19
+#: .\apps\standards\templates\standards\standard_detail.html:15
+msgid "Back to List"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_initial.html:6
+msgid "Method Initial Form"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_success.html:5
+msgid "Form Submitted Successfully"
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_success.html:6
+msgid "Your data has been saved."
+msgstr ""
+
+#: .\apps\methods\templates\methods\method_success.html:8
+msgid "Return to Methods List"
+msgstr ""
+
+#: .\apps\personnel\forms.py:24 .\apps\personnel\models\employee.py:13
+#: .\apps\personnel\models\personnel.py:18
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:21
+#: .\apps\personnel\templates\personnel\employee_detail.html:35
+#: .\apps\personnel\templates\personnel\employee_form.html:33
+#: .\templates\users\profile.html:99
+msgid "Employee ID"
+msgstr ""
+
+#: .\apps\personnel\forms.py:25 .\apps\personnel\models\employee.py:14
+#: .\apps\personnel\models\personnel.py:19
+#: .\apps\personnel\templates\personnel\employee_form.html:55
+#: .\templates\users\edit_profile.html:20 .\translation_template.py:28
+msgid "First Name"
+msgstr "Vorname"
+
+#: .\apps\personnel\forms.py:26 .\apps\personnel\models\employee.py:15
+#: .\apps\personnel\models\personnel.py:20
+#: .\apps\personnel\templates\personnel\employee_form.html:65
+#: .\templates\users\edit_profile.html:24 .\translation_template.py:29
+msgid "Last Name"
+msgstr "Nachname"
+
+#: .\apps\personnel\forms.py:27 .\apps\personnel\models\employee.py:16
+#: .\apps\personnel\models\personnel.py:21
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:23
+#: .\apps\personnel\templates\personnel\employee_detail.html:43
+#: .\apps\personnel\templates\personnel\employee_form.html:43
+#: .\apps\personnel\templates\personnel\employee_list.html:28
+#: .\apps\users\models\profile.py:26
+#: .\apps\users\templates\users\profile.html:33
+#: .\templates\users\profile.html:94
+msgid "Position"
+msgstr ""
+
+#: .\apps\personnel\forms.py:30 .\apps\personnel\models\employee.py:22
+#: .\apps\personnel\models\personnel.py:25
+#: .\apps\personnel\templates\personnel\employee_detail.html:59
+#: .\apps\personnel\templates\personnel\employee_form.html:87
+#: .\apps\users\models\profile.py:27
+#: .\apps\users\templates\users\profile.html:36 .\translation_template.py:30
+msgid "Phone"
+msgstr "Telefon"
+
+#: .\apps\personnel\forms.py:31 .\apps\personnel\models\employee.py:23
+#: .\apps\personnel\models\personnel.py:26
+#: .\apps\personnel\templates\personnel\employee_detail.html:63
+#: .\apps\personnel\templates\personnel\employee_form.html:109
+msgid "Hire Date"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:8
+#: .\apps\personnel\models\personnel.py:138
+msgid "High School"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:9
+#: .\apps\personnel\models\personnel.py:139
+msgid "Vocational School"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:10
+#: .\apps\personnel\models\personnel.py:140
+msgid "Bachelor's Degree"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:11
+#: .\apps\personnel\models\personnel.py:141
+msgid "Master's Degree"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:12
+#: .\apps\personnel\models\personnel.py:142
+msgid "Doctorate"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:18
+#: .\apps\personnel\models\employee.py:30
+#: .\apps\personnel\models\employee_record.py:18
+#: .\apps\personnel\models\personnel.py:33
+#: .\apps\personnel\models\personnel.py:44
+#: .\apps\personnel\models\personnel.py:75
+#: .\apps\personnel\models\personnel.py:113
+#: .\apps\personnel\models\personnel.py:147
+#: .\apps\personnel\models\qualification.py:9
+#: .\apps\personnel\models\training.py:16
+msgid "Employee"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:20
+#: .\apps\personnel\models\personnel.py:148
+msgid "Educational Institution"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:21
+#: .\apps\personnel\models\personnel.py:149
+msgid "Education Level"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:22
+#: .\apps\personnel\models\personnel.py:150
+#: .\apps\personnel\templates\personnel\employee_detail.html:213
+msgid "Field of Study"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:23
+#: .\apps\personnel\models\personnel.py:151
+#: .\apps\personnel\templates\personnel\employee_detail.html:212
+msgid "Degree"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:24
+#: .\apps\personnel\models\personnel.py:78
+#: .\apps\personnel\models\personnel.py:152
+#: .\apps\personnel\models\training.py:20
+msgid "Start Date"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:25
+#: .\apps\personnel\models\personnel.py:79
+#: .\apps\personnel\models\personnel.py:153
+#: .\apps\personnel\models\training.py:21
+msgid "End Date"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:28
+#: .\apps\personnel\models\personnel.py:157
+msgid "Diploma/Certificate"
+msgstr ""
+
+#: .\apps\personnel\models\education.py:33
+#: .\apps\personnel\models\education.py:34
+#: .\apps\personnel\models\personnel.py:162
+#: .\apps\personnel\models\personnel.py:163
+#: .\apps\personnel\templates\personnel\employee_detail.html:103
+msgid "Education"
+msgstr ""
+
+#: .\apps\personnel\models\employee.py:31
+#: .\apps\personnel\models\personnel.py:34
+#: .\apps\personnel\templates\personnel\employee_list.html:4
+#: .\apps\personnel\templates\personnel\employee_list.html:10
+msgid "Employees"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:8
+#: .\apps\personnel\models\personnel.py:104
+msgid "Employment Contract"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:9
+#: .\apps\personnel\models\personnel.py:105
+msgid "Agreement"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:10
+#: .\apps\personnel\models\personnel.py:106
+msgid "Performance Assessment"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:11
+#: .\apps\personnel\models\personnel.py:107
+msgid "Disciplinary Action"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:12
+#: .\apps\personnel\models\personnel.py:108
+msgid "Award or Recognition"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:13
+#: .\apps\personnel\models\personnel.py:109
+msgid "Other Document"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:20
+#: .\apps\personnel\models\personnel.py:114
+#: .\apps\personnel\templates\personnel\employee_detail.html:260
+msgid "Record Type"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:23
+#: .\apps\personnel\models\personnel.py:47
+#: .\apps\personnel\models\personnel.py:117
+#: .\apps\personnel\models\qualification.py:13
+#: .\apps\personnel\templates\personnel\employee_detail.html:125
+#: .\apps\personnel\templates\personnel\employee_detail.html:262
+msgid "Issue Date"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:24
+#: .\apps\personnel\models\personnel.py:48
+#: .\apps\personnel\models\personnel.py:118
+#: .\apps\personnel\models\qualification.py:14
+#: .\apps\personnel\templates\personnel\employee_detail.html:126
+#: .\apps\personnel\templates\personnel\employee_detail.html:263
+msgid "Expiry Date"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:26
+#: .\apps\personnel\models\personnel.py:121
+#: .\apps\personnel\templates\personnel\employee_detail.html:264
+msgid "Confidential"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:32
+#: .\apps\personnel\models\personnel.py:127
+msgid "Employee Record"
+msgstr ""
+
+#: .\apps\personnel\models\employee_record.py:33
+#: .\apps\personnel\models\personnel.py:128
+#: .\apps\personnel\templates\personnel\employee_detail.html:108
+msgid "Employee Records"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:45
+#: .\apps\personnel\models\qualification.py:11
+#: .\apps\personnel\templates\personnel\employee_detail.html:123
+msgid "Qualification Type"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:49
+#: .\apps\personnel\models\qualification.py:15
+#: .\apps\personnel\templates\personnel\employee_detail.html:124
+msgid "Issuing Organization"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:57
+#: .\apps\personnel\models\qualification.py:22
+msgid "Qualification"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:58
+#: .\apps\personnel\models\qualification.py:23
+#: .\apps\personnel\templates\personnel\employee_detail.html:93
+msgid "Qualifications"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:76
+#: .\apps\personnel\models\training.py:18
+#: .\apps\personnel\templates\personnel\employee_detail.html:163
+msgid "Training Name"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:82
+#: .\apps\personnel\models\training.py:25
+msgid "Training Provider"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:83
+#: .\apps\personnel\models\training.py:26
+msgid "Certificate Issued"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:85
+#: .\apps\personnel\models\training.py:28
+msgid "Certificate Date"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:87
+#: .\apps\personnel\models\training.py:30
+msgid "Certificate Document"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:93
+#: .\apps\personnel\models\training.py:37
+msgid "Training"
+msgstr ""
+
+#: .\apps\personnel\models\personnel.py:94
+#: .\apps\personnel\models\training.py:38
+#: .\apps\personnel\templates\personnel\employee_detail.html:98
+msgid "Training Records"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:4
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:10
+msgid "Delete Employee"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:16
+msgid "Are you sure you want to delete the following employee?"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:26
+msgid ""
+"This action cannot be undone. All data associated with this employee will be "
+"permanently deleted."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_confirm_delete.html:35
+#: .\apps\personnel\templates\personnel\employee_list.html:57
+#: .\translation_strings.py:14 .\translation_template.py:15
+msgid "Delete"
+msgstr "Löschen"
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:4
+msgid "Employee Details"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:28
+msgid "Basic Information"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:147
+msgid "No qualifications found for this employee."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:164
+msgid "Provider"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:167
+msgid "Certificate"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:180
+#: .\apps\personnel\templates\personnel\employee_detail.html:277
+msgid "Yes"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:182
+#: .\apps\personnel\templates\personnel\employee_detail.html:279
+msgid "No"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:195
+msgid "No training records found for this employee."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:211
+msgid "Institution"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:214
+msgid "Level"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:215
+msgid "Period"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:231
+msgid "Present"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:244
+msgid "No education records found for this employee."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_detail.html:292
+msgid "No employee records found for this employee."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_form.html:6
+#: .\apps\personnel\templates\personnel\employee_form.html:18
+msgid "Edit Employee"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_form.html:8
+#: .\apps\personnel\templates\personnel\employee_form.html:20
+msgid "Add New Employee"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_form.html:148
+#: .\translation_strings.py:12 .\translation_template.py:13
+msgid "Save"
+msgstr "Speichern"
+
+#: .\apps\personnel\templates\personnel\employee_list.html:14
+msgid "Add Employee"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_list.html:26
+msgid "ID"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\employee_list.html:70
+msgid "No employees found."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\my_profile.html:4
+#: .\apps\personnel\templates\personnel\my_profile.html:7
+#: .\apps\users\templates\users\includes\user_navigation.html:10
+#: .\apps\users\templates\users\my_profile.html:4
+#: .\apps\users\templates\users\my_profile.html:7
+msgid "My Profile"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\my_profile.html:8
+msgid "Welcome to your personnel profile page."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\my_qualifications.html:4
+#: .\apps\personnel\templates\personnel\my_qualifications.html:7
+msgid "My Qualifications"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\my_qualifications.html:8
+msgid "Welcome to your qualifications page."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\my_trainings.html:4
+#: .\apps\personnel\templates\personnel\my_trainings.html:7
+msgid "My Trainings"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\my_trainings.html:8
+msgid "Welcome to your training records page."
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\personnel_list.html:4
+#: .\apps\personnel\templates\personnel\personnel_list.html:7
+msgid "Personnel List"
+msgstr ""
+
+#: .\apps\personnel\templates\personnel\personnel_list.html:8
+msgid "This is the personnel list page."
+msgstr ""
+
+#: .\apps\standards\apps.py:8
+msgid "Standards Management"
+msgstr ""
+
+#: .\apps\standards\models\attachment.py:11
+#: .\apps\standards\models\document.py:11
+#: .\apps\standards\models\requirement.py:10
+#: .\apps\standards\models\section.py:16 .\apps\standards\models\standard.py:24
+#: .\apps\standards\models\standard_attachment.py:12
+#: .\apps\standards\models\standard_document.py:12
+#: .\apps\standards\models\standard_requirement.py:14
+#: .\apps\standards\models\standard_revision.py:11
+#: .\apps\standards\models\standard_section.py:15 .\apps\standards\views.py:27
+#: .\translation_strings.py:35
+msgid "Standard"
+msgstr ""
+
+#: .\apps\standards\models\attachment.py:18
+#: .\apps\standards\models\standard_attachment.py:19
+msgid "Standard Attachment"
+msgstr ""
+
+#: .\apps\standards\models\attachment.py:19
+#: .\apps\standards\models\standard_attachment.py:20
+msgid "Standard Attachments"
+msgstr ""
+
+#: .\apps\standards\models\document.py:19
+#: .\apps\standards\models\standard_document.py:20
+msgid "Standard Document"
+msgstr ""
+
+#: .\apps\standards\models\document.py:20
+#: .\apps\standards\models\standard_document.py:21
+msgid "Standard Documents"
+msgstr ""
+
+#: .\apps\standards\models\requirement.py:13
+msgid "Is Mandatory"
+msgstr ""
+
+#: .\apps\standards\models\requirement.py:18
+#: .\apps\standards\models\standard_requirement.py:38
+msgid "Standard Requirement"
+msgstr ""
+
+#: .\apps\standards\models\requirement.py:19
+#: .\apps\standards\models\standard_requirement.py:39
+msgid "Standard Requirements"
+msgstr ""
+
+#: .\apps\standards\models\section.py:24
+#: .\apps\standards\models\standard_section.py:23
+#: .\apps\standards\templates\standards\standard_detail.html:108
+msgid "Parent Section"
+msgstr ""
+
+#: .\apps\standards\models\section.py:29
+#: .\apps\standards\models\standard_section.py:28
+msgid "Standard Section"
+msgstr ""
+
+#: .\apps\standards\models\section.py:30
+#: .\apps\standards\models\standard_section.py:29
+msgid "Standard Sections"
+msgstr ""
+
+#: .\apps\standards\models\standard.py:20
+#: .\apps\standards\models\standard_document.py:16
+#: .\apps\standards\models\standard_revision.py:16
+msgid "Date Created"
+msgstr ""
+
+#: .\apps\standards\models\standard.py:21
+#: .\apps\standards\models\standard_document.py:17
+msgid "Date Updated"
+msgstr ""
+
+#: .\apps\standards\models\standard.py:25
+#: .\apps\standards\templates\standards\standard_list.html:4
+#: .\apps\standards\templates\standards\standard_list.html:8
+#: .\apps\standards\templates\standards\standards_list.html:4
+#: .\apps\standards\templates\standards\standards_list.html:8
+#: .\apps\standards\views.py:17 .\apps\standards\views.py:56
+#: .\apps\standards\views.py:65 .\core\admin.py:51
+#: .\templates\admin_backup\home_admin.html:24 .\templates\base.html:25
+#: .\templates\dashboard\index.html:44
+#: .\templates\shared\user_navigation.html:70 .\translation_template.py:20
+msgid "Standards"
+msgstr "Standards"
+
+#: .\apps\standards\models\standard_attachment.py:16
+msgid "Date Added"
+msgstr ""
+
+#: .\apps\standards\models\standard_category.py:12
+msgid "Parent Category"
+msgstr ""
+
+#: .\apps\standards\models\standard_category.py:20
+msgid "Standard Category"
+msgstr ""
+
+#: .\apps\standards\models\standard_category.py:21 .\apps\standards\views.py:37
+msgid "Standard Categories"
+msgstr ""
+
+#: .\apps\standards\models\standard_requirement.py:22
+#: .\apps\standards\views.py:47
+msgid "Section"
+msgstr ""
+
+#: .\apps\standards\models\standard_requirement.py:25
+msgid "Priority"
+msgstr ""
+
+#: .\apps\standards\models\standard_requirement.py:28
+msgid "Low"
+msgstr ""
+
+#: .\apps\standards\models\standard_requirement.py:29
+msgid "Medium"
+msgstr ""
+
+#: .\apps\standards\models\standard_requirement.py:30
+msgid "High"
+msgstr ""
+
+#: .\apps\standards\models\standard_revision.py:15
+msgid "Changes"
+msgstr ""
+
+#: .\apps\standards\models\standard_revision.py:26
+msgid "Standard Revision"
+msgstr ""
+
+#: .\apps\standards\models\standard_revision.py:27
+msgid "Standard Revisions"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:22
+msgid "Standard Information"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:68
+msgid "No description available."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:95
+msgid "Sections"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:97
+msgid "Add Section"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:128
+msgid "No sections found for this standard."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:139
+msgid "Add Document"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:170
+msgid "No documents found for this standard."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:179
+msgid "Attachments"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:181
+msgid "Add Attachment"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:192
+msgid "Added"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:203
+msgid "Download"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_detail.html:212
+msgid "No attachments found for this standard."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_list.html:9
+msgid "Here is the list of standards."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_list.html:14
+#: .\apps\standards\templates\standards\standard_search.html:14
+#: .\apps\standards\templates\standards\standards_list.html:14
+msgid "Search standards..."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_list.html:14
+#: .\apps\standards\templates\standards\standard_list.html:15
+#: .\apps\standards\templates\standards\standard_search.html:14
+#: .\apps\standards\templates\standards\standard_search.html:15
+#: .\apps\standards\templates\standards\standards_list.html:14
+#: .\apps\standards\templates\standards\standards_list.html:15
+#: .\translation_strings.py:17
+msgid "Search"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_list.html:20
+msgid "Add Standard"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_list.html:36
+#: .\apps\standards\templates\standards\standards_list.html:31
+msgid "Last Updated"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_list.html:64
+#: .\apps\standards\templates\standards\standards_list.html:59
+msgid "No standards found."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_search.html:4
+#: .\apps\standards\templates\standards\standard_search.html:8
+#: .\apps\standards\views.py:82
+msgid "Search Standards"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_search.html:9
+msgid "Search results for:"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_search.html:23
+msgid "Search Results"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_search.html:60
+msgid "No results found for your search query."
+msgstr ""
+
+#: .\apps\standards\templates\standards\standard_search.html:65
+msgid "Back to Standards List"
+msgstr ""
+
+#: .\apps\standards\templates\standards\standards_list.html:9
+msgid "Here you can view all standards."
+msgstr ""
+
+#: .\apps\users\models\custom_permission.py:11
+msgid "Code Name"
+msgstr ""
+
+#: .\apps\users\models\custom_permission.py:14
+msgid "Custom Permission"
+msgstr ""
+
+#: .\apps\users\models\custom_permission.py:15
+msgid "Custom Permissions"
+msgstr ""
+
+#: .\apps\users\models\profile.py:18
+msgid "Bio"
+msgstr ""
+
+#: .\apps\users\models\profile.py:30
+#: .\apps\users\templates\users\profile.html:4
+#: .\templates\shared\user_header.html:13
+#: .\templates\users\edit_profile.html:10 .\translation_strings.py:8
+#: .\translation_template.py:9
+msgid "Profile"
+msgstr "Profil"
+
+#: .\apps\users\models\profile.py:31
+msgid "Profiles"
+msgstr ""
+
+#: .\apps\users\templates\users\activity_log.html:4
+#: .\apps\users\templates\users\activity_log.html:7
+msgid "Activity Log"
+msgstr ""
+
+#: .\apps\users\templates\users\activity_log.html:8
+msgid "Here you can view your recent activities."
+msgstr ""
+
+#: .\apps\users\templates\users\edit_profile.html:4
+#: .\apps\users\templates\users\edit_profile.html:7
+#: .\templates\users\edit_profile.html:3 .\templates\users\edit_profile.html:5
+#: .\templates\users\edit_profile.html:12 .\templates\users\profile.html:51
+msgid "Edit Profile"
+msgstr ""
+
+#: .\apps\users\templates\users\edit_profile.html:8
+msgid "Here you can edit your profile details."
+msgstr ""
+
+#: .\apps\users\templates\users\includes\user_navigation.html:26
+#: .\apps\users\templates\users\login.html:22 .\translation_strings.py:11
+#: .\translation_template.py:12
+msgid "Register"
+msgstr "Registrieren"
+
+#: .\apps\users\templates\users\includes\user_navigation.html:31
+#: .\apps\users\templates\users\settings.html:4
+#: .\apps\users\templates\users\settings.html:7
+#: .\templates\shared\user_header.html:17 .\templates\users\settings.html:12
+#: .\templates\users\settings.html:21 .\translation_strings.py:7
+#: .\translation_template.py:8
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: .\apps\users\templates\users\login.html:22
+msgid "Don't have an account yet?"
+msgstr ""
+
+#: .\apps\users\templates\users\logout.html:4 .\translation_strings.py:10
+#: .\translation_template.py:11
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: .\apps\users\templates\users\logout.html:9
+msgid "You have been logged out"
+msgstr ""
+
+#: .\apps\users\templates\users\logout.html:12
+msgid "You have successfully logged out of the system."
+msgstr ""
+
+#: .\apps\users\templates\users\logout.html:13
+msgid "Log In Again"
+msgstr ""
+
+#: .\apps\users\templates\users\my_profile.html:8
+msgid "Welcome to your profile page."
+msgstr ""
+
+#: .\apps\users\templates\users\profile.html:9 .\templates\users\profile.html:4
+#: .\templates\users\profile.html:9
+msgid "User Profile"
+msgstr ""
+
+#: .\apps\users\templates\users\profile.html:27 .\templates\admin\login.html:17
+#: .\templates\users\profile.html:17 .\translation_template.py:25
+msgid "Username"
+msgstr "Benutzername"
+
+#: .\apps\users\templates\users\profile.html:31
+#: .\apps\users\templates\users\profile.html:34
+#: .\apps\users\templates\users\profile.html:37
+#: .\templates\users\profile.html:90 .\templates\users\profile.html:95
+#: .\templates\users\profile.html:100
+msgid "Not specified"
+msgstr ""
+
+#: .\apps\users\templates\users\profile.html:39
+msgid "Last Login"
+msgstr ""
+
+#: .\apps\users\templates\users\settings.html:8
+msgid "Here you can manage your account settings."
+msgstr ""
+
+#: .\core\admin.py:6 .\core\admin.py:12 .\templates\admin\base_site.html:7
+#: .\templates\admin\index.html:7
+msgid "Quality Tools Administration"
+msgstr ""
+
+#: .\core\admin.py:7 .\core\admin.py:13
+msgid "Quality Tools Admin"
+msgstr ""
+
+#: .\core\admin.py:26
+msgid "Authentication and Authorization"
+msgstr ""
+
+#: .\core\admin.py:41
+msgid "Management Documentation"
+msgstr ""
+
+#: .\core\admin.py:61
+msgid "Other Applications"
+msgstr ""
+
+#: .\templates\admin\base.html:7
+msgid "Management System Tools Administration"
+msgstr ""
+
+#: .\templates\admin\base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: .\templates\admin\base_site.html:13 .\templates\base.html:61
+#: .\templates\dashboard\index.html:62
+msgid "Translations"
+msgstr ""
+
+#: .\templates\admin\base_site.html:28 .\templates\rosetta\languages.html:10
+msgid "Log out"
+msgstr ""
+
+#: .\templates\admin\includes\admin_breadcrumbs.html:6
+msgid "Sākums"
+msgstr ""
+
+#: .\templates\admin\includes\admin_footer.html:11
+#: .\templates\shared\user_footer.html:13
+msgid "Help"
+msgstr ""
+
+#: .\templates\admin\includes\admin_footer.html:13
+msgid "Contact Support"
+msgstr ""
+
+#: .\templates\admin\includes\admin_header.html:20
+msgid "Welcome,"
+msgstr ""
+
+#: .\templates\admin\includes\admin_header.html:21
+msgid "View Site"
+msgstr ""
+
+#: .\templates\admin\includes\admin_header.html:22
+msgid "Change Password"
+msgstr ""
+
+#: .\templates\admin\includes\admin_header.html:23
+#: .\templates\shared\user_header.html:31
+msgid "Log Out"
+msgstr ""
+
+#: .\templates\admin\includes\admin_header.html:25
+msgid "Translation"
+msgstr ""
+
+#: .\templates\admin\includes\admin_header.html:46
+msgid "Toggle navigation"
+msgstr ""
+
+#: .\templates\admin\includes\admin_header.html:51
+msgid "Toggle theme"
+msgstr ""
+
+#: .\templates\admin\includes\admin_navigation.html:29
+msgid "Quick Links"
+msgstr ""
+
+#: .\templates\admin\index.html:32
+msgid "You don’t have permission to view or edit anything."
+msgstr ""
+
+#: .\templates\admin\login.html:4 .\templates\admin\login.html:8
+#: .\templates\admin\login.html:39
+msgid "Log in"
+msgstr ""
+
+#: .\templates\admin\login.html:11
+msgid "Please correct the error below."
+msgstr ""
+
+#: .\templates\admin\login.html:23 .\translation_template.py:26
+msgid "Password"
+msgstr "Passwort"
+
+#: .\templates\admin\login.html:32
+msgid "Forgot password?"
+msgstr ""
+
+#: .\templates\admin_backup\breadcrumbs.html:5 .\templates\base.html:21
+#: .\templates\base_user.html:33 .\templates\rosetta\languages.html:15
+#: .\templates\users\edit_profile.html:8 .\templates\users\settings.html:10
+#: .\translation_strings.py:5
+msgid "Home"
+msgstr ""
+
+#: .\templates\admin_backup\breadcrumbs.html:25
+msgid "Change"
+msgstr ""
+
+#: .\templates\admin_backup\home_admin.html:15
+msgid "Quality Documents"
+msgstr ""
+
+#: .\templates\base.html:24 .\templates\dashboard\index.html:35
+#: .\translation_template.py:24
+msgid "Personnel"
+msgstr "Personal"
+
+#: .\templates\base.html:28
+msgid "Admin"
+msgstr ""
+
+#: .\templates\base.html:58
+msgid "Quality Tools"
+msgstr ""
+
+#: .\templates\dashboard\index.html:9
+msgid "Welcome to Quality Tools Management System"
+msgstr ""
+
+#: .\templates\dashboard\index.html:18
+msgid "Manage quality documentation, procedures, and policies."
+msgstr ""
+
+#: .\templates\dashboard\index.html:19
+msgid "View Documents"
+msgstr ""
+
+#: .\templates\dashboard\index.html:27
+msgid "Track equipment inventory, maintenance records, and calibrations."
+msgstr ""
+
+#: .\templates\dashboard\index.html:28
+msgid "Manage Equipment"
+msgstr ""
+
+#: .\templates\dashboard\index.html:36
+msgid "Manage staff profiles, training records, and certifications."
+msgstr ""
+
+#: .\templates\dashboard\index.html:37
+msgid "View Personnel"
+msgstr ""
+
+#: .\templates\dashboard\index.html:45
+msgid "Access standards, regulations, and compliance requirements."
+msgstr ""
+
+#: .\templates\dashboard\index.html:46
+msgid "Browse Standards"
+msgstr ""
+
+#: .\templates\dashboard\index.html:54
+msgid "Manage company information, departments, and locations."
+msgstr ""
+
+#: .\templates\dashboard\index.html:55
+msgid "View Company"
+msgstr ""
+
+#: .\templates\dashboard\index.html:63
+msgid "Manage translations for the Quality Tools interface."
+msgstr ""
+
+#: .\templates\dashboard\index.html:64
+msgid "Manage Translations"
+msgstr ""
+
+#: .\templates\language_change_success.html:53
+msgid "Your preferred language has been changed to:"
+msgstr ""
+
+#: .\templates\language_change_success.html:54
+msgid ""
+"The interface language has been updated. You should see all content in your "
+"selected language."
+msgstr ""
+
+#: .\templates\language_change_success.html:55
+msgid "Continue"
+msgstr ""
+
+#: .\templates\rosetta\languages.html:4 .\templates\rosetta\languages.html:19
+msgid "Language selection"
+msgstr ""
+
+#: .\templates\rosetta\languages.html:9
+msgid "User:"
+msgstr ""
+
+#: .\templates\rosetta\languages.html:29
+msgid "Translation guide"
+msgstr ""
+
+#: .\templates\rosetta\languages.html:31
+msgid "Select a language above to view translatable messages."
+msgstr ""
+
+#: .\templates\rosetta\languages.html:32
+msgid "Enter translations for each message in the provided text area."
+msgstr ""
+
+#: .\templates\rosetta\languages.html:33
+msgid "Save your changes by clicking the 'Submit' button."
+msgstr ""
+
+#: .\templates\rosetta\languages.html:35
+msgid "If you need any assistance, please contact the development team."
+msgstr ""
+
+#: .\templates\shared\user_footer.html:7
+msgid "All rights reserved"
+msgstr ""
+
+#: .\templates\shared\user_footer.html:11
+msgid "Privacy Policy"
+msgstr ""
+
+#: .\templates\shared\user_footer.html:12
+msgid "Terms of Service"
+msgstr ""
+
+#: .\templates\shared\user_footer.html:14
+msgid "Contact"
+msgstr ""
+
+#: .\templates\users\edit_profile.html:33 .\templates\users\settings.html:121
+#: .\templates\users\settings.html:207
+msgid "Save Changes"
+msgstr ""
+
+#: .\templates\users\includes\user_navigation.html:26
+msgid "Document Register"
+msgstr ""
+
+#: .\templates\users\profile.html:14
+msgid "Personal Information"
+msgstr ""
+
+#: .\templates\users\profile.html:32 .\templates\users\profile.html:79
+msgid "Company Information"
+msgstr ""
+
+#: .\templates\users\profile.html:58
+msgid "Recent Activity"
+msgstr ""
+
+#: .\templates\users\profile.html:67
+msgid "No recent activity recorded"
+msgstr ""
+
+#: .\templates\users\profile.html:104
+msgid "No company information available"
+msgstr ""
+
+#: .\templates\users\profile.html:113
+msgid "User Groups"
+msgstr ""
+
+#: .\templates\users\profile.html:120
+msgid "No groups assigned"
+msgstr ""
+
+#: .\templates\users\profile.html:126
+msgid "Key Permissions"
+msgstr ""
+
+#: .\templates\users\profile.html:131
+msgid "Create quality documents"
+msgstr ""
+
+#: .\templates\users\profile.html:138
+msgid "Approve quality documents"
+msgstr ""
+
+#: .\templates\users\profile.html:145
+msgid "Manage equipment"
+msgstr ""
+
+#: .\templates\users\profile.html:152
+msgid "Manage standards"
+msgstr ""
+
+#: .\templates\users\settings.html:28
+msgid "General"
+msgstr ""
+
+#: .\templates\users\settings.html:34
+msgid "Notifications"
+msgstr ""
+
+#: .\templates\users\settings.html:40
+msgid "Appearance"
+msgstr ""
+
+#: .\templates\users\settings.html:46
+msgid "Security"
+msgstr ""
+
+#: .\templates\users\settings.html:52
+msgid "Privacy"
+msgstr ""
+
+#: .\templates\users\settings.html:64
+msgid "General Settings"
+msgstr ""
+
+#: .\templates\users\settings.html:72
+msgid "Interface Language"
+msgstr ""
+
+#: .\templates\users\settings.html:82
+msgid "Choose your preferred language for the user interface"
+msgstr ""
+
+#: .\templates\users\settings.html:88
+msgid "Timezone"
+msgstr ""
+
+#: .\templates\users\settings.html:98
+msgid "Select your timezone for accurate time display"
+msgstr ""
+
+#: .\templates\users\settings.html:104
+msgid "Date Format"
+msgstr ""
+
+#: .\templates\users\settings.html:129
+msgid "Notification Settings"
+msgstr ""
+
+#: .\templates\users\settings.html:137
+msgid "Email Notifications"
+msgstr ""
+
+#: .\templates\users\settings.html:144
+msgid "Document approval requests"
+msgstr ""
+
+#: .\templates\users\settings.html:152
+msgid "Document review requests"
+msgstr ""
+
+#: .\templates\users\settings.html:160
+msgid "Equipment maintenance reminders"
+msgstr ""
+
+#: .\templates\users\settings.html:168
+msgid "Training and qualification updates"
+msgstr ""
+
+#: .\templates\users\settings.html:175
+msgid "System Notifications"
+msgstr ""
+
+#: .\templates\users\settings.html:182
+msgid "Document approval notifications"
+msgstr ""
+
+#: .\templates\users\settings.html:190
+msgid "Document updates notifications"
+msgstr ""
+
+#: .\templates\users\settings.html:198
+msgid "Equipment status change notifications"
+msgstr ""
+
+#: .\templates\users\user_documents.html:8
+msgid "Here you can view your documents."
+msgstr ""
+
+#: .\translation_strings.py:16
+msgid "Create"
+msgstr ""
+
+#: .\translation_strings.py:18
+msgid "Filter"
+msgstr ""
+
+#: .\translation_strings.py:22
+msgid "Measuring Instrument"
+msgstr ""
+
+#: .\translation_strings.py:25
+msgid "Metrological Control"
+msgstr ""
+
+#: .\translation_strings.py:29
+msgid "Model"
+msgstr ""
+
+#: .\translation_template.py:31
+msgid "Success"
+msgstr "Erfolg"
+
+#: .\translation_template.py:32
+msgid "Error"
+msgstr "Fehler"
+
+#: .\translation_template.py:33
+msgid "Warning"
+msgstr "Warnung"
+
+#: .\translation_template.py:34
+msgid "Info"
+msgstr "Info"
+
+#: .\translation_template.py:35
+msgid "Today"
+msgstr "Heute"
+
+#: .\translation_template.py:36
+msgid "Yesterday"
+msgstr "Gestern"
+
+#: .\translation_template.py:37
+msgid "Tomorrow"
+msgstr "Morgen"
+
+#: .\translation_template.py:39
+msgid "Time"
+msgstr "Zeit"

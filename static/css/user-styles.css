@@ -1,0 +1,115 @@
+/* User section custom styling */
+
+/* Mobile responsiveness for sidebar */
+@media (max-width: 768px) {
+    #user-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    #user-sidebar.mobile-visible {
+        transform: translateX(0);
+    }
+    
+    #main-content {
+        margin-left: 0 !important;
+    }
+}
+
+/* Custom scrollbar for sidebar */
+#user-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #CBD5E0 #F7FAFC;
+}
+
+#user-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#user-sidebar::-webkit-scrollbar-track {
+    background: #F7FAFC;
+}
+
+#user-sidebar::-webkit-scrollbar-thumb {
+    background-color: #CBD5E0;
+    border-radius: 3px;
+}
+
+/* Utility classes for active states */
+.app-active {
+    background-color: #F3F4F6;
+    border-left: 3px solid #FFCC00;
+    padding-left: calc(1rem - 3px);
+}
+
+.nav-item-active {
+    color: #336699;
+    font-weight: 500;
+}
+
+/* Accessibility improvements */
+a:focus, button:focus {
+    outline: 2px solid #4299E1;
+    outline-offset: 2px;
+}
+
+/* Form styles to match design system */
+.form-input {
+    height: 40px;
+    border: 1px solid #DDDDDD;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.form-input:focus {
+    border-color: #4488BB;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.form-input.error {
+    border-color: #FF4444;
+}
+
+.required-field::after {
+    content: "*";
+    color: #FF4444;
+    margin-left: 0.25rem;
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #4488BB;
+    color: white;
+    border-radius: 4px;
+    height: 40px;
+    padding: 0 1rem;
+    min-width: 120px;
+}
+
+.btn-secondary {
+    background-color: #CCCCCC;
+    color: white;
+    border-radius: 4px;
+    height: 40px;
+    padding: 0 1rem;
+    min-width: 120px;
+}
+
+/* Theme compatibility */
+.dark-mode {
+    --bg-primary: #1A202C;
+    --bg-secondary: #2D3748;
+    --text-primary: #F7FAFC;
+    --text-secondary: #CBD5E0;
+}
+
+/* Transition effects */
+.fade-transition {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.slide-transition {
+    transition: transform 0.3s ease-in-out;
+}

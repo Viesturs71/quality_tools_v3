@@ -30,7 +30,7 @@ INSTALLED_APPS = [
 
      # Third-party
     'crispy_forms',
-    'crispy_bootstrap4',
+    'crispy_bootstrap5',
     'mptt',
     'rosetta',
     'simple_history',
@@ -148,7 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Login/Logout URLs
 LOGIN_REDIRECT_URL = '/'

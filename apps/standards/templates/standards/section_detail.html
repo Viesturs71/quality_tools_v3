@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ section.code }} - {{ section.title }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ section.code }} - {{ section.title }}</h1>
+        <div>
+            <a href="{% url 'standards:standard_detail' section.standard.id %}" class="btn btn-outline-secondary">
+                <i class="fa fa-arrow-left"></i> {% trans "Back to Standard" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            {% trans "Section Details" %}
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>{% trans "Standard" %}:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ section.standard.code }} - {{ section.standard.title }}
+                </div>
+            </div>
+            {% if section.parent %}
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>{% trans "Parent Section" %}:</strong>
+                </div>
+                <div class="col-md-9">
+                    <a href="{% url 'standards:section_detail' section.parent.id %}">
+                        {{ section.parent.code }} - {{ section.parent.title }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>{% trans "Description" %}:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ section.description|linebreaks|default:"-" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if subsections %}
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            {% trans "Subsections" %}
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for subsection in subsections %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5>{{ subsection.code }} - {{ subsection.title }}</h5>
+                            {% if subsection.description %}
+                                <p class="text-muted mb-0">{{ subsection.description|truncatewords:30 }}</p>
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'standards:section_detail' subsection.id %}" class="btn btn-sm btn-outline-primary">
+                            {% trans "View Details" %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if requirements %}
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            {% trans "Requirements" %}
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for requirement in requirements %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <h5>{{ requirement.code }}</h5>
+                            {% if requirement.is_mandatory %}
+                                <span class="badge bg-danger">{% trans "Mandatory" %}</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{% trans "Optional" %}</span>
+                            {% endif %}
+                        </div>
+                        <p>{{ requirement.text }}</p>
+                        {% if requirement.description %}
+                            <p class="text-muted">{{ requirement.description }}</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="standard-section">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white d-flex justify-content-between">
+                <div>{% trans "Linked Documents" %}</div>
+                <button class="btn btn-sm btn-light" id="add-document-link">
+                    <i class="fa fa-plus"></i> {% trans "Add Document Link" %}
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="compliance-stats mb-3">
+                    <h5>{% trans "Compliance Status" %}</h5>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" 
+                             style="width: {{ compliance_percentage }}%;" 
+                             aria-valuenow="{{ compliance_percentage }}" 
+                             aria-valuemin="0" aria-valuemax="100">
+                            {{ compliance_percentage|floatformat:1 }}% {% trans "Compliant" %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-controls mb-3">
+                    <div class="form-group">
+                        <label for="compliance-filter">{% trans "Filter by status" %}:</label>
+                        <select class="form-select" id="compliance-filter">
+                            <option value="all">{% trans "All" %}</option>
+                            <option value="compliant">{% trans "Compliant" %}</option>
+                            <option value="partial">{% trans "Partially Compliant" %}</option>
+                            <option value="non_compliant">{% trans "Non-Compliant" %}</option>
+                            <option value="in_progress">{% trans "In Progress" %}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                {% if document_links %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Document" %}</th>
+                            <th>{% trans "Status" %}</th>
+                            <th>{% trans "Notes" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for link in document_links %}
+                        <tr data-status="{{ link.compliance_status }}">
+                            <td>
+                                <a href="{% url 'standards:document_detail' link.document.id %}">
+                                    {{ link.document.title }}
+                                </a>
+                            </td>
+                            <td>
+                                <span class="badge bg-{{ link.get_status_color }}">
+                                    {{ link.get_compliance_status_display }}
+                                </span>
+                            </td>
+                            <td>{{ link.notes|truncatewords:10 }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary edit-link" 
+                                        data-link-id="{{ link.id }}">
+                                    {% trans "Edit" %}
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger delete-link" 
+                                        data-link-id="{{ link.id }}">
+                                    {% trans "Remove" %}
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="alert alert-info">
+                    {% trans "No documents linked to this standard section." %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Document Link Modal -->
+<div class="modal fade" id="documentLinkModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Link Document to Standard" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="documentLinkForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="link_id" id="link_id">
+                    <input type="hidden" name="section_id" value="{{ section.id }}">
+                    
+                    <div class="mb-3">
+                        <label for="document" class="form-label">{% trans "Document" %}</label>
+                        <select class="form-select" id="document" name="document" required>
+                            <option value="">{% trans "Select a document" %}</option>
+                            {% for doc in available_documents %}
+                            <option value="{{ doc.id }}">{{ doc.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="compliance_status" class="form-label">{% trans "Compliance Status" %}</label>
+                        <select class="form-select" id="compliance_status" name="compliance_status" required>
+                            <option value="compliant">{% trans "Compliant" %}</option>
+                            <option value="partial">{% trans "Partially Compliant" %}</option>
+                            <option value="non_compliant">{% trans "Non-Compliant" %}</option>
+                            <option value="not_applicable">{% trans "Not Applicable" %}</option>
+                            <option value="in_progress">{% trans "Implementation in Progress" %}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">{% trans "Notes" %}</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                <button type="button" class="btn btn-primary" id="saveLink">{% trans "Save" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Filter functionality
+        const filter = document.getElementById('compliance-filter');
+        filter.addEventListener('change', function() {
+            const status = this.value;
+            const rows = document.querySelectorAll('tr[data-status]');
+            
+            rows.forEach(row => {
+                if (status === 'all' || row.dataset.status === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        
+        // Add document link button
+        const addButton = document.getElementById('add-document-link');
+        addButton.addEventListener('click', function() {
+            // Reset form
+            document.getElementById('documentLinkForm').reset();
+            document.getElementById('link_id').value = '';
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('documentLinkModal'));
+            modal.show();
+        });
+        
+        // Save link functionality would go here with AJAX call to backend
+    });
+</script>
+{% endblock %}

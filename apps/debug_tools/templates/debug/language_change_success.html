@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Language Changed" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            {% trans "Language Changed Successfully" %}
+        </div>
+        <div class="card-body">
+            <p>{% trans "Your language preference has been updated to:" %} <strong>{{ LANGUAGE_CODE }}</strong></p>
+            
+            <div class="mt-4">
+                <a href="{{ redirect_url }}" class="btn btn-primary">
+                    {% trans "Continue to your destination" %}
+                </a>
+                <a href="/" class="btn btn-outline-secondary ml-2">
+                    {% trans "Return to home page" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

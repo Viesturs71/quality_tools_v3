@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="login-container">
+  <h2>{% trans "Login" %}</h2>
+  {% if form.errors %}
+    <div class="alert alert-danger">
+      {% trans "Please correct the error below." %}
+    </div>
+  {% endif %}
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">{% trans "Log in" %}</button>
+  </form>
+</div>
+{% endblock %}

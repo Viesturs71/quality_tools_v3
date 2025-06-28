@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-<h1>Method Initial Form</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+<div class="container mt-4">
+    <h1>{% trans "Method Initial Form" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+            <a href="{% url 'methods:method_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -10,63 +10,51 @@ from . import views
 
 app_name = "accounts"
 
-urlpatterns = custom_admin_site.get_urls()
 urlpatterns = [
-    # 👤 User registration & profile
-    path(
-        "register/",
-        views.register,
-        name="register",
-    ),
-    path(
-        "profile/",
-        views.profile,
-        name="profile",
-    ),
-
-    # 🔐 Login / Logout
+    # Authentication URLs
     path(
         "login/",
-        auth_views.LoginView.as_view(
-            template_name="accounts/login.html",
-            extra_context={"page_title": _("Login")}
-        ),
+        views.login_view,
         name="login",
     ),
     path(
         "logout/",
         auth_views.LogoutView.as_view(
-            template_name="accounts/logged_out.html",
-            extra_context={"page_title": _("Logged out")}
+            next_page="accounts:login"
         ),
         name="logout",
     ),
+    path(
+        "register/",
+        views.register,
+        name="register",
+    ),
 
-    # 🔒 Password change
+    # Password management
     path(
         "password_change/",
         auth_views.PasswordChangeView.as_view(
-            template_name="accounts/password_change.html",
-            extra_context={"page_title": _("Change password")}
+            template_name="accounts/password_change_form.html",
+            success_url="accounts:password_change_done"
         ),
         name="password_change",
     ),
     path(
         "password_change/done/",
         auth_views.PasswordChangeDoneView.as_view(
-            template_name="accounts/password_change_done.html",
-            extra_context={"page_title": _("Password changed")}
+            template_name="accounts/password_change_done.html"
         ),
         name="password_change_done",
     ),
 
-    # 🔁 Password reset
+    # Password reset URLs
     path(
         "password_reset/",
         auth_views.PasswordResetView.as_view(
-            template_name="accounts/password_reset.html",
+            template_name="accounts/password_reset_form.html",
             email_template_name="accounts/password_reset_email.html",
             subject_template_name="accounts/password_reset_subject.txt",
+            success_url="accounts:password_reset_done",
             extra_context={"page_title": _("Reset password")}
         ),
         name="password_reset",
@@ -83,6 +71,7 @@ urlpatterns = [
         "reset/<uidb64>/<token>/",
         auth_views.PasswordResetConfirmView.as_view(
             template_name="accounts/password_reset_confirm.html",
+            success_url="accounts:password_reset_complete",
             extra_context={"page_title": _("Set new password")}
         ),
         name="password_reset_confirm",
@@ -95,4 +84,58 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+
+    # User profile URLs
+    path(
+        "profile/",
+        views.profile_view,  # Updated to use the correct view function name
+        name="user_profile",
+    ),
+    path(
+        "profile/edit/",
+        views.profile_update,
+        name="edit_profile",
+    ),
+    path(
+        "profile/settings/",
+        views.account_settings,
+        name="account_settings",
+    ),
+
+    # Account management
+    path(
+        "account/verification/",
+        views.account_verification,
+        name="account_verification",
+    ),
+    path(
+        "account/activate/<uidb64>/<token>/",
+        views.activate_account,
+        name="activate_account",
+    ),
+
+    # User management (admin only)
+    path(
+        "users/",
+        views.user_list,
+        name="user_list",
+    ),
+    path(
+        "users/<int:user_id>/",
+        views.user_detail,
+        name="user_detail",
+    ),
+    path(
+        "users/<int:user_id>/edit/",
+        views.edit_user,
+        name="edit_user",
+    ),
+    path(
+        "users/<int:user_id>/delete/",
+        views.delete_user,
+        name="delete_user",
+    ),
+
+    # Custom admin dashboard
+    path("admin/", custom_admin_site.urls),
 ]

@@ -27,3 +27,8 @@ class MaintenanceRecord(models.Model):
 
     def __str__(self):
         return f"{self.get_maintenance_type_display()} on {self.maintenance_date}"
+
+"""
+This file is redundant as MaintenanceRecord is already defined in maintenance.py
+This file should be deleted and all references should use the model from maintenance.py
+"""

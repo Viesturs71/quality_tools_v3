@@ -16,7 +16,8 @@ class Employee(models.Model):
     position = models.CharField(max_length=100, verbose_name=_("Position"))
     department = models.ForeignKey(
         Department, on_delete=models.SET_NULL, null=True, blank=True,
-        related_name='employees', verbose_name=_("Department")
+        related_name='personnel_employees',  # Changed from 'employees' to 'personnel_employees'
+        verbose_name=_("Department")
     )
     email = models.EmailField(verbose_name=_("Email"), blank=True)
     phone = models.CharField(max_length=20, blank=True, verbose_name=_("Phone"))

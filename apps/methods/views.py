@@ -3,22 +3,22 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from .forms import MethodInitialForm, MethodDetailForm
-from apps.methods.models import MetozuRegistrs
+from apps.methods.models import Method
 
 
 class MethodListView(ListView):
-    model = MetozuRegistrs
+    model = Method
     template_name = 'methods/method_list.html'
     context_object_name = 'methods'
 
 
 class MethodDetailView(DetailView):
-    model = MetozuRegistrs
+    model = Method
     template_name = 'methods/method_detail.html'
 
 
 class MethodCreateView(CreateView):
-    model = MetozuRegistrs
+    model = Method
     form_class = MethodInitialForm
     template_name = 'methods/method_form.html'
 
@@ -27,7 +27,7 @@ class MethodCreateView(CreateView):
 
 
 class MethodUpdateView(UpdateView):
-    model = MetozuRegistrs
+    model = Method
     form_class = MethodDetailForm
     template_name = 'methods/method_form.html'
 

@@ -1,0 +1,31 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" class="{% block html_classes %}{% endblock %}">    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Rosetta{% endblock %}</title>
+        <link rel="stylesheet" href="{% static "admin/rosetta/css/rosetta.css" %}" type="text/css"/>
+        <link rel="stylesheet" href="{% static "css/rosetta-custom.css" %}" type="text/css"/>
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        {% block extra_styles %}{% endblock %}
+        {{ rosetta_settings_js|json_script:"rosetta-settings-js" }}
+        <script src="{% static "admin/rosetta/js/rosetta.js" %}"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">                {% block header %}
+                    <div id="branding">
+                        <h1 id="site-name"><a href="/rosetta/">Rosetta</a> </h1>
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="breadcrumbs">{% block breadcumbs %}{% endblock %}</div>
+            <div id="content" class="flex">
+                {% block main %}{% endblock %}
+            </div>
+            <div id="footer" class="breadcumbs">
+                <a href="https://github.com/mbi/django-rosetta">Rosetta</a> <span class="version">{{ version }}</span>
+            </div>
+        </div>
+    </body>
+</html>

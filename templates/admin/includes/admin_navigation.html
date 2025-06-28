@@ -1,82 +1,69 @@
 {% load i18n %}
 
-<nav class="admin-sidebar bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 font-serif h-full py-2">
-    <div id="nav-sidebar">
-        {# Viss JavaScript kods šim elementam ir pārvietots uz static/js/admin_main.js #}
-        
-        <ul class="py-2">
-            <li class="mb-1 px-3">
-                <button id="dropdown-auth" class="dropdown-button w-full flex justify-between items-center py-2 px-3 rounded text-left transition-colors duration-200">
-                    <span><i class="fas fa-lock mr-2"></i> {% trans "Authentication and Authorization" %}</span>
-                    <i class="fas fa-chevron-down dropdown-arrow transform transition-transform"></i>
-                </button>
-                <ul class="nav-dropdown-menu ml-4 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <li><a href="{{ admin_site_root }}auth/user/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-user mr-2"></i> {% trans "Users" %}</a></li>
-                    <li><a href="{{ admin_site_root }}auth/group/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-users mr-2"></i> {% trans "Groups" %}</a></li>
-                    <li><a href="{{ admin_site_root }}auth/permission/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-shield-alt mr-2"></i> {% trans "Permissions" %}</a></li>
-                </ul>
-            </li>
-
-            <li class="mb-1 px-3">
-                <button id="dropdown-companies" class="dropdown-button w-full flex justify-between items-center py-2 px-3 rounded text-left transition-colors duration-200">
-                    <span><i class="fas fa-building mr-2"></i> {% trans 'Companies' %}</span>
-                    <i class="fas fa-chevron-down dropdown-arrow transform transition-transform"></i>
-                </button>
-                <ul class="nav-dropdown-menu ml-4 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <li><a href="{{ admin_site_root }}company/company/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-industry mr-2"></i> {% trans 'Companies' %}</a></li>
-                    <li><a href="{{ admin_site_root }}company/department/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-sitemap mr-2"></i> {% trans 'Departments' %}</a></li>
-                    <li><a href="{{ admin_site_root }}company/location/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-map-marker-alt mr-2"></i> {% trans 'Locations' %}</a></li>
-                </ul>
-            </li>
-
-            <li class="mb-1 px-3">
-                <button id="dropdown-equipment" class="dropdown-button w-full flex justify-between items-center py-2 px-3 rounded text-left transition-colors duration-200">
-                    <span><i class="fas fa-tools mr-2"></i> {% trans 'Equipment Management' %}</span>
-                    <i class="fas fa-chevron-down dropdown-arrow transform transition-transform"></i>
-                </button>
-                <ul class="nav-dropdown-menu ml-4 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <li><a href="{{ admin_site_root }}equipment/equipmentregistry/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-cogs mr-2"></i> {% trans 'Equipment Registry' %}</a></li>
-                    <li><a href="{{ admin_site_root }}equipment/equipmentcategory/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-list-alt mr-2"></i> {% trans 'Equipment Categories' %}</a></li>
-                    <li><a href="{{ admin_site_root }}equipment/maintenancerecord/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-wrench mr-2"></i> {% trans 'Maintenance Records' %}</a></li>
-                </ul>
-            </li>
-
-            <li class="mb-1 px-3">
-                <button id="dropdown-documentation" class="dropdown-button w-full flex justify-between items-center py-2 px-3 rounded text-left transition-colors duration-200">
-                    <span><i class="fas fa-file-alt mr-2"></i> {% trans 'Documentation' %}</span>
-                    <i class="fas fa-chevron-down dropdown-arrow transform transition-transform"></i>
-                </button>
-                <ul class="nav-dropdown-menu ml-4 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <li><a href="{{ admin_site_root }}quality_docs/qualitydocument/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-file-contract mr-2"></i> {% trans 'Quality Documents' %}</a></li>
-                    <li><a href="{{ admin_site_root }}quality_docs/documenttype/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-folder-open mr-2"></i> {% trans 'Document Types' %}</a></li>
-                    <li><a href="{{ admin_site_root }}quality_docs/documentsection/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-code-branch mr-2"></i> {% trans 'Document Sections' %}</a></li>
-                </ul>
-            </li>
-
-            <li class="mb-1 px-3">
-                <button id="dropdown-personnel" class="dropdown-button w-full flex justify-between items-center py-2 px-3 rounded text-left transition-colors duration-200">
-                    <span><i class="fas fa-users mr-2"></i> {% trans 'Personnel Management' %}</span>
-                    <i class="fas fa-chevron-down dropdown-arrow transform transition-transform"></i>
-                </button>
-                <ul class="nav-dropdown-menu ml-4 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <li><a href="{{ admin_site_root }}personnel/employee/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-user-tie mr-2"></i> {% trans 'Staff Records' %}</a></li>
-                    <li><a href="{{ admin_site_root }}personnel/qualification/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-award mr-2"></i> {% trans 'Qualifications' %}</a></li>
-                    <li><a href="{{ admin_site_root }}personnel/training/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-chalkboard-teacher mr-2"></i> {% trans 'Training Records' %}</a></li>
-                </ul>
-            </li>
-
-            <li class="mb-1 px-3">
-                <button id="dropdown-standards" class="dropdown-button w-full flex justify-between items-center py-2 px-3 rounded text-left transition-colors duration-200">
-                    <span><i class="fas fa-certificate mr-2"></i> {% trans 'Standards' %}</span>
-                    <i class="fas fa-chevron-down dropdown-arrow transform transition-transform"></i>
-                </button>
-                <ul class="nav-dropdown-menu ml-4 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <li><a href="{{ admin_site_root }}standards/standard/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-book mr-2"></i> {% trans 'Standards' %}</a></li>
-                    <li><a href="{{ admin_site_root }}standards/standardsection/" class="block py-2 px-3 rounded transition-colors duration-150"><i class="fas fa-list-ol mr-2"></i> {% trans 'Standard Sections' %}</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-{# Noņemtas CSS stila deklarācijas, kas bija pārvietotas uz base_site.html vai admin_main.js #}
+<div class="navigation-container transition-all duration-300">
+  <!-- App Navigation -->
+  <nav class="py-4">
+    <ul class="space-y-1">
+      {% for app in available_apps %}
+        <li class="app-item">
+          <a href="#" class="app-toggle flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <i class="fas fa-{{ app.icon|default:'circle' }} w-5 h-5 mr-2 text-[#336699] dark:text-white"></i>
+            <span class="flex-1">{{ app.name }}</span>
+            <i class="fas fa-angle-down transition-transform duration-200"></i>
+          </a>
+          
+          <div class="models-submenu hidden pl-6 py-2">
+            {% for model in app.models %}
+              <a href="{{ model.admin_url }}" class="flex items-center px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 {% if model.active %}border-l-4 border-[#FFCC00]{% endif %}">
+                <i class="fas fa-circle-o w-4 h-4 mr-2"></i>
+                <span>{{ model.name }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        </li>
+      {% endfor %}
+      
+      <!-- Additional links -->
+      <li class="mt-4">
+        <h3 class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+          {% trans "Quick Links" %}
+        </h3>
+      </li>
+      <li>
+        <a href="{% url 'admin:index' %}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <i class="fas fa-tachometer-alt w-5 h-5 mr-2 text-[#336699] dark:text-white"></i>
+          <span>{% trans "Dashboard" %}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'admin:auth_user_changelist' %}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <i class="fas fa-users w-5 h-5 mr-2 text-[#336699] dark:text-white"></i>
+          <span>{% trans "Users" %}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'admin:auth_group_changelist' %}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <i class="fas fa-user-tag w-5 h-5 mr-2 text-[#336699] dark:text-white"></i>
+          <span>{% trans "Groups" %}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.app-toggle').forEach(function(toggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        var submenu = toggle.parentElement.querySelector('.models-submenu');
+        var icon = toggle.querySelector('.fa-angle-down');
+        if (submenu) {
+          submenu.classList.toggle('hidden');
+          if (icon) {
+            icon.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+          }
+        }
+      });
+    });
+  });
+</script>

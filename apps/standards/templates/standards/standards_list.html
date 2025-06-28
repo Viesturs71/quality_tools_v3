@@ -1,10 +1,63 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% translate "Standards" %}{% endblock %}
+{% block title %}{% trans "Standards" %}{% endblock %}
 
 {% block content %}
-<h1>{% translate "Standards" %}</h1>
-<p>{% translate "Here you can view all standards." %}</p>
-<!-- Add standards list or other content here -->
+<div class="container mt-4">
+    <h1>{% trans "Standards" %}</h1>
+    <p>{% trans "Here you can view all standards." %}</p>
+    
+    <div class="row mb-4">
+        <div class="col">
+            <form class="d-flex" action="{% url 'standards:standard_search' %}" method="get">
+                <input class="form-control me-2" type="search" name="q" placeholder="{% trans 'Search standards...' %}" aria-label="{% trans 'Search' %}">
+                <button class="btn btn-outline-primary" type="submit">{% trans "Search" %}</button>
+            </form>
+        </div>
+    </div>
+    
+    {% if standards %}
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Code" %}</th>
+                            <th>{% trans "Name" %}</th>
+                            <th>{% trans "Version" %}</th>
+                            <th>{% trans "Status" %}</th>
+                            <th>{% trans "Last Updated" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for standard in standards %}
+                        <tr>
+                            <td>{{ standard.code }}</td>
+                            <td>{{ standard.name }}</td>
+                            <td>{{ standard.version }}</td>
+                            <td>
+                                <span class="badge {% if standard.status == 'published' %}bg-success{% elif standard.status == 'draft' %}bg-secondary{% elif standard.status == 'archived' %}bg-danger{% endif %}">
+                                    {{ standard.get_status_display }}
+                                </span>
+                            </td>
+                            <td>{{ standard.date_updated|date:"Y-m-d" }}</td>
+                            <td>
+                                <a href="{% url 'standards:standard_detail_view' standard.id %}" class="btn btn-sm btn-info">{% trans "View" %}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        {% trans "No standards found." %}
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

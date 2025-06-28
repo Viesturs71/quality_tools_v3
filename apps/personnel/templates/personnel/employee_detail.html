@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Employee Details" %} - {{ employee.first_name }} {{ employee.last_name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
+            <p class="text-muted">{{ employee.employee_id }} - {{ employee.position }}</p>
+        </div>
+        <div class="col-auto">
+            <div class="btn-group">
+                <a href="{% url 'personnel:employee_update' employee.pk %}" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> {% trans "Edit" %}
+                </a>
+                <a href="{% url 'personnel:employee_list' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> {% trans "Back to List" %}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Employee Information Card -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{% trans "Basic Information" %}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th>{% trans "Employee ID" %}:</th>
+                            <td>{{ employee.employee_id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "Full Name" %}:</th>
+                            <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "Position" %}:</th>
+                            <td>{{ employee.position }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "Department" %}:</th>
+                            <td>{{ employee.department|default:"-" }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th>{% trans "Email" %}:</th>
+                            <td>{{ employee.email|default:"-" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "Phone" %}:</th>
+                            <td>{{ employee.phone|default:"-" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "Hire Date" %}:</th>
+                            <td>{{ employee.hire_date|date:"Y-m-d"|default:"-" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "Status" %}:</th>
+                            <td>
+                                {% if employee.is_active %}
+                                <span class="badge bg-success">{% trans "Active" %}</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{% trans "Inactive" %}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            {% if employee.notes %}
+            <div class="mt-3">
+                <h6>{% trans "Notes" %}:</h6>
+                <p>{{ employee.notes }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Tabs for Related Information -->
+    <ul class="nav nav-tabs" id="employeeTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="qualifications-tab" data-bs-toggle="tab" data-bs-target="#qualifications" type="button" role="tab" aria-controls="qualifications" aria-selected="true">
+                {% trans "Qualifications" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="trainings-tab" data-bs-toggle="tab" data-bs-target="#trainings" type="button" role="tab" aria-controls="trainings" aria-selected="false">
+                {% trans "Training Records" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education" type="button" role="tab" aria-controls="education" aria-selected="false">
+                {% trans "Education" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="records-tab" data-bs-toggle="tab" data-bs-target="#records" type="button" role="tab" aria-controls="records" aria-selected="false">
+                {% trans "Employee Records" %}
+            </button>
+        </li>
+    </ul>
+    
+    <div class="tab-content" id="employeeTabsContent">
+        <!-- Qualifications Tab -->
+        <div class="tab-pane fade show active" id="qualifications" role="tabpanel" aria-labelledby="qualifications-tab">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    {% if employee.qualifications.exists %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Qualification Type" %}</th>
+                                    <th>{% trans "Issuing Organization" %}</th>
+                                    <th>{% trans "Issue Date" %}</th>
+                                    <th>{% trans "Expiry Date" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for qualification in employee.qualifications.all %}
+                                <tr>
+                                    <td>{{ qualification.qualification_type }}</td>
+                                    <td>{{ qualification.issuing_organization|default:"-" }}</td>
+                                    <td>{{ qualification.issue_date|date:"Y-m-d" }}</td>
+                                    <td>{{ qualification.expiry_date|date:"Y-m-d"|default:"-" }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info">{% trans "View" %}</button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info">
+                        {% trans "No qualifications found for this employee." %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trainings Tab -->
+        <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    {% if employee.training_records.exists %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Training Name" %}</th>
+                                    <th>{% trans "Provider" %}</th>
+                                    <th>{% trans "Status" %}</th>
+                                    <th>{% trans "Date" %}</th>
+                                    <th>{% trans "Certificate" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for training in employee.training_records.all %}
+                                <tr>
+                                    <td>{{ training.training_name }}</td>
+                                    <td>{{ training.provider|default:"-" }}</td>
+                                    <td>{{ training.get_status_display }}</td>
+                                    <td>{{ training.start_date|date:"Y-m-d" }}</td>
+                                    <td>
+                                        {% if training.certificate_issued %}
+                                        <span class="badge bg-success">{% trans "Yes" %}</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">{% trans "No" %}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info">{% trans "View" %}</button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info">
+                        {% trans "No training records found for this employee." %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Education Tab -->
+        <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    {% if employee.education.exists %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Institution" %}</th>
+                                    <th>{% trans "Degree" %}</th>
+                                    <th>{% trans "Field of Study" %}</th>
+                                    <th>{% trans "Level" %}</th>
+                                    <th>{% trans "Period" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for edu in employee.education.all %}
+                                <tr>
+                                    <td>{{ edu.institution }}</td>
+                                    <td>{{ edu.degree|default:"-" }}</td>
+                                    <td>{{ edu.field_of_study|default:"-" }}</td>
+                                    <td>{{ edu.get_level_display }}</td>
+                                    <td>
+                                        {{ edu.start_date|date:"Y-m-d" }} - 
+                                        {% if edu.end_date %}
+                                            {{ edu.end_date|date:"Y-m-d" }}
+                                        {% else %}
+                                            {% trans "Present" %}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info">{% trans "View" %}</button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info">
+                        {% trans "No education records found for this employee." %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Employee Records Tab -->
+        <div class="tab-pane fade" id="records" role="tabpanel" aria-labelledby="records-tab">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    {% if employee.employee_records.exists %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Record Type" %}</th>
+                                    <th>{% trans "Title" %}</th>
+                                    <th>{% trans "Issue Date" %}</th>
+                                    <th>{% trans "Expiry Date" %}</th>
+                                    <th>{% trans "Confidential" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for record in employee.employee_records.all %}
+                                <tr>
+                                    <td>{{ record.get_record_type_display }}</td>
+                                    <td>{{ record.title }}</td>
+                                    <td>{{ record.issue_date|date:"Y-m-d" }}</td>
+                                    <td>{{ record.expiry_date|date:"Y-m-d"|default:"-" }}</td>
+                                    <td>
+                                        {% if record.is_confidential %}
+                                        <span class="badge bg-danger">{% trans "Yes" %}</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">{% trans "No" %}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info">{% trans "View" %}</button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info">
+                        {% trans "No employee records found for this employee." %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,155 +1,109 @@
 {% load i18n %}
-<nav class="py-4">
+<div class="sidebar w-64 h-screen bg-[#FFFFFF] text-[#333333] shadow-md flex flex-col z-40">
+  <div class="p-4 text-xl font-bold border-b border-[#EEEEEE]">
+    {% trans "Management Tools" %}
+  </div>
+  <nav class="py-4 flex-1 overflow-y-auto">
     <ul class="space-y-1">
-        <!-- citi menija vienumi... -->
-
-        <!-- Document Management -->
-        <li class="mt-4">
-            <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                {% trans "Documentation" %}
-            </div>
-            <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white"
-                    data-toggle="collapse" data-target="docs-menu">
-                <div class="flex items-center">
-                    <i class="fas fa-file-alt w-5 h-5 mr-2"></i>
-                    <span>{% trans "Documents" %}</span>
-                </div>
-                <i class="fas fa-angle-down transition-transform"></i>
-            </button>
-            <ul id="docs-menu"
-                class="pl-4 mt-1 space-y-1 {% if not '/documents/' in request.path %}hidden{% endif %}">
-                <li>
-                    <a href="{% url 'documents:document_register' %}"
-                       class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white
-                              {% if '/documents/register/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-book w-5 h-5 mr-2"></i>
-                        <span>{% trans "Document Register" %}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'documents:user_documents' %}"
-                       class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white
-                              {% if '/documents/user-documents/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-file-pdf w-5 h-5 mr-2"></i>
-                        <span>{% trans "My Documents" %}</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- Equipment Management -->
-        <li class="mt-4">
-            <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Equipment
-            </div>
-            <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white" data-toggle="collapse" data-target="equipment-menu">
-                <div class="flex items-center">
-                    <i class="fas fa-tools w-5 h-5 mr-2"></i>
-                    <span>Equipment</span>
-                </div>
-                <i class="fas fa-angle-down transition-transform"></i>
-            </button>
-            <ul id="equipment-menu" class="pl-4 mt-1 space-y-1 {% if not '/equipment/' in request.path %}hidden{% endif %}">
-                <li>
-                    <a href="{% url 'equipment:equipment_list' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/equipment/list/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-cogs w-5 h-5 mr-2"></i>
-                        <span>Equipment Registry</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'equipment:my_equipment' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/equipment/my-equipment/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-user-cog w-5 h-5 mr-2"></i>
-                        <span>My Equipment</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'equipment:maintenance_list' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/equipment/maintenance/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-clipboard-check w-5 h-5 mr-2"></i>
-                        <span>Maintenance</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- Standards -->
-        <li class="mt-4">
-            <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Standards
-            </div>
-            <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white" data-toggle="collapse" data-target="standards-menu">
-                <div class="flex items-center">
-                    <i class="fas fa-book w-5 h-5 mr-2"></i>
-                    <span>Standards</span>
-                </div>
-                <i class="fas fa-angle-down transition-transform"></i>
-            </button>
-            <ul id="standards-menu" class="pl-4 mt-1 space-y-1 {% if not '/standards/' in request.path %}hidden{% endif %}">
-                <li>
-                    <a href="{% url 'standards:standard_list' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/standards/list/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-book-open w-5 h-5 mr-2"></i>
-                        <span>Standards List</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'standards:standard_search' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/standards/search/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-search w-5 h-5 mr-2"></i>
-                        <span>Search Standards</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- Personnel Management -->
-        <li class="mt-4">
-            <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Personnel
-            </div>
-            <button class="nav-item w-full flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white" data-toggle="collapse" data-target="personnel-menu">
-                <div class="flex items-center">
-                    <i class="fas fa-id-card w-5 h-5 mr-2"></i>
-                    <span>Personnel</span>
-                </div>
-                <i class="fas fa-angle-down transition-transform"></i>
-            </button>
-            <ul id="personnel-menu" class="pl-4 mt-1 space-y-1 {% if not '/personnel/' in request.path %}hidden{% endif %}">
-                <li>
-                    <a href="{% url 'personnel:my_profile' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/personnel/my-profile/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-user-tie w-5 h-5 mr-2"></i>
-                        <span>My Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'personnel:my_trainings' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/personnel/my-trainings/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-graduation-cap w-5 h-5 mr-2"></i>
-                        <span>My Trainings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'personnel:my_qualifications' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/personnel/my-qualifications/' in request.path %}active-nav-item{% endif %}">
-                        <i class="fas fa-certificate w-5 h-5 mr-2"></i>
-                        <span>My Qualifications</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- User Settings -->
-        <li class="mt-4">
-            <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                User Settings
-            </div>
-            <a href="{% url 'users:profile' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/users/profile/' in request.path %}active-nav-item{% endif %}">
-                <i class="fas fa-user w-5 h-5 mr-2"></i>
-                <span>Profile</span>
-            </a>
-            <a href="{% url 'users:settings' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/users/settings/' in request.path %}active-nav-item{% endif %}">
-                <i class="fas fa-cog w-5 h-5 mr-2"></i>
-                <span>Settings</span>
-            </a>
-            <a href="{% url 'password_change' %}" class="nav-item flex items-center px-4 py-2 text-gray-300 hover:text-white {% if '/password_change/' in request.path %}active-nav-item{% endif %}">
-                <i class="fas fa-key w-5 h-5 mr-2"></i>
-                <span>Change Password</span>
-            </a>
-        </li>
+      <!-- Dashboard -->
+      <li>
+        <a href="{% url 'dashboard:index' %}" class="flex items-center px-4 py-2 hover:bg-[#EEEEEE] rounded">
+          <i class="fas fa-tachometer-alt w-5 h-5 mr-2 text-[#336699]"></i>
+          <span>{% trans "Dashboard" %}</span>
+        </a>
+      </li>
+      <!-- Documents -->
+      <li>
+        <a href="#" class="user-app-toggle flex items-center px-4 py-2 hover:bg-[#EEEEEE] rounded">
+          <i class="fas fa-file-alt w-5 h-5 mr-2 text-[#336699]"></i>
+          <span>{% trans "Documents" %}</span>
+          <i class="fas fa-angle-down ml-auto"></i>
+        </a>
+        <div class="user-models-submenu hidden pl-8 py-2">
+          <a href="{% url 'documents:document_list' %}" class="flex items-center px-2 py-1 text-sm hover:underline">
+            <i class="fas fa-circle-o w-4 h-4 mr-2"></i>
+            <span>{% trans "All Documents" %}</span>
+          </a>
+          <a href="{% url 'documents:user_documents' %}" class="flex items-center px-2 py-1 text-sm hover:underline">
+            <i class="fas fa-circle-o w-4 h-4 mr-2"></i>
+            <span>{% trans "My Documents" %}</span>
+          </a>
+        </div>
+      </li>
+      <!-- Equipment -->
+      <li>
+        <a href="#" class="user-app-toggle flex items-center px-4 py-2 hover:bg-[#EEEEEE] rounded">
+          <i class="fas fa-tools w-5 h-5 mr-2 text-[#336699]"></i>
+          <span>{% trans "Equipment" %}</span>
+          <i class="fas fa-angle-down ml-auto"></i>
+        </a>
+        <div class="user-models-submenu hidden pl-8 py-2">
+          <a href="{% url 'equipment:equipment_list' %}" class="flex items-center px-2 py-1 text-sm hover:underline">
+            <i class="fas fa-circle-o w-4 h-4 mr-2"></i>
+            <span>{% trans "All Equipment" %}</span>
+          </a>
+          <a href="{% url 'equipment:my_equipment' %}" class="flex items-center px-2 py-1 text-sm hover:underline">
+            <i class="fas fa-circle-o w-4 h-4 mr-2"></i>
+            <span>{% trans "My Equipment" %}</span>
+          </a>
+        </div>
+      </li>
+      <!-- Standards -->
+      <li>
+        <a href="{% url 'standards:standard_list' %}" class="flex items-center px-4 py-2 hover:bg-[#EEEEEE] rounded">
+          <i class="fas fa-book w-5 h-5 mr-2 text-[#336699]"></i>
+          <span>{% trans "Standards" %}</span>
+        </a>
+      </li>
+      <!-- Personnel -->
+      <li>
+        <a href="#" class="user-app-toggle flex items-center px-4 py-2 hover:bg-[#EEEEEE] rounded">
+          <i class="fas fa-id-card w-5 h-5 mr-2 text-[#336699]"></i>
+          <span>{% trans "Personnel" %}</span>
+          <i class="fas fa-angle-down ml-auto"></i>
+        </a>
+        <div class="user-models-submenu hidden pl-8 py-2">
+          <a href="{% url 'personnel:my_profile' %}" class="flex items-center px-2 py-1 text-sm hover:underline">
+            <i class="fas fa-circle-o w-4 h-4 mr-2"></i>
+            <span>{% trans "My Profile" %}</span>
+          </a>
+          <a href="{% url 'personnel:my_qualifications' %}" class="flex items-center px-2 py-1 text-sm hover:underline">
+            <i class="fas fa-circle-o w-4 h-4 mr-2"></i>
+            <span>{% trans "My Qualifications" %}</span>
+          </a>
+        </div>
+      </li>
+      <!-- Settings -->
+      <li>
+        <a href="{% url 'users:settings' %}" class="flex items-center px-4 py-2 hover:bg-[#EEEEEE] rounded">
+          <i class="fas fa-cog w-5 h-5 mr-2 text-[#336699]"></i>
+          <span>{% trans "Settings" %}</span>
+        </a>
+      </li>
+      <!-- Logout -->
+      <li>
+        <a href="{% url 'logout' %}" class="flex items-center px-4 py-2 hover:bg-[#EEEEEE] rounded">
+          <i class="fas fa-sign-out-alt w-5 h-5 mr-2 text-[#336699]"></i>
+          <span>{% trans "Log Out" %}</span>
+        </a>
+      </li>
     </ul>
-</nav>
+  </nav>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.user-app-toggle').forEach(function(toggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        var submenu = toggle.parentElement.querySelector('.user-models-submenu');
+        var icon = toggle.querySelector('.fa-angle-down');
+        if (submenu) {
+          submenu.classList.toggle('hidden');
+          if (icon) {
+            icon.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+          }
+        }
+      });
+    });
+  });
+</script>

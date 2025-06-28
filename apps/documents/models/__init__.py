@@ -1,16 +1,23 @@
-from .document import QualityDocument
+"""
+Documents app models initialization.
+"""
+import importlib.util
+from .document import Document
+from .revision import DocumentRevision
 from .section import DocumentSection
-from .attachment import DocumentAttachment  # Example from apps/documentation
-from .revision import DocumentRevision      # Example from apps/documentation
-from .document import Document  # Ensure this is imported
-
+from .attachment import Attachment
+from .section_document_link import SectionDocumentLink
+# Add other model imports as needed
 __all__ = [
     'Document',
-    'DocumentAcknowledgment',
-    'DocumentAttachment',
-    'DocumentDistribution',
     'DocumentRevision',
     'DocumentSection',
-    'QualityDocument',
-    'SignatureRequest',
+    'Attachment',
+    'SectionDocumentLink',
 ]
+# Import other models dynamically if needed
+# Example:
+# if importlib.util.find_spec("apps.documents.models.some_other_model"):
+#     from .some_other_model import SomeOtherModel
+#     __all__.append('SomeOtherModel')
+

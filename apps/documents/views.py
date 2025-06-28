@@ -1,27 +1,31 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
+"""
+Re-export views from the views package for backward compatibility.
+"""
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-
 from .models import Document
+from .views.document_views import (
+    register_document, user_documents
+)
 
-
+# Function-based views for backward compatibility
 def document_list(request):
-    """View to display list of documents."""
-    documents = Document.objects.all()
-    return render(request, 'documents/document_list.html', {'documents': documents})
-
+    """Redirects to class-based view."""
+    return DocumentListView.as_view()(request)
 
 def document_detail(request, pk):
-    """View to display document details."""
-    document = get_object_or_404(Document, pk=pk)
-    return render(request, 'documents/document_detail.html', {'document': document})
+    """Redirects to class-based view."""
+    return DocumentDetailView.as_view()(request, pk=pk)
 
-
-@login_required
 def document_register(request):
-    """View for the document register."""
-    return render(request, 'documents/document_register.html', {'page_title': 'Document Register'})
+    """Redirects to register_document function."""
+    return register_document(request)
+__all__ = [
+    'DocumentListView', 'DocumentDetailView', 'DocumentCreateView',
+    'DocumentUpdateView', 'DocumentDeleteView', 'document_list',
+    'document_detail', 'document_register', 'register_document',
+    'user_documents'
+]
 
 
 class DocumentListView(ListView):

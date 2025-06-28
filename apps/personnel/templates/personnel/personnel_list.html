@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Personnel List{% endblock %}
+{% block title %}{% trans "Personnel List" %}{% endblock %}
 
 {% block content %}
-<h1>Personnel List</h1>
-<p>This is the personnel list page.</p>
+<h1>{% trans "Personnel List" %}</h1>
+<p>{% trans "This is the personnel list page." %}</p>
 {% endblock %}

@@ -1,79 +1,121 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
-from django.utils.text import slugify
-from .category import Category
-from apps.documents.utils.document_numbering import (
-    generate_document_number,
-    validate_document_number_format,
-    validate_document_number_uniqueness,
-    parse_document_number,
-    suggest_next_sequence_number,
-)
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
-class QualityDocument(models.Model):
-    """Model representing a quality document."""
-    title = models.CharField(max_length=255, verbose_name=_("Title"))
-    document_number = models.CharField(max_length=50, unique=True, verbose_name=_("Document Number"))
-    version = models.CharField(max_length=20, verbose_name=_("Version"))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
-
-    class Meta:
-        verbose_name = _("Quality Document")
-        verbose_name_plural = _("Quality Documents")
-        ordering = ["document_number"]
-
-    def __str__(self):
-        return f"{self.document_number}: {self.title}"
 
 class Document(models.Model):
-    """Model representing a quality document."""
-    DOCUMENT_TYPES = (
-        ('policy', 'Politika'),
-        ('procedure', 'Procedūra'),
-        ('instruction', 'Instrukcija'),
-        ('form', 'Veidlapa'),
-        ('other', 'Cits'),
+    """Base document model for the document management system."""
+    title = models.CharField(_('Title'), max_length=255)
+    document_number = models.CharField(_('Document Number'), max_length=50, unique=True)
+    version = models.CharField(_('Version'), max_length=20, default='1.0')
+    description = models.TextField(_('Description'), blank=True)
+    content = models.TextField(_('Content'), blank=True)
+    
+    # Document status choices
+    STATUS_DRAFT = 'draft'
+    STATUS_REVIEW = 'review'
+    STATUS_APPROVED = 'approved'
+    STATUS_PUBLISHED = 'published'
+    STATUS_ARCHIVED = 'archived'
+    
+    STATUS_CHOICES = [
+        (STATUS_DRAFT, _('Draft')),
+        (STATUS_REVIEW, _('In Review')),
+        (STATUS_APPROVED, _('Approved')),
+        (STATUS_PUBLISHED, _('Published')),
+        (STATUS_ARCHIVED, _('Archived')),
+    ]
+    
+    status = models.CharField(
+        _('Status'),
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=STATUS_DRAFT
     )
     
-    STATUS_CHOICES = (
-        ('draft', 'Melnraksts'),
-        ('review', 'Pārskatīšanā'),
-        ('approved', 'Apstiprināts'),
-        ('published', 'Publicēts'),
-        ('archived', 'Arhivēts'),
+    # Document type choices
+    TYPE_PROCEDURE = 'procedure'
+    TYPE_INSTRUCTION = 'instruction'
+    TYPE_FORM = 'form'
+    TYPE_TEMPLATE = 'template'
+    TYPE_RECORD = 'record'
+    TYPE_REPORT = 'report'
+    TYPE_POLICY = 'policy'
+    
+    TYPE_CHOICES = [
+        (TYPE_PROCEDURE, _('Procedure')),
+        (TYPE_INSTRUCTION, _('Work Instruction')),
+        (TYPE_FORM, _('Form')),
+        (TYPE_TEMPLATE, _('Template')),
+        (TYPE_RECORD, _('Record')),
+        (TYPE_REPORT, _('Report')),
+        (TYPE_POLICY, _('Policy')),
+    ]
+    
+    document_type = models.CharField(
+        _('Document Type'),
+        max_length=20,
+        choices=TYPE_CHOICES,
+        default=TYPE_PROCEDURE
     )
     
-    title = models.CharField(max_length=200, verbose_name='Nosaukums')
-    document_number = models.CharField(max_length=50, unique=True, verbose_name='Dokumenta numurs')
-    document_type = models.CharField(max_length=20, choices=DOCUMENT_TYPES, verbose_name='Dokumenta veids')
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', verbose_name='Statuss')
-    content = models.TextField(verbose_name='Saturs')
-    created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='created_documents', verbose_name='Izveidoja')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Izveidošanas datums')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Atjaunināšanas datums')
-    approved_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='approved_documents', verbose_name='Apstiprināja')
-    approved_at = models.DateTimeField(null=True, blank=True, verbose_name='Apstiprināšanas datums')
-    version = models.CharField(max_length=20, default='1.0', verbose_name='Versija')
-    attachment = models.FileField(upload_to='documents/attachments/', null=True, blank=True)  # Add this field
-    description = models.TextField(null=True, blank=True)  # Add this field
-    uploaded_by = models.ForeignKey(
+    # Metadata
+    created_by = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
-        related_name='document_uploaded_by',  # Unique related_name
+        on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        related_name='created_documents',
+        verbose_name=_('Created By')
+    )
+    updated_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='updated_documents',
+        verbose_name=_('Updated By')
+    )
+    approved_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='approved_documents',
+        verbose_name=_('Approved By')
+    )
+    
+    # Timestamps
+    created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('Updated At'), auto_now=True)
+    approved_at = models.DateTimeField(_('Approved At'), null=True, blank=True)
+    published_at = models.DateTimeField(_('Published At'), null=True, blank=True)
+    
+    # Relationships (can be customized per project needs)
+    parent_document = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='child_documents',
+        verbose_name=_('Parent Document')
     )
     
     class Meta:
-        verbose_name = 'Dokuments'
-        verbose_name_plural = 'Dokumenti'
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')
         ordering = ['-updated_at']
     
     def __str__(self):
-        return f"{self.document_number} - {self.title}"
+        return f"{self.document_number} - {self.title} (v{self.version})"
     
-    def __str__(self):
-        return f"{self.document_number} - {self.title}"
+    def get_status_display_class(self):
+        """Return a CSS class based on document status for UI styling."""
+        status_classes = {
+            self.STATUS_DRAFT: 'text-secondary',
+            self.STATUS_REVIEW: 'text-primary',
+            self.STATUS_APPROVED: 'text-success',
+            self.STATUS_PUBLISHED: 'text-info',
+            self.STATUS_ARCHIVED: 'text-muted',
+        }
+        return status_classes.get(self.status, '')

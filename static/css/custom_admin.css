@@ -5,10 +5,12 @@
 /* 1) KRĀSU PALETE */
 :root {
   --primary: #3E7391;       /* galvenes un breadcrumbs fons */
-  --text-on-primary: #ffffff;  /* teksts uz galvenes/breadcrumbs */
+  --primary-hover: #2c5269;
+  --primary-text: #ffffff;  /* teksts uz galvenes/breadcrumbs */
   --accent: #FFD700;        /* lietotāja rīku teksta krāsa */
   --accent-hover: #FFECB3;  /* hover krāsa */
   --body-bg:    #ffffff;    /* lapas fons */
+  --header-link: #FFD700;
 }
 
 /* =================================================
@@ -293,4 +295,100 @@ div.breadcrumbs {
 
 .submit-row a.deletelink:active, .submit-row a.deletelink:focus, .submit-row a.deletelink:hover {
     background: #c0392b;
+}
+
+/* Admin sidebar styles */
+.admin-sidebar {
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+/* Fix dropdown button and menu styling */
+.dropdown-button {
+    color: #333;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;  /* Increase main section font size */
+    font-weight: 600; /* Make main sections bold */
+}
+
+.dropdown-button:hover {
+    background-color: #f0f0f0;
+}
+
+.dark .dropdown-button:hover {
+    background-color: #3a3a3a;
+}
+
+/* Menu item styling - highlight when hover or active */
+.nav-dropdown-menu li a {
+    font-size: 14px;  /* Smaller font for submenu items */
+    font-weight: normal;
+}
+
+.nav-dropdown-menu li a:hover {
+    background-color: rgba(62, 115, 145, 0.1);
+}
+
+/* Active menu item */
+.nav-dropdown-menu li a.active {
+    background-color: rgba(62, 115, 145, 0.2);
+    font-weight: 500;
+}
+
+/* Fix dropdown animations */
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.max-h-0 {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.max-h-screen {
+    max-height: 100vh;
+    opacity: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Fix header positioning */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050; /* Higher than sidebar */
+    background-color: var(--primary);
+    color: var(--primary-text);
+}
+
+#main-content-wrapper {
+    margin-top: 60px;
+    z-index: 1000;
+}
+
+#sidebar {
+    z-index: 1010;
+}
+
+/* Ensure icons are visible and properly aligned */
+.fas, .fa {
+    display: inline-block;
+    width: 1.25em;
+    text-align: center;
+    vertical-align: -0.125em;
 }

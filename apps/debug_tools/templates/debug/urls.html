@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Debug: URL Patterns{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Available URL Names</h1>
+    
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            URL Patterns ({{ url_names|length }})
+        </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Filter:</span>
+                <input type="text" id="urlFilter" class="form-control" placeholder="Type to filter URLs...">
+            </div>
+            
+            <ul class="list-group" id="urlList">
+                {% for name in url_names %}
+                <li class="list-group-item">{{ name }}</li>
+                {% empty %}
+                <li class="list-group-item">No URL patterns found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple URL filter functionality
+    document.getElementById('urlFilter').addEventListener('input', function() {
+        const filter = this.value.toLowerCase();
+        const items = document.querySelectorAll('#urlList li');
+        
+        items.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Iziet - Kvalitātes pārvaldības sistēma{% endblock %}
+{% block title %}{% trans "Logout" %} - {% trans "Quality Management System" %}{% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="card-header">
-        <h2>Jūs esat izgājis no sistēmas</h2>
+        <h2>{% trans "You have been logged out" %}</h2>
     </div>
     <div class="card-body">
-        <p>Jūs esat veiksmīgi izgājis no sistēmas.</p>
-        <a href="{% url 'users:login' %}" class="btn btn-primary">Ieiet atkal</a>
+        <p>{% trans "You have successfully logged out of the system." %}</p>
+        <a href="{% url 'users:login' %}" class="btn btn-primary">{% trans "Log In Again" %}</a>
     </div>
 </div>
 {% endblock %}

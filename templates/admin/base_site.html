@@ -1,15 +1,111 @@
-{% extends "admin/base.html" %}
+{% extends "admin/base_site.html" %}
 {% load i18n static %}
 
-{% block title %}{{ title }} | {% trans "Management System Tools Administration" %}{% endblock %}
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
-{% block extrastyle %}
-  {{ block.super }}
-  {# Ja lieto FontAwesome lokāli: #}
-  <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Quality Tools Administration') }}</a></h1>
 {% endblock %}
 
-{# Nepazūd content#}
-{% block content %}
-  {{ block.super }}
+{% block userlinks %}
+    {% if user.is_active and user.is_staff %}
+        <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+        <a href="/rosetta/">{% trans 'Translations' %}</a> /
+    {% endif %}
+    <form id="language-selector" action="{% url 'set_language' %}" method="post" style="display:inline-block; margin-right:10px;">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <select name="language" onchange="this.form.submit()">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                    {{ language.name_local }} ({{ language.code }})
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+    <a href="{% url 'admin:logout' %}">{% translate 'Log out' %}</a>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+:root {
+    --header-bg: #3E7391;
+    --header-hover: #2c5269;
+    --header-text: #ffffff;
+    --header-link: #FFD700;
+}
+
+#header {
+    background: var(--header-bg);
+    color: var(--header-text);
+}
+
+#header a:link, #header a:visited {
+    color: var(--header-link);
+}
+
+#header a:hover {
+    color: var(--header-text);
+}
+
+#user-tools a:hover {
+    background-color: var(--header-hover);
+    border-color: var(--header-hover);
+}
+
+div.breadcrumbs {
+    background: var(--header-bg);
+    color: var(--header-text);
+}
+
+div.breadcrumbs a {
+    color: var(--header-link);
+}
+
+div.breadcrumbs a:hover {
+    color: var(--header-text);
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: var(--header-bg);
+    color: var(--header-text);
+}
+
+a.section:link, a.section:visited {
+    color: var(--header-link);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: var(--header-bg);
+    color: var(--header-text);
+}
+
+.button:active, input[type=submit]:active, input[type=button]:active, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: var(--header-hover);
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: var(--header-hover);
+}
+
+.button.default:active, input[type=submit].default:active, .button.default:hover, input[type=submit].default:hover {
+    background: var(--header-bg);
+}
+
+#language-selector {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+#language-selector select {
+    background: var(--header-hover);
+    color: var(--header-text);
+    border: 1px solid var(--header-link);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+</style>
 {% endblock %}

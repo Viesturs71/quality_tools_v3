@@ -13,14 +13,17 @@ from apps.documents.models import Document  # Updated from apps.quality_docs.mod
 
 @admin.register(Equipment)
 class EquipmentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'inventory_number', 'status']
-    search_fields = ['name', 'inventory_number']
+    # Fix list_display to use fields that actually exist
+    list_display = ['name', 'serial_number', 'purchase_date']  # Removed 'category'
+    search_fields = ['name', 'serial_number']
+    # Fix list_filter to use existing fields
+    list_filter = ['purchase_date']  # Removed 'category'
 
 
 @admin.register(EquipmentCategory)
 class EquipmentCategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'description']
-    search_fields = ['name']
+    search_fields = ['name', 'description']
 
 
 @admin.register(EquipmentDocument)
@@ -39,9 +42,11 @@ class EquipmentTypeAdmin(admin.ModelAdmin):
 
 @admin.register(MaintenanceRecord)
 class MaintenanceRecordAdmin(admin.ModelAdmin):
-    list_display = ['maintenance_date', 'maintenance_type', 'equipment', 'performed_by']
-    search_fields = ['equipment__name', 'performed_by']
-    list_filter = ['maintenance_type', 'maintenance_date']
+    # Fixed field names in list_display and list_filter
+    list_display = ['date', 'equipment', 'maintenance_type']  # Changed 'maintenance_date' to 'date'
+    list_filter = ['maintenance_type', 'date']  # Changed 'maintenance_date' to 'date'
+    search_fields = ['equipment__name', 'description']
+    autocomplete_fields = ['equipment']
 
 
 @admin.register(Department)

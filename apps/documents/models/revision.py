@@ -1,8 +1,10 @@
 from django.db import models
+from .document import Document
 from django.utils.translation import gettext_lazy as _
 
 
 class DocumentRevision(models.Model):
+    document    = models.ForeignKey(Document, on_delete=models.CASCADE)
     revision_number = models.CharField(max_length=20, verbose_name=_("Revision Number"))
     revision_date = models.DateField(verbose_name=_("Revision Date"))
     description = models.TextField(verbose_name=_("Description"))

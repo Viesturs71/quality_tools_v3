@@ -4,21 +4,55 @@ from django.utils.translation import gettext_lazy as _
 
 class DocumentSection(models.Model):
     """
-    Section within a document
+    A section of a document representing a distinct part of the document content.
     """
-    document = models.ForeignKey('Document', on_delete=models.CASCADE, related_name='sections', verbose_name='Dokuments')
-    section_number = models.CharField(max_length=50, verbose_name=_("Section Number"))
-    title = models.CharField(max_length=255, verbose_name=_("Title"))
-    content = models.TextField(blank=True, verbose_name=_("Content"))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
-    order = models.PositiveIntegerField(default=1, verbose_name='Secība')
-    
+    document = models.ForeignKey(
+        'documents.Document',
+        on_delete=models.CASCADE,
+        related_name='sections',
+        verbose_name=_('Document'),
+        null=True,
+        blank=True,
+        default=None  # <-- add default=None to allow saving without document
+    )
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='subsections',
+        verbose_name=_('Parent Section')
+    )
+    code = models.CharField(_('Section number'), max_length=50)
+    # Require both original and alternative language fields (no blank=True)
+    title_original = models.CharField(_('Section title (original)'), max_length=200)
+    title_alt = models.CharField(_('Section title (alternative)'), max_length=200)
+    content_original = models.TextField(_('Content (original)'))
+    content_alt = models.TextField(_('Content (alternative)'))
+    order = models.PositiveIntegerField(_('Order'), default=0)
+
     class Meta:
-        verbose_name = 'Dokumenta sadaļa'
-        verbose_name_plural = 'Dokumenta sadaļas'
-        ordering = ['document', 'order']
-        unique_together = ['document', 'order']
-    
+        verbose_name = _('Document Section')
+        verbose_name_plural = _('Document Sections')
+        ordering = ['document', 'parent__id', 'order']
+        unique_together = ['document', 'code']
+
     def __str__(self):
-        return f"{self.document.document_number} - {self.title}"
+        # Show both titles if available
+        return f"{self.code} - {self.title_original}" + (f" / {self.title_alt}" if self.title_alt else "")
+
+    def get_title(self, use_alt=False):
+        return self.title_alt if use_alt else self.title_original
+
+    def get_content(self, use_alt=False):
+        return self.content_alt if use_alt else self.content_original
+
+    def get_full_code(self):
+        if self.parent:
+            return f"{self.parent.get_full_code()}.{self.code}"
+        return self.code
+
+    def get_full_title(self, use_alt=False):
+        if self.parent:
+            return f"{self.parent.get_full_title(use_alt)} / {self.get_title(use_alt)}"
+        return self.get_title(use_alt)

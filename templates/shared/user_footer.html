@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<footer class="bg-white border-t py-4 mt-auto">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="text-sm text-gray-600 mb-2 md:mb-0">
+        &copy; {% now "Y" %} {% trans "Management System Tools" %} | {% trans "All rights reserved" %}
+      </div>
+      
+      <div class="flex space-x-6">
+        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{% trans "Privacy Policy" %}</a>
+        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{% trans "Terms of Service" %}</a>
+        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{% trans "Help" %}</a>
+        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{% trans "Contact" %}</a>
+      </div>
+      
+      <div class="flex items-center mt-2 md:mt-0">
+        <span class="text-xs text-gray-500">{% trans "Version" %}: 1.0.0</span>
+      </div>
+    </div>
+  </div>
+</footer>

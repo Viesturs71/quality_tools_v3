@@ -1,0 +1,50 @@
+<!-- templates/shared/user_navigation.html -->
+<div class="w-64 h-screen fixed top-0 left-0 bg-[#3E7391] text-[#FFE4B5] shadow-md z-50">
+  <div class="p-4 text-xl font-bold border-b border-[#FFE4B5]">
+    Quality Tools
+  </div>
+  <nav class="flex flex-col px-2 py-4 space-y-1">
+    <!-- Dokumenti -->
+    <div>
+      <button class="flex items-center w-full px-2 py-2 hover:bg-[#355E79] rounded">
+        <i class="fas fa-file-alt mr-2 w-5 text-[#FFE4B5]"></i> Documents
+      </button>
+      <div class="ml-6 text-sm space-y-1">
+        <a href="{% url 'documents:document_list' %}" class="block hover:underline">All Documents</a>
+        <a href="{% url 'documents:my_documents' %}" class="block hover:underline">My Documents</a>
+      </div>
+    </div>
+
+    <!-- Equipment -->
+    <div>
+      <button class="flex items-center w-full px-2 py-2 hover:bg-[#355E79] rounded">
+        <i class="fas fa-tools mr-2 w-5 text-[#FFE4B5]"></i> Equipment
+      </button>
+      <div class="ml-6 text-sm space-y-1">
+        <a href="{% url 'equipment:equipment_list' %}" class="block hover:underline">All Equipment</a>
+        <a href="{% url 'equipment:my_equipment' %}" class="block hover:underline">My Equipment</a>
+      </div>
+    </div>
+
+    <!-- Standards -->
+    <div>
+      <button class="flex items-center w-full px-2 py-2 hover:bg-[#355E79] rounded">
+        <i class="fas fa-book mr-2 w-5 text-[#FFE4B5]"></i> Standards
+      </button>
+      <div class="ml-6 text-sm space-y-1">
+        <a href="{% url 'standards:standard_list' %}" class="block hover:underline">Standards List</a>
+      </div>
+    </div>
+
+    <!-- Personnel -->
+    <div>
+      <button class="flex items-center w-full px-2 py-2 hover:bg-[#355E79] rounded">
+        <i class="fas fa-id-card mr-2 w-5 text-[#FFE4B5]"></i> Personnel
+      </button>
+      <div class="ml-6 text-sm space-y-1">
+        <a href="{% url 'personnel:profile' %}" class="block hover:underline">My Profile</a>
+        <a href="{% url 'personnel:qualifications' %}" class="block hover:underline">My Qualifications</a>
+      </div>
+    </div>
+  </nav>
+</div>

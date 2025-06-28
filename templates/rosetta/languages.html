@@ -1,0 +1,37 @@
+{% extends "rosetta/base.html" %}
+{% load i18n %}
+
+{% block title %}Rosetta - {% trans "Language selection" %}{% endblock %}
+
+{% block header %}
+    {{ block.super }}
+    <div id="user-tools">
+        <span>{% trans "User:" %} {{ user.username }}</span> / 
+        <a href="{% url 'admin:logout' %}">{% trans "Log out" %}</a>
+    </div>
+{% endblock %}
+
+{% block breadcumbs %}
+    <a href="/rosetta/">{% trans "Home" %}</a>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Language selection" %}</h1>
+    <div id="languages">
+        <ul>
+            {% for language in languages %}
+                <li><a href="/rosetta/{{ language.code }}/">{{ language.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="help-text" style="margin-top: 2rem;">
+        <h2>{% trans "Translation guide" %}</h2>
+        <ol>
+            <li>{% trans "Select a language above to view translatable messages." %}</li>
+            <li>{% trans "Enter translations for each message in the provided text area." %}</li>
+            <li>{% trans "Save your changes by clicking the 'Submit' button." %}</li>
+        </ol>
+        <p>{% trans "If you need any assistance, please contact the development team." %}</p>
+    </div>
+{% endblock %}

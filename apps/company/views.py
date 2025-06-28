@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Company, Department, Location
-from .serializers import CompanySerializer, DepartmentSerializer, LocationSerializer
+from apps.company.models import Company, Department, Location
+from apps.company.serializers import CompanySerializer, DepartmentSerializer, LocationSerializer
 
 
 class CompanyViewSet(viewsets.ModelViewSet):

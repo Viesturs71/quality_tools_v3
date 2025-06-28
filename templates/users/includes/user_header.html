@@ -1,43 +1,54 @@
-<header class="bg-gray-800 text-white shadow-md h-16 flex items-center justify-between px-4 z-50">
-    <div class="flex items-center">
-        <button id="sidebar-toggle" class="md:hidden mr-4 text-white">
-            <i class="fas fa-bars"></i>
-        </button>
-        <a href="{% url 'dashboard:index' %}" class="text-xl font-bold">Quality Tools</a>
+{% load i18n static %}
+<div id="user-header"
+     class="fixed top-0 left-0 w-full z-[1030] bg-[#F7F7F7] text-[#333333] font-sans h-[60px] flex items-center shadow">
+  <div class="flex items-center w-full px-6 h-[60px]">
+    <!-- Left: Quick access -->
+    <div class="flex items-center space-x-4 flex-shrink-0">
+      <span class="text-2xl font-bold">{% trans "Management System Tools" %}</span>
+      <a href="{% url 'dashboard:index' %}" class="ml-6 text-[#333333] hover:underline">{% trans "Dashboard" %}</a>
+      <a href="{% url 'users:profile' %}" class="ml-2 text-[#333333] hover:underline">{% trans "Profile" %}</a>
+      <a href="{% url 'users:settings' %}" class="ml-2 text-[#333333] hover:underline">{% trans "Settings" %}</a>
     </div>
-    
-    <div class="hidden md:flex items-center space-x-4">
-        <a href="{% url 'dashboard:index' %}" class="px-3 py-2 rounded hover:bg-gray-700">Dashboard</a>
-        <a href="{% url 'documents:document_register' %}" class="px-3 py-2 rounded hover:bg-gray-700">Documents</a>
-        <a href="{% url 'equipment:equipment_list' %}" class="px-3 py-2 rounded hover:bg-gray-700">Equipment</a>
-    </div>
-    
-    <div class="flex items-center space-x-2">
-        <!-- Language Selector -->
-        <form action="{% url 'set_language' %}" method="post" id="language-form" class="mr-4">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ request.path }}">
-            <select name="language" id="language-selector" class="bg-gray-700 text-white py-1 px-2 rounded text-sm" onchange="this.form.submit()">
-                {% for lang_code, lang_name in LANGUAGES %}
-                    <option value="{{ lang_code }}" {% if lang_code == 'en' %}selected{% endif %}>
-                        {{ lang_name|upper }}
-                    </option>
-                {% endfor %}
-            </select>
-        </form>
-        
-        <!-- User Menu -->
-        <div class="relative">
-            <button id="user-menu-button" class="flex items-center text-white focus:outline-none">
-                <span class="mr-2">{{ request.user.username }}</span>
-                <i class="fas fa-angle-down"></i>
-            </button>
-            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                <a href="{% url 'users:profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
-                <a href="{% url 'users:settings' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
-                <a href="{% url 'password_change' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Change Password</a>
-                <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Log Out</a>
-            </div>
+    <div class="flex-1"></div>
+    <!-- Right: User info, logout, language -->
+    {% if request.user.is_authenticated %}
+      <div class="flex items-center space-x-2">
+        <div class="flex items-center bg-white border border-[#DDDDDD] rounded-[5px] h-10 px-4 py-0 mr-2">
+          <i class="fas fa-user mr-2 text-[#333333]"></i>
+          <span class="font-semibold text-[#333333]">{{ request.user.first_name }} {{ request.user.last_name }}</span>
         </div>
+        <a href="{% url 'logout' %}" class="flex items-center bg-[#FF4444] text-white rounded-[5px] h-10 px-4 py-0 ml-2 hover:bg-[#cc2222]">
+          <i class="fas fa-sign-out-alt mr-2"></i> {% trans "Log Out" %}
+        </a>
+        <!-- Language switcher -->
+        <form action="{% url 'set_language' %}" method="post" class="ml-2">
+          {% csrf_token %}
+          <input name="next" type="hidden" value="{{ request.path }}">
+          <div class="relative inline-block">
+            <select name="language"
+              class="bg-white text-[#333333] py-1 pl-3 pr-8 rounded text-sm border border-[#DDDDDD] focus:ring-2 focus:ring-[#4488BB] focus:outline-none cursor-pointer appearance-none w-auto font-semibold"
+              style="min-width: 70px; max-width: 110px; height: 40px;"
+              onchange="this.form.submit()">
+              {% for lang_code, lang_name in LANGUAGES %}
+                <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected style="font-weight:bold"{% endif %}>
+                  {{ lang_name|upper }}
+                </option>
+              {% endfor %}
+            </select>
+            <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-[#333333]">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+          </div>
+        </form>
+      </div>
+    {% endif %}
+  </div>
+</div>
     </div>
-</header>
+  </div>
+</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

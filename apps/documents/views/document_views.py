@@ -1,9 +1,11 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from apps.documents.models.document import Document  # Corrected import path
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from apps.documents.forms import DocumentForm  # Corrected import path
+from django.utils.translation import gettext_lazy as _
+
+from apps.documents.models import Document
+from apps.documents.forms import DocumentForm
 
 class DocumentListView(ListView):
     model = Document
@@ -54,8 +56,9 @@ def register_document(request):
         'form': form,
     })
 
+
 @login_required
 def user_documents(request):
     """View for displaying documents uploaded by the user."""
-    docs = Document.objects.filter(uploaded_by=request.user)  # Ensure this matches the model field
+    docs = Document.objects.filter(uploaded_by=request.user)
     return render(request, 'documents/user_documents.html', {'documents': docs})

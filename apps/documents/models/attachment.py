@@ -2,21 +2,34 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class DocumentAttachment(models.Model):
+class Attachment(models.Model):
     """
-    File attachment for a document
+    A file attachment linked to a document.
     """
-    document = models.ForeignKey('Document', on_delete=models.CASCADE, related_name='attachments', verbose_name='Dokuments')
-    title = models.CharField(max_length=255, verbose_name=_("Title"))
-    file = models.FileField(upload_to="documents/attachments/", verbose_name=_("File"))
-    description = models.TextField(blank=True, verbose_name=_("Description"))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
-
+    document = models.ForeignKey(
+        'documents.Document',
+        on_delete=models.CASCADE,
+        related_name='attachments',
+        verbose_name=_('Document')
+    )
+    file = models.FileField(
+        _('File'),
+        upload_to='documents/attachments/'
+    )
+    description = models.CharField(
+        _('Description'),
+        max_length=255,
+        blank=True
+    )
+    uploaded_at = models.DateTimeField(
+        _('Uploaded At'),
+        auto_now_add=True
+    )
+    
     class Meta:
-        verbose_name = _("Document Attachment")
-        verbose_name_plural = _("Document Attachments")
-        ordering = ["title"]
-
+        verbose_name = _('Attachment')
+        verbose_name_plural = _('Attachments')
+        ordering = ['-uploaded_at']
+        
     def __str__(self):
-        return self.title
+        return f"{self.document.title} - {self.file.name}"

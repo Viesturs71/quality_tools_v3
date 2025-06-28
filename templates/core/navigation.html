@@ -1,0 +1,19 @@
+<div class="sidebar admin-sidebar">
+  {% for app in apps %}
+    <div class="sidebar-item">
+      <a href="#" class="app-toggle">
+        <i class="fa {{ app.icon }}"></i>
+        <span>{{ app.name|capfirst }}</span>
+        <i class="fa fa-angle-down"></i>
+      </a>
+      <div class="models-submenu">
+        {% for model in app.models %}
+          <a href="#">
+            <i class="fa fa-circle-o"></i>
+            <span>{{ model }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

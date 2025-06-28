@@ -1,0 +1,38 @@
+{% load i18n static %}
+
+<header class="fixed top-0 left-0 w-full h-[60px] bg-[#F7F7F7] z-[1030] shadow-sm">
+  <div class="container mx-auto h-full px-4 flex justify-between items-center">
+    <!-- Left Side: Quick Access -->
+    <div class="flex items-center space-x-4">
+      <a href="{% url 'dashboard:index' %}" class="text-[#333333] hover:text-[#336699] font-medium">
+        <i class="fas fa-tachometer-alt mr-2"></i>
+        {% trans "Dashboard" %}
+      </a>
+      <a href="{% url 'users:profile' %}" class="text-[#333333] hover:text-[#336699] font-medium">
+        <i class="fas fa-user mr-2"></i>
+        {% trans "Profile" %}
+      </a>
+      <a href="{% url 'users:settings' %}" class="text-[#333333] hover:text-[#336699] font-medium">
+        <i class="fas fa-cog mr-2"></i>
+        {% trans "Settings" %}
+      </a>
+    </div>
+    
+    <!-- Right Side: User Info and Logout -->
+    <div class="flex items-center space-x-4">
+      <!-- User Info -->
+      <div class="bg-white border border-[#DDDDDD] rounded-md px-4 py-2 h-[40px] flex items-center">
+        <span class="text-[#333333] font-medium">{{ user.get_full_name|default:user.username }}</span>
+      </div>
+      
+      <!-- Logout Button -->
+      <a href="{% url 'users:logout' %}" class="bg-[#FF4444] text-white rounded-md px-4 py-2 h-[40px] flex items-center hover:bg-[#DD3333]">
+        <i class="fas fa-sign-out-alt mr-2"></i>
+        {% trans "Log Out" %}
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Space placeholder to prevent content from being hidden under fixed header -->
+<div class="h-[60px]"></div>

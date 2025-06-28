@@ -1,23 +1,23 @@
 {% load i18n static %}
 <!DOCTYPE html>
-<html lang="en" class="{% if LANGUAGE_BIDI %}dir=\"rtl\"{% endif %}">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" class="{% if LANGUAGE_BIDI %}dir=\"rtl\"{% endif %}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Management System Tools{% endblock %}</title>
+    <title>{% block title %}{% trans "Management System Tools" %}{% endblock %}</title>
 
-    {# Noklusējuma Django admin stili #}
+    {# Default Django admin styles #}
     <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
     <link rel="stylesheet" href="{% static 'admin/css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'admin/css/admin.css' %}">
 
-    {# Tailwind CDN - ja nepieciešams lokālais variants, aizstāj ar lokālu failu #}
+    {# Tailwind CDN - replace with local file if needed #}
     <script src="https://cdn.tailwindcss.com"></script>
 
-    {# Lokālais Font Awesome stils #}
+    {# Local Font Awesome styles #}
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 
-    {# Pielāgotie stili #}
+    {# Custom styles #}
     <link rel="stylesheet" href="{% static 'css/admin-styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom_admin.css' %}">
@@ -25,19 +25,19 @@
     {% block extrahead %}{% endblock %}
 </head>
 
-<body class="font-serif text-gray-700 bg-white dark:bg-gray-900 dark:text-white transition-colors">
+<body class="font-serif text-gray-700 bg-white dark:bg-gray-900 dark:text-white transition-colors flex flex-col min-h-screen">
 
-    {# Galvene #}
+    {# Header #}
     {% include "admin/includes/admin_header.html" %}
     {% include "admin/includes/admin_breadcrumbs.html" %}
    
-    <div class="flex" id="main-content-wrapper">
-        {# Navigācija #}
-        <aside class="w-64 bg-white dark:bg-gray-800 border-r" id="admin-sidebar">
+    <div class="flex flex-1" id="main-content-wrapper">
+        {# Navigation #}
+        <aside class="w-64 bg-white dark:bg-gray-800 border-r transition-all duration-300" id="admin-sidebar">
             {% include "admin/includes/admin_navigation.html" %}
         </aside>
 
-        {# Saturs #}
+        {# Content #}
         <main class="flex-1 p-6 bg-gray-50 dark:bg-gray-900" id="admin-main-content">
             {% block messages %}
               {% if messages %}
@@ -49,7 +49,7 @@
               {% endif %}
             {% endblock messages %}
 
-            {# Virsraksts (ja nepieciešams) #}
+            {# Title (if needed) #}
             {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
 
             <div id="content" class="{% block coltype %}colM{% endblock %}">
@@ -64,14 +64,15 @@
         </main>
     </div>
 
-    {# Kājene #}
+    {# Footer #}
     {% include "admin/includes/admin_footer.html" %}
 
-    {# JavaScript — tēmas pārslēgšanai u.c. #}
+    {# JavaScript for theme toggling and navigation #}
     <script src="{% static 'admin/js/admin_custom.js' %}" defer></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Theme toggle functionality
             const html = document.documentElement;
             const themeToggle = document.getElementById('toggle-theme');
             const currentThemeSpan = document.getElementById('current-theme');
@@ -101,8 +102,66 @@
                     applyTheme(next);
                 });
             }
+            
+            // Navigation toggle functionality
+            const sidebarToggle = document.getElementById('toggle-sidebar');
+            const sidebar = document.getElementById('admin-sidebar');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('collapsed');
+                    if (sidebar.classList.contains('collapsed')) {
+                        sidebar.style.width = '60px';
+                        document.querySelectorAll('.app-item span, .models-submenu').forEach(el => {
+                            el.style.display = 'none';
+                        });
+                    } else {
+                        sidebar.style.width = '250px';
+                        document.querySelectorAll('.app-item span').forEach(el => {
+                            el.style.display = 'block';
+                        });
+                    }
+                });
+            }
+            
+            // App toggle functionality
+            document.querySelectorAll('.app-toggle').forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const submenu = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('.fa-angle-down');
+                    
+                    submenu.classList.toggle('hidden');
+                    icon.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                });
+            });
         });
     </script>
+
+    <style>
+.object-tools, .object-tools .addlink {
+    display: block !important;
+    position: static !important;
+    z-index: 1050 !important;
+}
+.object-tools {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+.object-tools .addlink {
+    background: #4488BB;
+    color: #fff;
+    border-radius: 4px;
+    padding: 6px 16px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+}
+.object-tools .addlink:hover {
+    background: #336699;
+    color: #FFCC00;
+}
+    </style>
 
     {% block extrajs %}{% endblock %}
 </body>

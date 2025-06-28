@@ -1,66 +1,77 @@
-from django.contrib import admin
-from .models import (
-    Equipment,
-    EquipmentCategory,
-    EquipmentDocument,
-    EquipmentType,
-    MaintenanceRecord,
-    Department,
-)
+{% extends "users/base_user.html" %}
+{% load i18n %}
 
+{% block title %}{% trans "Dashboard" %}{% endblock %}
+{% block page_title %}{% trans "Dashboard" %}{% endblock %}
 
-@admin.register(Equipment)
-class EquipmentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'inventory_number', 'status']
-    search_fields = ['name', 'inventory_number']
+{% block breadcrumbs %}
+<a href="{% url 'dashboard:index' %}" class="hover:text-blue-600">{% trans "Home" %}</a>
+<span class="mx-2">/</span>
+<span class="text-gray-500">{% trans "Dashboard" %}</span>
+{% endblock %}
 
-
-@admin.register(EquipmentCategory)
-class EquipmentCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description']
-    search_fields = ['name']
-
-
-@admin.register(EquipmentDocument)
-class EquipmentDocumentAdmin(admin.ModelAdmin):
-    list_display = ['title', 'equipment', 'uploaded_by', 'uploaded_at']
-    search_fields = ['title', 'description']
-    list_filter = ['uploaded_at']
-
-
-@admin.register(EquipmentType)
-class EquipmentTypeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'is_measuring_instrument', 'is_active']
-    search_fields = ['name']
-    list_filter = ['is_measuring_instrument', 'is_active']
-
-
-@admin.register(MaintenanceRecord)
-class MaintenanceRecordAdmin(admin.ModelAdmin):
-    list_display = ['maintenance_date', 'maintenance_type', 'equipment', 'performed_by']
-    search_fields = ['equipment__name', 'performed_by']
-    list_filter = ['maintenance_type', 'maintenance_date']
-
-
-@admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    search_fields = ['name']
-        ('Kalibrācija', {
-            'fields': ('needs_calibration', 'calibration_frequency', 'next_calibration_date')
-        }),
-        ('Atbildība', {
-            'fields': ('responsible_person',)
-        }),
-    )
-    search_fields = ('description', 'results', 'certificate_number')
-    
-    def save_model(self, request, obj, form, change):
-        if not change:  # If creating a new record
-            obj.performed_by = request.user
-        super().save_model(request, obj, form, change)
-        if not change:  # If creating a new record
-            obj.performed_by = request.user
-        super().save_model(request, obj, form, change)
-
-<a href="{% url 'documents:document_list' %}">Documents</a> <!-- Updated from quality_docs -->
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Quick Links -->
+    <div class="col-span-1">
+        <div class="bg-white shadow rounded-lg p-6 mb-6">
+            <h3 class="text-lg font-bold mb-4">{% trans "Quick Access" %}</h3>
+            <ul class="space-y-3">
+                <li>
+                    <a href="{% url 'users:profile' %}" class="flex items-center text-blue-600 hover:underline">
+                        <i class="fas fa-user mr-2"></i> {% trans "My Profile" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'documents:user_documents' %}" class="flex items-center text-blue-600 hover:underline">
+                        <i class="fas fa-file-alt mr-2"></i> {% trans "My Documents" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'equipment:my_equipment' %}" class="flex items-center text-blue-600 hover:underline">
+                        <i class="fas fa-tools mr-2"></i> {% trans "My Equipment" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'personnel:my_trainings' %}" class="flex items-center text-blue-600 hover:underline">
+                        <i class="fas fa-graduation-cap mr-2"></i> {% trans "My Trainings" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Main Dashboard Widgets -->
+    <div class="col-span-2">
+        <div class="bg-white shadow rounded-lg p-6 mb-6">
+            <h3 class="text-lg font-bold mb-4">{% trans "Recent Activity" %}</h3>
+            <div class="space-y-4">
+                {% for activity in recent_activities %}
+                <div class="border-b pb-4">
+                    <p class="font-medium">{{ activity.description }}</p>
+                    <p class="text-gray-500 text-sm">{{ activity.timestamp|date:"d.m.Y H:i" }}</p>
+                </div>
+                {% empty %}
+                <p class="text-gray-600">{% trans "No recent activity recorded" %}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="bg-white shadow rounded-lg p-6">
+            <h3 class="text-lg font-bold mb-4">{% trans "Statistics" %}</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-blue-100 rounded p-4 text-center">
+                    <div class="text-2xl font-bold text-blue-700">{{ stats.documents|default:"0" }}</div>
+                    <div class="text-gray-700">{% trans "Documents" %}</div>
+                </div>
+                <div class="bg-green-100 rounded p-4 text-center">
+                    <div class="text-2xl font-bold text-green-700">{{ stats.equipment|default:"0" }}</div>
+                    <div class="text-gray-700">{% trans "Equipment" %}</div>
+                </div>
+                <div class="bg-yellow-100 rounded p-4 text-center">
+                    <div class="text-2xl font-bold text-yellow-700">{{ stats.trainings|default:"0" }}</div>
+                    <div class="text-gray-700">{% trans "Trainings" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

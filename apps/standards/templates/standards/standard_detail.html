@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ standard.code }} - {{ standard.title }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ standard.code }} - {{ standard.title }}</h1>
+        <div>
+            <a href="{% url 'standards:standard_list' %}" class="btn btn-outline-secondary">
+                <i class="fa fa-arrow-left"></i> {% trans "Back to Standards" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            {% trans "Standard Details" %}
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>{% trans "Category" %}:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ standard.category }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>{% trans "Version" %}:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ standard.version|default:"-" }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>{% trans "Published Date" %}:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ standard.published_date|default:"-" }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>{% trans "Description" %}:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ standard.description|linebreaks|default:"-" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <div>{% trans "Standard Sections" %}</div>
+        </div>
+        <div class="card-body">
+            {% if sections %}
+                <ul class="list-group">
+                    {% for section in sections %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>{{ section.code }} - {{ section.title }}</h5>
+                                {% if section.description %}
+                                    <p class="text-muted mb-0">{{ section.description|truncatewords:30 }}</p>
+                                {% endif %}
+                            </div>
+                            <a href="{% url 'standards:section_detail' section.id %}" class="btn btn-sm btn-outline-primary">
+                                {% trans "View Details" %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-info">
+                    {% trans "No sections have been defined for this standard yet." %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+                <div class="alert alert-info">
+                    {% trans "No sections found for this standard." %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+            <h5 class="mb-0">{% trans "Sections" %}</h5>
+            <a href="#" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus"></i> {% trans "Add Section" %}
+            </a>
+        </div>
+        <div class="card-body">
+            {% if standard.sections.exists %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Number" %}</th>
+                            <th>{% trans "Name" %}</th>
+                            <th>{% trans "Parent Section" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for section in standard.sections.all %}
+                        <tr>
+                            <td>{{ section.number }}</td>
+                            <td>{{ section.name }}</td>
+                            <td>{% if section.parent_section %}{{ section.parent_section.number }} - {{ section.parent_section.name }}{% else %}-{% endif %}</td>
+                            <td>
+                                <a href="{% url 'standards:section_detail_view' section.id %}" class="btn btn-sm btn-info">{% trans "View" %}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                {% trans "No sections found for this standard." %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Documents Tab -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{% trans "Documents" %}</h5>
+            <a href="#" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus"></i> {% trans "Add Document" %}
+            </a>
+        </div>
+        <div class="card-body">
+            {% if standard.documents.exists %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Name" %}</th>
+                            <th>{% trans "Description" %}</th>
+                            <th>{% trans "Created" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for document in standard.documents.all %}
+                        <tr>
+                            <td>{{ document.name }}</td>
+                            <td>{{ document.description|truncatechars:100 }}</td>
+                            <td>{{ document.date_created|date:"Y-m-d" }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-info">{% trans "View" %}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                {% trans "No documents found for this standard." %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Attachments Tab -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{% trans "Attachments" %}</h5>
+            <a href="#" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus"></i> {% trans "Add Attachment" %}
+            </a>
+        </div>
+        <div class="card-body">
+            {% if standard.attachments.exists %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Name" %}</th>
+                            <th>{% trans "Description" %}</th>
+                            <th>{% trans "Added" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for attachment in standard.attachments.all %}
+                        <tr>
+                            <td>{{ attachment.name }}</td>
+                            <td>{{ attachment.description|truncatechars:100 }}</td>
+                            <td>{{ attachment.date_added|date:"Y-m-d" }}</td>
+                            <td>
+                                <a href="{{ attachment.file.url }}" class="btn btn-sm btn-info" target="_blank">{% trans "Download" %}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                {% trans "No attachments found for this standard." %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

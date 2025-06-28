@@ -4,22 +4,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import set_language
 
 from apps.users.views import home_view
 
 urlpatterns = [
-     # language-switcher for {% url 'set_language' %}
-     path('i18n/', include('django.conf.urls.i18n')),
-     # register Rosetta under the “rosetta” namespace
-     path('rosetta/', include(('rosetta.urls', 'rosetta'), namespace='rosetta')),
-     # django’s built-in auth (login/logout/password reset)
-     path('accounts/', include('django.contrib.auth.urls')),
-     path('set-language/', set_language, name='set_language'),  # Ensure this is included
- ]
+    # Standard language switcher
+    path('i18n/setlang/', set_language, name='set_language'),
 
-urlpatterns += i18n_patterns(
+    # Rosetta translation tool
+    path('rosetta/', include('rosetta.urls')),
+
+    # Django's built-in auth
+    path('accounts/', include('django.contrib.auth.urls')),
+
     # Admin panel
     path('admin/', admin.site.urls),
 
@@ -28,16 +26,21 @@ urlpatterns += i18n_patterns(
     path('documents/', include('apps.documents.urls', namespace='documents_app')),
     path('equipment/', include('apps.equipment.urls', namespace='equipment_app')),
     path('dashboard/', include('apps.dashboard.urls', namespace='dashboard')),
-    path('accounts/', include('apps.accounts.urls',    namespace='accounts')),
+    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
     path('personnel/', include('apps.personnel.urls', namespace='personnel')),
     path('standards/', include('apps.standards.urls', namespace='standards')),
+    path('debug/', include('apps.debug_tools.urls')),  # Debug tools URLs
 
-    # Home page (no prefix when default language)
+    # Home page
     path('', home_view, name='home'),
-
-    prefix_default_language=False,
-)
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

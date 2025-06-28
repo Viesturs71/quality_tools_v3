@@ -1,0 +1,36 @@
+{% load i18n %}
+<!-- templates/documents/form.html -->
+
+<div class="document-form">
+    <h2>{% trans "Document Management" %}</h2>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="id_title">{% trans "Document Title" %}</label>
+            <input type="text" name="title" id="id_title" value="{{ form.title.value|default_if_none:'' }}" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_file">{% trans "Upload Document" %}</label>
+            <input type="file" name="file" id="id_file" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_code">{% trans "Section Number" %}</label>
+            <input type="text" name="code" id="id_code" value="{{ form.code.value|default_if_none:'' }}" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_description">{% trans "Description" %}</label>
+            <textarea name="description" id="id_description" class="form-control" rows="3">{{ form.description.value|default_if_none:'' }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> {% trans "Save Document" %}
+            </button>
+        </div>
+    </form>
+</div>

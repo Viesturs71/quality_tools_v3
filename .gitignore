@@ -112,3 +112,13 @@ staticfiles/
 *.pyo
 *.log
 .env
+
+# Poetry (ja vairs netiek izmantots)
+poetry.lock
+pyproject.toml
+
+# Python versijas fails Heroku (ja izmanto .python-version)
+.python-version
+
+# VSCode papildu fails
+*.code-workspace

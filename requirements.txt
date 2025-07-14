@@ -1,16 +1,17 @@
 # Django un pamata pakotnes
 Django>=4.2.0,<5.0.0
-psycopg2-binary==2.9.7
-gunicorn==21.2.0
-whitenoise==6.5.0
-python-dotenv==1.0.0
 dj-database-url>=1.0.0
 django-heroku>=0.3.1
 django-mptt>=0.14.0
+gunicorn==21.2.0
+psycopg2-binary==2.9.7
+python-decouple>=3.5
+python-dotenv==1.0.0
+whitenoise==6.5.0
 
 # Django REST API
-djangorestframework==3.14.0
 django-cors-headers>=3.13.0
+djangorestframework==3.14.0
 
 # API dokumentācija
 drf-spectacular==0.28.0
@@ -19,20 +20,20 @@ drf-yasg==1.21.10
 PyYAML>=6.0
 
 # Formu atbalsts
-django-crispy-forms==2.0
 crispy-bootstrap5==0.7
+django-crispy-forms==2.0
 
 # Datu apstrādei un eksports
-pandas>=2.2.0
 numpy>=1.26.0
 openpyxl>=3.1.2
+pandas>=2.2.0
 PyPDF2>=3.0.1
 python-docx>=1.1.0
 reportlab>=4.0.4
 
 # Attēli un PDF
-Pillow==10.0.0
 pdfminer.six>=20221105
+Pillow==10.0.0
 PyMuPDF>=1.23.10
 
 # Drošībai un kriptogrāfijai
@@ -40,39 +41,37 @@ cryptography>=42.0.0
 PyCryptodome>=3.18.0
 
 # Rezerves kopijas
-django-dbbackup>=4.0.0
 boto3>=1.28.0
+django-dbbackup>=4.0.0
 
 # Lokalizācijai un tulkojumiem
 django-rosetta>=0.10.0
 polib>=1.2.0
 
 # Attīstībai, testēšanai, kvalitātei
-pytest>=7.4.0
-pytest-django>=4.5.2
-pytest-cov>=4.1.0
+coverage>=7.2.0
 factory-boy>=3.3.0
 mixer>=7.2.2
-coverage>=7.2.0
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-django>=4.5.2
 
 # Papildu rīki un izstrādes uzlabojumi
+django-debug-toolbar>=4.1.0
 django-extensions>=3.2.3
 django-filter>=23.2
-django-simple-history>=3.3.0
 django-import-export>=3.2.0
-django-debug-toolbar>=4.1.0
 django-querycount>=0.7.0
 django-silk>=5.0.2
+django-simple-history>=3.3.0
 memory_profiler>=0.60.0
 
 # Vizualizācija
 matplotlib>=3.8.3
-seaborn>=0.13.2
 plotly>=5.20.0
+seaborn>=0.13.2
 tqdm>=4.66.2
 
 # Celery un redis (ja izmanto)
 celery>=5.3.4
 redis>=5.0.1
-
-python-decouple>=3.5

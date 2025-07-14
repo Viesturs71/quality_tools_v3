@@ -3,7 +3,18 @@ Base settings for Quality Tools project.
 """
 
 from pathlib import Path
+from decouple import config
 from django.utils.translation import gettext_lazy as _
+
+import dj_database_url
+
+DATABASES = {
+    "default": dj_database_url.parse(config("DATABASE_URL"), conn_max_age=600)
+}
+
+DEBUG = config("DEBUG", default=False, cast=bool)
+SECRET_KEY = config("DJANGO_SECRET_KEY")
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent

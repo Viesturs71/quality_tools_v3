@@ -8,7 +8,7 @@ User = get_user_model()
 class Document(models.Model):
     """Base document model for the document management system."""
     title = models.CharField(_('Title'), max_length=255)
-    document_number = models.CharField(_('Document Number'), max_length=50, unique=True)
+    document_number = models.CharField(_('Document Number'), max_length=50, unique=True, blank=True)
     version = models.CharField(_('Version'), max_length=20, default='1.0')
     description = models.TextField(_('Description'), blank=True)
     content = models.TextField(_('Content'), blank=True)

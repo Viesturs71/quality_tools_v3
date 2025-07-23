@@ -4,20 +4,39 @@ from django.db.models import Max
 from django.core.exceptions import ValidationError
 
 
-def get_quality_document_model():
+def get_document_model():
     """
-    Lazily import the QualityDocument model to avoid circular imports.
+    Lazily import the Document model to avoid circular imports.
     """
-    from apps.documents.models import QualityDocument
-    return QualityDocument
+    from apps.documents.models import Document
+    return Document
 
 
-def generate_document_number(company, document_type, section=None, year=None):
+def generate_document_number(company=None, document_type=None, section=None, year=None):
     """
-    Generate a document number in the format: [COMPANY]-[DOCTYPE]-[SECTION]-[YEAR]-[SEQUENTIAL]
-    Example: ABC-QM-01-2023-001
+    Generate a document number. If no parameters provided, generates a simple DOC-XXX format.
+    Otherwise generates: [COMPANY]-[DOCTYPE]-[SECTION]-[YEAR]-[SEQUENTIAL]
+    Example: ABC-QM-01-2023-001 or DOC-001
     """
-    if not company or not company.identifier:
+    if not company:
+        # Simple format for basic documents
+        Document = get_document_model()
+        max_doc = Document.objects.filter(
+            document_number__startswith='DOC-'
+        ).aggregate(max_seq=Max('document_number'))['max_seq']
+        
+        next_seq = 1
+        if max_doc:
+            try:
+                current_seq = int(max_doc.split('-')[-1])
+                next_seq = current_seq + 1
+            except (ValueError, IndexError):
+                next_seq = 1
+        
+        return f"DOC-{next_seq:03d}"
+    
+    # Complex format with parameters
+    if not company.identifier:
         raise ValidationError(_("Company with valid identifier is required"))
 
     if not document_type or not document_type.abbreviation:
@@ -27,8 +46,8 @@ def generate_document_number(company, document_type, section=None, year=None):
     section_id = section.identifier if section and hasattr(section, 'identifier') else '00'
     base_number = f"{company.identifier}-{document_type.abbreviation}-{section_id}-{year}"
 
-    QualityDocument = get_quality_document_model()
-    max_seq = QualityDocument.objects.filter(
+    Document = get_document_model()
+    max_seq = Document.objects.filter(
         document_number__startswith=base_number
     ).aggregate(max_seq=Max('document_number'))['max_seq']
 
@@ -54,8 +73,8 @@ def validate_document_number_uniqueness(document_number, document_id=None):
     """
     Validate the uniqueness of a document number in the system.
     """
-    QualityDocument = get_quality_document_model()
-    query = QualityDocument.objects.filter(document_number=document_number)
+    Document = get_document_model()
+    query = Document.objects.filter(document_number=document_number)
     if document_id is not None:
         query = query.exclude(id=document_id)
 
@@ -73,15 +92,20 @@ def parse_document_number(document_number):
     """
     try:
         parts = document_number.split('-')
-        if len(parts) != 5:
-            return None
-        return {
-            'company': parts[0],
-            'doctype': parts[1],
-            'section': parts[2],
-            'year': parts[3],
-            'sequence': parts[4]
-        }
+        if len(parts) == 2:  # Simple format DOC-001
+            return {
+                'type': parts[0],
+                'sequence': parts[1]
+            }
+        elif len(parts) == 5:  # Complex format
+            return {
+                'company': parts[0],
+                'doctype': parts[1],
+                'section': parts[2],
+                'year': parts[3],
+                'sequence': parts[4]
+            }
+        return None
     except (ValueError, IndexError, AttributeError):
         return None
 
@@ -90,8 +114,8 @@ def suggest_next_sequence_number(document_number_base):
     """
     Suggest the next sequence number based on the existing document number base.
     """
-    QualityDocument = get_quality_document_model()
-    max_seq = QualityDocument.objects.filter(
+    Document = get_document_model()
+    max_seq = Document.objects.filter(
         document_number__startswith=document_number_base
     ).aggregate(max_seq=Max('document_number'))['max_seq']
 

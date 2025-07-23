@@ -6,3 +6,6 @@ class DocumentsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.documents"
     verbose_name = _("Documents Management")
+    
+    def ready(self):
+        import apps.documents.signals

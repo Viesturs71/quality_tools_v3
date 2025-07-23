@@ -19,7 +19,7 @@ class RegisterViewTests(TestCase):
     def setUp(self):
         self.register_url = reverse("accounts:register")
         self.login_url = reverse("accounts:login")
-        self.profile_url = reverse("accounts:profile")
+        self.profile_url = reverse("accounts:user_profile")
         self.user_credentials = {
             "username": "testuser",
             "email": "test@example.com",

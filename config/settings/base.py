@@ -5,19 +5,20 @@ Base settings for Quality Tools project.
 from pathlib import Path
 from decouple import config
 from django.utils.translation import gettext_lazy as _
-
 import dj_database_url
 
+# Project paths
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Security
+SECRET_KEY = config("DJANGO_SECRET_KEY")
+DEBUG = config("DEBUG", default=False, cast=bool)
+ALLOWED_HOSTS = [host.strip() for host in config("ALLOWED_HOSTS").split(",")]
+
+# Database (Heroku/Postgres)
 DATABASES = {
     "default": dj_database_url.parse(config("DATABASE_URL"), conn_max_age=600)
 }
-
-DEBUG = config("DEBUG", default=False, cast=bool)
-SECRET_KEY = config("DJANGO_SECRET_KEY")
-ALLOWED_HOSTS = [host.strip() for host in config("ALLOWED_HOSTS").split(",")]
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Application definition
 INSTALLED_APPS = [
@@ -27,14 +28,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-     # Third-party
+    # Third-party
     'crispy_forms',
     'crispy_bootstrap5',
     'mptt',
     'rosetta',
     'simple_history',
-    
     # Project apps
     'apps.accounts.apps.AccountsConfig',
     'apps.authentication.apps.AuthenticationConfig',

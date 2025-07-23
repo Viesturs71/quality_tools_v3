@@ -8,9 +8,9 @@ from apps.documents.utils.document_numbering import (
 
 from django.test import TestCase
 from apps.documents.models import (
-    QualityDocument,
+    Document,
     DocumentSection,
-    DocumentAttachment,
+    Attachment,
     DocumentRevision,
 )
 
@@ -18,28 +18,28 @@ class DocumentModelTests(TestCase):
 
     def test_document_number_generation(self):
         """Test document number is generated correctly."""
-        document = QualityDocument()
+        document = Document()
         document.save()
         self.assertTrue(document.document_number.startswith('DOC-'))
 
     def test_document_number_uniqueness(self):
         """Test document number is unique."""
-        document1 = QualityDocument.objects.create()
-        document2 = QualityDocument.objects.create()
+        document1 = Document.objects.create()
+        document2 = Document.objects.create()
         self.assertNotEqual(document1.document_number, document2.document_number)
 
-    class QualityDocumentModelTest(TestCase):
+    class DocumentModelTest(TestCase):
         def test_document_creation(self):
-            document = QualityDocument.objects.create(
+            document = Document.objects.create(
                 title="Test Document",
                 document_number="ABC-QM-01-2023-001",
                 version="v1.0"
             )
             self.assertEqual(str(document), "ABC-QM-01-2023-001: Test Document")
 
-class QualityDocumentTest(TestCase):
+class DocumentTest(TestCase):
     def test_document_creation(self):
-        document = QualityDocument.objects.create(
+        document = Document.objects.create(
             title="Test Document",
             document_number="DOC-001",
             version="v1.0"

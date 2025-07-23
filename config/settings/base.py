@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     # Project apps
     'apps.accounts.apps.AccountsConfig',
     'apps.authentication.apps.AuthenticationConfig',
+    'apps.audits.apps.AuditsConfig',
     'apps.company.apps.CompanyConfig',
     'apps.equipment.apps.EquipmentConfig',
     'apps.documents.apps.DocumentsConfig',
+    'apps.methods.apps.MethodsConfig',
     'apps.personnel.apps.PersonnelConfig',
     'apps.standards.apps.StandardsConfig',
     'apps.dashboard.apps.DashboardConfig',

@@ -7,20 +7,16 @@ from decouple import config
 from django.utils.translation import gettext_lazy as _
 import dj_database_url
 
-# Project paths
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Security
 SECRET_KEY = config("DJANGO_SECRET_KEY")
 DEBUG = config("DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = [host.strip() for host in config("ALLOWED_HOSTS").split(",")]
 
-# Database (Heroku/Postgres)
 DATABASES = {
     "default": dj_database_url.parse(config("DATABASE_URL"), conn_max_age=600)
 }
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +47,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  # After SessionMiddleware
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -96,12 +91,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Authentication backends
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'en'
 USE_I18N = True
 USE_L10N = True
@@ -120,31 +113,24 @@ LANGUAGE_COOKIE_NAME = 'django_language'
 LANGUAGE_COOKIE_PATH = '/'
 LANGUAGE_COOKIE_HTTPONLY = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# Login/Logout URLs
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Session configuration
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_NAME = 'sessionid'
 
-# Logging configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -159,16 +145,13 @@ LOGGING = {
     },
 }
 
-# Rosetta settings
 ROSETTA_SHOW_AT_ADMIN_PANEL = True
 ROSETTA_MESSAGES_PER_PAGE = 25
 ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
 ROSETTA_POFILE_WRAP_WIDTH = 80
 
-# Admin settings
 ADMIN_URL = 'admin/'
 
-# Navigation apps configuration
 NAVIGATION_APPS = {
     'users': {
         'icon': 'fa-users',

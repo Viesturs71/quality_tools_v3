@@ -1,7 +1,7 @@
 """
 Production settings for Quality Tools project.
 """
-
+import os
 from .base import *
 import dj_database_url
 

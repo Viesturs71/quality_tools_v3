@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>
+        {% if object %}
+            {% trans "Edit Method" %}
+        {% else %}
+            {% trans "Create New Method" %}
+        {% endif %}
+    </h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>{% trans "Basic Information" %}</h5>
+                    </div>
+                    <div class="card-body">
+                        {{ form.as_p }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">
+                {% if object %}
+                    {% trans "Update Method" %}
+                {% else %}
+                    {% trans "Create Method" %}
+                {% endif %}
+            </button>
+            <a href="{% url 'methods:method_list' %}" class="btn btn-secondary">
+                {% trans "Cancel" %}
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

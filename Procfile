@@ -1,1 +1,1 @@
-web: gunicorn config.wsgi --log-file - --settings=config.settings.prod
+web: gunicorn config.wsgi:application --log-file -

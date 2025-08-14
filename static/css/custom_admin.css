@@ -179,24 +179,11 @@ a.button:hover {
 }
 
 /* —————————————————————————————————————————  
-   Theme‐toggle icons: rādīt tikai vienu no tām
+   Theme‐toggle icons: handled by admin-styles.css
    ————————————————————————————————————————— */
 
-/* Pamatā rāda saulīti, slēpj mēnesi */
-.theme-toggle .icon-sun {
-  display: inline !important;
-}
-.theme-toggle .icon-moon {
-  display: none !important;
-}
-
-/* Kad ir dark režīms, apgriežam */
-html.dark .theme-toggle .icon-sun {
-  display: none !important;
-}
-html.dark .theme-toggle .icon-moon {
-  display: inline !important;
-}
+/* Note: Theme icon toggle styles moved to admin-styles.css 
+   to avoid conflicts with the theme-icon-when-light/dark classes */
 
 /* Var arī mazliet palielināt izmēru */
 .theme-toggle .icon-sun,

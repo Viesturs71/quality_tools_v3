@@ -91,9 +91,31 @@
                 }
                 const active = localStorage.getItem('theme') || 'auto';
                 if (currentThemeSpan) currentThemeSpan.textContent = active;
+                
+                // Update theme icons based on current theme
+                updateThemeIcons();
+            }
+            
+            function updateThemeIcons() {
+                const sunIcon = document.querySelector('.theme-icon-when-light');
+                const moonIcon = document.querySelector('.theme-icon-when-dark');
+                
+                if (sunIcon && moonIcon) {
+                    const isDark = html.classList.contains('dark');
+                    if (isDark) {
+                        sunIcon.style.display = 'none';
+                        moonIcon.style.display = 'inline-block';
+                    } else {
+                        sunIcon.style.display = 'inline-block';
+                        moonIcon.style.display = 'none';
+                    }
+                }
             }
 
             applyTheme(localStorage.getItem('theme'));
+            
+            // Initialize theme icons on load
+            updateThemeIcons();
 
             if (themeToggle) {
                 themeToggle.addEventListener('click', () => {
@@ -160,6 +182,24 @@
 .object-tools .addlink:hover {
     background: #336699;
     color: #FFCC00;
+}
+
+/* Fix theme toggle icons - ensure only one is visible at a time */
+.theme-icon-when-light {
+    display: inline-block !important;
+}
+.theme-icon-when-dark {
+    display: none !important;
+}
+
+/* When dark mode is active */
+html.dark .theme-icon-when-light,
+.dark .theme-icon-when-light {
+    display: none !important;
+}
+html.dark .theme-icon-when-dark,
+.dark .theme-icon-when-dark {
+    display: inline-block !important;
 }
     </style>
 

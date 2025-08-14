@@ -15,12 +15,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Database - use SQLite for development
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'quality_tools_3',
-        'USER': 'postgres',
-        'PASSWORD': 'Emilija2004',  # ievieto īsto paroli
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

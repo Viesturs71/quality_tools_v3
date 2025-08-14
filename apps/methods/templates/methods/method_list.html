@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{% trans "Methods List" %}</h1>
+    
+    <div class="row mb-3">
+        <div class="col">
+            <a href="{% url 'methods:method_create' %}" class="btn btn-primary">
+                {% trans "Add New Method" %}
+            </a>
+        </div>
+    </div>
+    
+    {% if methods %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{% trans "ID" %}</th>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Identification" %}</th>
+                        <th>{% trans "Created" %}</th>
+                        <th>{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for method in methods %}
+                    <tr>
+                        <td>{{ method.id }}</td>
+                        <td>
+                            <a href="{% url 'methods:method_detail' method.pk %}">
+                                {{ method.name|default:"—" }}
+                            </a>
+                        </td>
+                        <td>{{ method.identification|default:"—" }}</td>
+                        <td>{{ method.created_at|date:"Y-m-d" }}</td>
+                        <td>
+                            <a href="{% url 'methods:method_detail' method.pk %}" class="btn btn-sm btn-outline-primary">
+                                {% trans "View" %}
+                            </a>
+                            <a href="{% url 'methods:method_update' method.pk %}" class="btn btn-sm btn-outline-secondary">
+                                {% trans "Edit" %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            {% trans "No methods found. Create your first method!" %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

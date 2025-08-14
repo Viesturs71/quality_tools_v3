@@ -23,6 +23,7 @@ urlpatterns = [
 
     # Your apps
     path('users/', include('apps.users.urls', namespace='users')),
+    path('methods/', include('apps.methods.urls', namespace='methods')),
     path('documents/', include('apps.documents.urls', namespace='documents_app')),
     path('equipment/', include('apps.equipment.urls', namespace='equipment_app')),
     path('dashboard/', include('apps.dashboard.urls', namespace='dashboard')),

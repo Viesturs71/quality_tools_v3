@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
-from django.contrib.auth.models import User
 
 
 class EquipmentDocument(models.Model):
@@ -11,7 +10,7 @@ class EquipmentDocument(models.Model):
     description = models.TextField(_('Description'), blank=True, null=True)
     uploaded_at = models.DateTimeField(_('Uploaded At'), auto_now_add=True)
     uploaded_by = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='equipment_document_uploaded_by',  # Unique related_name
         null=True,

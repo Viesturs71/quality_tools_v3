@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, UpdateView, ListView, DetailView
 
 from .forms import (
-    CustomUserCreationForm as RegistrationForm,  # Alias the existing form
+    RegisterForm as RegistrationForm,  # Use RegisterForm which works with default User model
     LoginForm, 
     ProfileForm, 
     AccountSettingsForm
@@ -25,7 +25,7 @@ def register(request):
     Validates and saves registration data.
     """
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             messages.success(request, _(f"Account successfully created! Welcome, {user.username}!"))
@@ -33,7 +33,7 @@ def register(request):
         else:
             messages.error(request, _("Registration failed. Please check the entered data."))
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
 
     return render(request, "accounts/register.html", {"form": form})
 

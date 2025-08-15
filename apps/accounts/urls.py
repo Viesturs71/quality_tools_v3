@@ -89,7 +89,7 @@ urlpatterns = [
     path(
         "profile/",
         views.profile_view,  # Updated to use the correct view function name
-        name="user_profile",
+        name="profile",  # Changed from "user_profile" to "profile" to match tests
     ),
     path(
         "profile/edit/",

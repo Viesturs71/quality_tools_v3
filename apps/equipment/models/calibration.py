@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 
@@ -8,7 +8,7 @@ class CalibrationRecord(models.Model):
     Equipment calibration record
     """
     equipment = models.ForeignKey('Equipment', on_delete=models.CASCADE, related_name='calibration_records', verbose_name=_('Equipment'))
-    performed_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='performed_calibrations', verbose_name=_('Performed By'))
+    performed_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='performed_calibrations', verbose_name=_('Performed By'))
     calibration_date = models.DateField(verbose_name=_('Calibration Date'))
     certificate_number = models.CharField(max_length=100, blank=True, verbose_name=_('Certificate Number'))
     description = models.TextField(verbose_name=_('Description'))

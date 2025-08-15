@@ -25,7 +25,7 @@ def register(request):
     Validates and saves registration data.
     """
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             messages.success(request, _(f"Account successfully created! Welcome, {user.username}!"))
@@ -33,7 +33,7 @@ def register(request):
         else:
             messages.error(request, _("Registration failed. Please check the entered data."))
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
 
     return render(request, "accounts/register.html", {"form": form})
 

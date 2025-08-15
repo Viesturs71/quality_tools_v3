@@ -95,6 +95,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+# Custom user model
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 LANGUAGE_CODE = 'en'
 USE_I18N = True
 USE_L10N = True

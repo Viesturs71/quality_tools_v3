@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from .models import Profile, CustomPermission
+
+User = get_user_model()
 
 
 class ProfileInline(admin.StackedInline):
@@ -16,8 +18,12 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
 
 
-# Re-register UserAdmin
-admin.site.unregister(User)
+# Only register if using the default admin site and the CustomUser is not already registered
+try:
+    admin.site.unregister(User)
+except admin.sites.NotRegistered:
+    pass
+
 admin.site.register(User, UserAdmin)
 admin.site.register(CustomPermission)
 admin.site.register(Profile)

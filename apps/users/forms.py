@@ -1,7 +1,9 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
+
+User = get_user_model()
 
 
 class UserRegisterForm(UserCreationForm):
@@ -23,4 +25,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'avatar', 'phone_number', 'position']  # Remove 'profile_image' which doesn't exist in the model
+        fields = ['bio', 'profile_image']  # Use fields that actually exist in the model

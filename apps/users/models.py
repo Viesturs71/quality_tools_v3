@@ -3,14 +3,16 @@ This module re-exports all models from the models package.
 """
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+User = get_user_model()
+
 
 class Profile(models.Model):
-    """User profile model linked to the default Django user."""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    """User profile model linked to the custom Django user."""
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='users_profile')
     bio = models.TextField(max_length=500, blank=True)
     profile_image = models.ImageField(upload_to='profile_pics', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -32,7 +34,8 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    if hasattr(instance, 'users_profile'):
+        instance.users_profile.save()
 
 
 from .models.custom_permission import CustomPermission

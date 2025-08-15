@@ -29,25 +29,6 @@ class CustomUser(AbstractUser):
     full_name = models.CharField(_("Full Name"), max_length=255, blank=True)
     job_title = models.CharField(_("Job Title"), max_length=100, blank=True)
     
-    # Company relationships - ensure these are properly defined with null=True
-    company = models.ForeignKey(
-        'company.Company',
-        on_delete=models.SET_NULL,  # Changed to SET_NULL for safety
-        related_name='employees',
-        verbose_name=_("Company"),
-        null=True,
-        blank=True,
-    )
-    
-    department = models.ForeignKey(
-        'company.Department',
-        on_delete=models.SET_NULL,  # Changed to SET_NULL for safety
-        related_name='employees',
-        verbose_name=_("Department"),
-        null=True,
-        blank=True,
-    )
-    
     # Contact information
     phone = models.CharField(_("Phone Number"), max_length=20, blank=True)
     mobile = models.CharField(_("Mobile Number"), max_length=20, blank=True)

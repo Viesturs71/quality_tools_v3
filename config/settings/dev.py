@@ -3,6 +3,8 @@ Development settings for Quality Tools project.
 """
 
 from .base import *
+import dj_database_url
+from decouple import config
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-development-key-change-in-production'
@@ -12,16 +14,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-# Database - use SQLite for development
+# Database - use environment variable or fallback to SQLite
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'quality_tools_3',
-        'USER': 'postgres',
-        'PASSWORD': 'Emilija2004',  # ievieto īsto paroli
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.parse(
+        config('DATABASE_URL', default='sqlite:///db.sqlite3'),
+        conn_max_age=600
+    )
 }
 
 # Email backend for development

@@ -25,4 +25,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'profile_image']  # Use fields that actually exist in the model
+        fields = ['bio', 'avatar', 'phone_number', 'position']  # Use actual fields from Profile model

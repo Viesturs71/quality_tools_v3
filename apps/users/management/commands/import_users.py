@@ -2,8 +2,10 @@ from django.core.management.base import BaseCommand, CommandError
 import csv
 import os
 from django.db import transaction
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from apps.users.models import Profile
+
+User = get_user_model()
 
 class Command(BaseCommand):
     help = 'Import users from CSV file'

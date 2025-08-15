@@ -122,8 +122,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Custom user model
-AUTH_USER_MODEL = 'accounts.CustomUser'
+# Note: Custom user model configuration commented out to avoid circular dependencies
+# AUTH_USER_MODEL = 'accounts.CustomUser'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = "bootstrap5"

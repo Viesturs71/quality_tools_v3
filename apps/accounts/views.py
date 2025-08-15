@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, UpdateView, ListView, DetailView
 
 from .forms import (
-    CustomUserCreationForm as RegistrationForm,  # Alias the existing form
+    RegisterForm as RegistrationForm,  # Use RegisterForm which works with default User model
     LoginForm, 
     ProfileForm, 
     AccountSettingsForm

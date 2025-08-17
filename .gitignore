@@ -122,3 +122,4 @@ pyproject.toml
 
 # VSCode papildu fails
 *.code-workspace
+venv/

@@ -266,6 +266,105 @@
         });
         
         // Save link functionality would go here with AJAX call to backend
+        const saveButton = document.getElementById('saveLink');
+        if (saveButton) {
+            saveButton.addEventListener('click', function() {
+                const form = document.getElementById('documentLinkForm');
+                const formData = new FormData(form);
+                
+                // Add CSRF token
+                formData.append('csrfmiddlewaretoken', getCSRFToken());
+                
+                // Determine if this is a create or update operation
+                const linkId = document.getElementById('link_id').value;
+                const url = linkId ? `/standards/link/${linkId}/update/` : '/standards/link/create/';
+                const method = 'POST';
+                
+                fetch(url, {
+                    method: method,
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': getCSRFToken(),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Close modal and reload page or update table
+                        bootstrap.Modal.getInstance(document.getElementById('documentLinkModal')).hide();
+                        location.reload(); // Simple reload for now
+                    } else {
+                        // Show errors
+                        console.error('Save failed:', data.errors);
+                        alert('Error saving document link: ' + (data.message || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Network error occurred while saving.');
+                });
+            });
+        }
+        
+        // Edit link functionality
+        document.querySelectorAll('.edit-link').forEach(button => {
+            button.addEventListener('click', function() {
+                const linkId = this.dataset.linkId;
+                
+                // Fetch link data and populate form
+                fetch(`/standards/link/${linkId}/`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Populate form with existing data
+                    document.getElementById('link_id').value = data.id;
+                    document.getElementById('document').value = data.document_id;
+                    document.getElementById('compliance_status').value = data.compliance_status;
+                    document.getElementById('notes').value = data.notes || '';
+                    
+                    // Show modal
+                    const modal = new bootstrap.Modal(document.getElementById('documentLinkModal'));
+                    modal.show();
+                })
+                .catch(error => {
+                    console.error('Error fetching link data:', error);
+                    alert('Error loading link data.');
+                });
+            });
+        });
+        
+        // Delete link functionality
+        document.querySelectorAll('.delete-link').forEach(button => {
+            button.addEventListener('click', function() {
+                const linkId = this.dataset.linkId;
+                
+                if (confirm('Are you sure you want to remove this document link?')) {
+                    fetch(`/standards/link/${linkId}/delete/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': getCSRFToken(),
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            location.reload(); // Simple reload for now
+                        } else {
+                            alert('Error deleting link: ' + (data.message || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Network error occurred while deleting.');
+                    });
+                }
+            });
+        });
     });
 </script>
 {% endblock %}

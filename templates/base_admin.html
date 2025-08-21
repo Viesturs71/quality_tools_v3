@@ -7,6 +7,9 @@
     <title>{% block title %}Admin Panel{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    {# CSRF token for JavaScript #}
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 <body class="font-serif text-gray-700 bg-white">
     <header class="bg-blue-600 text-white shadow-md h-16 fixed w-full z-50">

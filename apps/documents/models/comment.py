@@ -1,12 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-
 
 class DocumentComment(models.Model):
     """Model representing comments on documents."""
-    document = models.ForeignKey('Document', on_delete=models.CASCADE, related_name='comments', verbose_name=_('Document'))
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
+    document = models.ForeignKey('documents.Document', on_delete=models.CASCADE, related_name='comments', verbose_name=_('Document'))
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('Author'))
     text = models.TextField(verbose_name=_('Comment'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created At'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated At'))

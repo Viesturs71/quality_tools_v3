@@ -1,19 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from .document import Document
-from .section import DocumentSection
-
 
 class SectionDocumentLink(models.Model):
     """Link between document sections and documents for traceability."""
     section = models.ForeignKey(
-        DocumentSection,
+        'documents.DocumentSection',
         on_delete=models.CASCADE,
         related_name='document_links',
         verbose_name=_("Section")
     )
     document = models.ForeignKey(
-        Document,
+        'documents.Document',
         on_delete=models.CASCADE,
         related_name='section_links',
         verbose_name=_("Document")
@@ -25,8 +22,11 @@ class SectionDocumentLink(models.Model):
     class Meta:
         verbose_name = _("Section Document Link")
         verbose_name_plural = _("Section Document Links")
-        unique_together = ('section', 'document')
         ordering = ('section', 'document')
+        constraints = [
+            models.UniqueConstraint(fields=['section', 'document'], name='unique_section_document_link')
+        ]
 
     def __str__(self):
-        return f"{self.section.name} → {self.document.title}"
+        # Pielāgo pēc modeļa lauku nosaukumiem!
+        return f"{self.section.code} → {self.document.original_title}"

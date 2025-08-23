@@ -2,6 +2,6 @@
 Authentication models initialization.
 """
 from .token import Token
-from .otp import OneTimePassword
+from .one_time_password import OneTimePassword
 
 __all__ = ['Token', 'OneTimePassword']

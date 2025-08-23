@@ -35,7 +35,9 @@ class DocumentSection(models.Model):
         verbose_name = _('Document Section')
         verbose_name_plural = _('Document Sections')
         ordering = ['document', 'parent__id', 'order']
-        unique_together = ['document', 'code']
+        constraints = [
+            models.UniqueConstraint(fields=['document', 'code'], name='unique_document_code')
+        ]
 
     def __str__(self):
         # Show both titles if available

@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Token(models.Model):
     key = models.CharField(max_length=40, unique=True, db_index=True)
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField()
 

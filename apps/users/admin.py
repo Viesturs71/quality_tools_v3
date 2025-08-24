@@ -16,8 +16,8 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
 
 
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+# Re-register UserAdmin - disabled since we use CustomUser in accounts app
+# admin.site.unregister(User)
+# admin.site.register(User, UserAdmin)
 admin.site.register(CustomPermission)
 admin.site.register(Profile)

@@ -1,7 +1,2 @@
-from .token import Token
-from .one_time_password import OneTimePassword
-
-__all__ = [
-    'Token',
-    'OneTimePassword',
-]
+# This file marks the authentication directory as a Python package.
+default_app_config = 'apps.authentication.apps.AuthenticationConfig'

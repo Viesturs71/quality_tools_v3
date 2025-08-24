@@ -138,4 +138,13 @@ urlpatterns = [
 
     # Custom admin dashboard
     path("admin/", custom_admin_site.urls),
+
+    # Account management views
+    path("", views.AccountListView.as_view(), name="list"),
+    path("dashboard/", views.AccountDashboardView.as_view(), name="dashboard"),
+    path("create/", views.AccountCreateView.as_view(), name="create"),
+    path("<int:pk>/", views.AccountDetailView.as_view(), name="detail"),
+    path("<int:pk>/edit/", views.AccountUpdateView.as_view(), name="edit"),
+    path("<int:account_id>/billing/", views.BillingView.as_view(), name="billing"),
+    path("<int:account_id>/settings/", views.AccountSettingsView.as_view(), name="settings"),
 ]

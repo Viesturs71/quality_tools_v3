@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 
-from .models import CustomUser, UserProfile
+from .models import CustomUser, UserProfile, Account, Subscription, AccountMembership
 
 User = get_user_model()
 
@@ -174,3 +174,32 @@ class RegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ('name', 'code', 'description')
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'code': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }
+
+class SubscriptionForm(forms.ModelForm):
+    class Meta:
+        model = Subscription
+        fields = ('plan', 'max_users', 'max_storage_gb')
+        widgets = {
+            'plan': forms.Select(attrs={'class': 'form-select'}),
+            'max_users': forms.NumberInput(attrs={'class': 'form-control'}),
+            'max_storage_gb': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+class AccountMembershipForm(forms.ModelForm):
+    class Meta:
+        model = AccountMembership
+        fields = ('user', 'role')
+        widgets = {
+            'user': forms.Select(attrs={'class': 'form-select'}),
+            'role': forms.Select(attrs={'class': 'form-select'}),
+        }

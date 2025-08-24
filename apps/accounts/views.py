@@ -8,15 +8,19 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView, UpdateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import models
 
 from .forms import (
     CustomUserCreationForm as RegistrationForm,  # Alias the existing form
     LoginForm, 
     ProfileForm, 
-    AccountSettingsForm
+    AccountSettingsForm,
+    AccountForm,
+    SubscriptionForm
 )
-from .models import CustomUser, UserProfile
+from .models import CustomUser, UserProfile, Account, Subscription, AccountMembership
 
 
 def register(request):
@@ -210,3 +214,95 @@ def profile_view(request):
         'form': form,
     }
     return render(request, 'accounts/profile.html', context)
+
+class AccountDashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "accounts/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_accounts = Account.objects.filter(
+            models.Q(owner=self.request.user) | 
+            models.Q(members=self.request.user)
+        ).distinct()
+        
+        context['user_accounts'] = user_accounts
+        context['total_accounts'] = user_accounts.count()
+        return context
+
+class AccountListView(LoginRequiredMixin, ListView):
+    model = Account
+    template_name = "accounts/list.html"
+    context_object_name = 'accounts'
+    paginate_by = 20
+
+    def get_queryset(self):
+        return Account.objects.filter(
+            models.Q(owner=self.request.user) | 
+            models.Q(members=self.request.user)
+        ).distinct()
+
+class AccountDetailView(LoginRequiredMixin, DetailView):
+    model = Account
+    template_name = "accounts/detail.html"
+    context_object_name = 'account'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['membership'] = AccountMembership.objects.filter(
+            account=self.object,
+            user=self.request.user
+        ).first()
+        return context
+
+class AccountCreateView(LoginRequiredMixin, CreateView):
+    model = Account
+    form_class = AccountForm
+    template_name = "accounts/form.html"
+    success_url = reverse_lazy('accounts:list')
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+class AccountUpdateView(LoginRequiredMixin, UpdateView):
+    model = Account
+    form_class = AccountForm
+    template_name = "accounts/form.html"
+
+    def get_success_url(self):
+        return reverse_lazy('accounts:detail', kwargs={'pk': self.object.pk})
+
+class BillingView(LoginRequiredMixin, TemplateView):
+    template_name = "accounts/billing.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        account_id = self.kwargs.get('account_id')
+        account = get_object_or_404(Account, id=account_id, owner=self.request.user)
+        subscription = getattr(account, 'subscription', None)
+        
+        context['account'] = account
+        context['subscription'] = subscription
+        return context
+
+class AccountSettingsView(LoginRequiredMixin, TemplateView):
+    template_name = "accounts/settings.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        account_id = self.kwargs.get('account_id')
+        account = get_object_or_404(Account, id=account_id)
+        
+        # Check if user has admin access to this account
+        membership = AccountMembership.objects.filter(
+            account=account,
+            user=self.request.user,
+            role__in=['admin', 'manager']
+        ).first()
+        
+        if not membership and account.owner != self.request.user:
+            raise PermissionDenied
+        
+        context['account'] = account
+        context['membership'] = membership
+        return context

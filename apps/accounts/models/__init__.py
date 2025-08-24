@@ -6,10 +6,14 @@ Models package for the accounts app.
 from .user import CustomUser
 from .user_profile import UserProfile
 from .user_permissions import UserPermission
+from .account import Account
+from .subscription import Subscription
 
 # Export models for easier imports elsewhere
 __all__ = [
     'CustomUser',
     'UserProfile',
     'UserPermission',
+    'Account',
+    'Subscription',
 ]

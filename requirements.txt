@@ -30,7 +30,6 @@ pandas>=2.2.0
 PyPDF2>=3.0.1
 python-docx>=1.1.0
 reportlab>=4.0.4
-python-decouple
 
 # Attēli un PDF
 pdfminer.six>=20221105
@@ -76,5 +75,3 @@ tqdm>=4.66.2
 # Celery un redis (ja izmanto)
 celery>=5.3.4
 redis>=5.0.1
-
-python-decouple

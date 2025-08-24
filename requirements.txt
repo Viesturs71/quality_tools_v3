@@ -30,7 +30,6 @@ pandas>=2.2.0
 PyPDF2>=3.0.1
 python-docx>=1.1.0
 reportlab>=4.0.4
-python-decouple
 
 # Attēli un PDF
 pdfminer.six>=20221105

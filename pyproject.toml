@@ -13,6 +13,7 @@ crispy-bootstrap4 = "*"
 django-mptt = "*"
 django-rosetta = "*"
 django-simple-history = "*"
+python-decouple = "^3.5"
 pillow = "^11.2.1"
 
 [tool.poetry.group.dev.dependencies]

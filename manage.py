@@ -6,8 +6,13 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    # Set the default Django settings module
+    # Default to development settings
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.dev')
+    
+    # Use production settings on Heroku
+    if 'DYNO' in os.environ:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.prod')
+    
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -20,5 +25,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
     main()

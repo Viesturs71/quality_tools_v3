@@ -5,16 +5,14 @@ __pycache__/
 
 # Django
 *.log
-*.pot
-*.pyc
+local_settings.py
 db.sqlite3
 db.sqlite3-journal
-media/
-staticfiles/
 
 # Environments
 .env
-.venv
+.env.local
+.env.production
 env/
 venv/
 ENV/
@@ -63,10 +61,8 @@ Thumbs.db
 
 # Collected static files
 /staticfiles/
+/static/
 .idea/
-
-# Local development settings
-local_settings.py
 
 # migrations (if needed)
 # */migrations/*.py
@@ -123,3 +119,13 @@ pyproject.toml
 # VSCode papildu fails
 *.code-workspace
 venv/
+
+# Node modules (if using frontend tools)
+node_modules/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
